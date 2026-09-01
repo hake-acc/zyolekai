@@ -258,8 +258,25 @@
   }
 
   @media (max-width: 840px) {
+    .calculator-card {
+      padding: 24px 18px;
+    }
+
+    .calc-header {
+      margin-bottom: 24px;
+    }
+
     .calc-grid {
       grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .calc-output {
+      padding: 20px 16px;
+    }
+
+    .out-val {
+      font-size: clamp(1.8rem, 6vw, 2.2rem);
     }
   }
 </style>

@@ -134,7 +134,11 @@
           <div class="modal-header-info">
             <div class="modal-title-row">
               <h2 class="modal-name">${creatorData.name}</h2>
-              <span class="verified-badge">✓ Verified</span>
+              <span class="verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:2px;">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>Verified
+              </span>
             </div>
             <p class="modal-niche">${creatorData.niche || 'Gaming Entertainment'} • ${creatorData.videoCount || '50+ videos'}</p>
           </div>
@@ -303,14 +307,40 @@
   }
 
   @media (max-width: 600px) {
+    .modal-dialog {
+      padding: 24px 18px 20px 18px;
+      max-height: 88vh;
+    }
+    .modal-header {
+      gap: 12px;
+    }
+    .modal-avatar {
+      width: 52px;
+      height: 52px;
+    }
+    .modal-name {
+      font-size: 1.3rem;
+    }
     .modal-stats-grid {
       grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .modal-stat-box {
+      padding: 10px 14px;
     }
     .modal-actions {
       flex-direction: column;
+      gap: 10px;
     }
     .modal-actions .btn {
       width: 100%;
+      min-height: 44px;
+    }
+    .modal-close {
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
     }
   }
 </style>

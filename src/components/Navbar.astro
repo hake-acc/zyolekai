@@ -173,19 +173,32 @@
   .mobile-toggle {
     display: none;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
     background: none;
     border: none;
-    padding: 6px;
+    padding: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
   }
 
   .mobile-toggle .bar {
-    width: 22px;
+    width: 20px;
     height: 2px;
     background: var(--text-primary);
     border-radius: 2px;
-    transition: transform var(--duration-fast) var(--ease-out);
+    transition: transform var(--duration-fast) var(--ease-out), opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .mobile-toggle.active .bar:first-child {
+    transform: translateY(3.5px) rotate(45deg);
+  }
+
+  .mobile-toggle.active .bar:last-child {
+    transform: translateY(-3.5px) rotate(-45deg);
   }
 
   .mobile-drawer {
@@ -220,7 +233,7 @@
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
@@ -232,6 +245,33 @@
       display: flex;
     }
   }
+
+  @media (max-width: 480px) {
+    .navbar {
+      height: 56px;
+      padding: 0 12px;
+    }
+    .navbar-wrapper {
+      top: 10px;
+      padding: 0 10px;
+    }
+    .brand-wordmark {
+      height: 18px;
+    }
+    .brand-emblem {
+      width: 28px;
+      height: 28px;
+    }
+    .nav-actions .btn-pill span {
+      display: none;
+    }
+    .nav-actions .btn-pill {
+      padding: 8px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+  }
 </style>
 
 <script>
@@ -239,12 +279,16 @@
   const drawer = document.getElementById('mobileDrawer');
   if (btn && drawer) {
     btn.addEventListener('click', () => {
-      drawer.classList.toggle('open');
+      const isOpen = drawer.classList.toggle('open');
+      btn.classList.toggle('active', isOpen);
     });
 
     // Close when clicking any drawer item
     drawer.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => drawer.classList.remove('open'));
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        btn.classList.remove('active');
+      });
     });
   }
 </script>

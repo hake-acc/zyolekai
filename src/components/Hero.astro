@@ -273,15 +273,65 @@
   }
 
   @media (max-width: 768px) {
+    .hero-section {
+      padding: 110px 0 48px 0;
+    }
+
+    .hero-pill {
+      margin-bottom: 20px;
+      font-size: 0.82rem;
+      padding: 5px 12px;
+    }
+
+    .hero-headline {
+      font-size: clamp(2rem, 7.5vw, 3rem);
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions .btn {
+      width: 100%;
+      min-height: 48px;
+    }
+
     .metrics-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      padding: 24px;
+      gap: 18px;
+      padding: 18px;
+      margin-bottom: 36px;
     }
 
     .metric-divider {
       display: none;
+    }
+
+    .banner-overlay {
+      bottom: 12px;
+      left: 12px;
+    }
+
+    .overlay-badge {
+      padding: 6px 12px;
+      font-size: 0.78rem;
+    }
+  }
+
+  @media (max-width: 440px) {
+    .metrics-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
     }
   }
 </style>
