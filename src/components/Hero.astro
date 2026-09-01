@@ -52,85 +52,6 @@
         <div class="metric-label">Creator Upfront Fees</div>
       </div>
     </div>
-
-    <!-- Interactive Motion Graphics Showcase (Refurnished from Banner) -->
-    <div class="hero-stage-wrapper">
-      <div class="hero-stage glass-card" id="heroStage">
-        <!-- Precision Chroma-Keyed Organic Waves from Banner -->
-        <img src="/brand/corner_wave_tr.png" alt="" class="stage-wave-img wave-tr" aria-hidden="true" />
-        <img src="/brand/corner_wave_bl.png" alt="" class="stage-wave-img wave-bl" aria-hidden="true" />
-        <img src="/brand/corner_wave_tl.png" alt="" class="stage-wave-img wave-tl" aria-hidden="true" />
-        <img src="/brand/corner_wave_br.png" alt="" class="stage-wave-img wave-br" aria-hidden="true" />
-
-        <!-- Subtle Ambient Grid Mesh -->
-        <div class="stage-grid-mesh" aria-hidden="true"></div>
-
-        <!-- Centerpiece Content with Exact Transparent Wordmark & Slogan -->
-        <div class="stage-centerpiece">
-          <div class="stage-emblem-wrap">
-            <img src="/brand/logo.png" alt="ZyoleKai 3D Emblem" class="stage-emblem" />
-            <div class="stage-emblem-glow"></div>
-          </div>
-
-          <div class="stage-brand-wrap">
-            <img src="/brand/exact_zyolekai_logo.png" alt="ZyoleKai" class="stage-wordmark" />
-            <img src="/brand/exact_slogan.png" alt="Built For Perfection." class="stage-slogan" />
-            <p class="stage-kicker">GAMING TALENT MANAGEMENT & SPONSORSHIPS</p>
-            <p class="stage-subline">REPRESENTING 15 CREATORS • YOUTUBE INTEGRATIONS • SMP EVENT SERIES</p>
-          </div>
-        </div>
-
-        <!-- Floating Interactive Motion Graphics Chips -->
-        <div class="stage-chip chip-tl float-anim-1">
-          <img src="https://yt3.googleusercontent.com/7-JXzXEzN1OoTsCTGN_tkgj2qnMnEs3Kch5zfdA1LO8hZkTrmCHFOU-V-ibYpAZcVVweUlKP=s900-c-k-c0x00ffffff-no-rj" alt="SenpaiSpider" class="chip-avatar" onerror="this.src='/brand/logo.png'" />
-          <div class="chip-info">
-            <div class="chip-row">
-              <span class="chip-title">SenpaiSpider</span>
-              <span class="chip-badge">2.69M Subs</span>
-            </div>
-            <span class="chip-sub">Viral Minecraft Content</span>
-          </div>
-        </div>
-
-        <div class="stage-chip chip-br float-anim-2">
-          <img src="https://yt3.googleusercontent.com/YRiuDwpUPZ_JY7p_rucfwgXqvzaJ3AyU0MvTI0Qmcr5hbPUoK1BHatq4T00Jo2NWLxTQw5TpAA=s900-c-k-c0x00ffffff-no-rj" alt="Mc flame" class="chip-avatar" onerror="this.src='/brand/logo.png'" />
-          <div class="chip-info">
-            <div class="chip-row">
-              <span class="chip-title">Mc flame</span>
-              <span class="chip-badge">2.69M Subs</span>
-            </div>
-            <span class="chip-sub">Storytelling & Roleplay</span>
-          </div>
-        </div>
-
-        <div class="stage-chip chip-tr float-anim-3">
-          <div class="chip-icon-box green">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              <polyline points="9 12 11 14 15 10"></polyline>
-            </svg>
-          </div>
-          <div class="chip-info">
-            <span class="chip-title">Secured Deal Terms</span>
-            <span class="chip-sub">Clear contracts & on-time payouts</span>
-          </div>
-        </div>
-
-        <div class="stage-chip chip-bl float-anim-4">
-          <div class="chip-icon-box gold">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-              <polyline points="2 17 12 22 22 17"></polyline>
-              <polyline points="2 12 12 17 22 12"></polyline>
-            </svg>
-          </div>
-          <div class="chip-info">
-            <span class="chip-title">SMP Sponsorships</span>
-            <span class="chip-sub">In-game events & server hosting</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Organic Wave Transition to Next Section -->
@@ -240,346 +161,46 @@
     background: rgba(13, 28, 18, 0.1);
   }
 
-  /* =========================================================================
-     Interactive Motion Graphics Stage (Emil Kowalski Craft)
-     ========================================================================= */
-  .hero-stage-wrapper {
-    width: 100%;
-    max-width: 1120px;
-    perspective: 1200px;
-    margin-bottom: 60px;
-  }
-
-  .hero-stage {
-    position: relative;
-    min-height: 520px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    padding: 70px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #FFFFFF 0%, #FAF7EE 60%, #F4EEDB 100%);
-    border: 1.5px solid rgba(0, 191, 99, 0.25);
-    box-shadow: 0 20px 60px rgba(13, 28, 18, 0.08), 0 0 30px rgba(0, 191, 99, 0.1);
-    transition: transform var(--duration-normal) var(--ease-out),
-                box-shadow var(--duration-normal) var(--ease-out);
-    will-change: transform;
-  }
-
-  /* Real Chroma-Keyed Organic Waves in the Stage (Rich on Cream) */
-  .stage-wave-img {
-    position: absolute;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0.9;
-    filter: drop-shadow(0 4px 18px rgba(0, 191, 99, 0.22));
-  }
-
-  .stage-wave-img.wave-tr {
-    top: 0;
-    right: 0;
-    width: 48%;
-    max-width: 520px;
-  }
-
-  .stage-wave-img.wave-bl {
-    bottom: 0;
-    left: 0;
-    width: 46%;
-    max-width: 480px;
-  }
-
-  .stage-wave-img.wave-tl {
-    top: -10px;
-    left: -10px;
-    width: 42%;
-    max-width: 440px;
-    opacity: 0.95;
-  }
-
-  .stage-wave-img.wave-br {
-    bottom: -10px;
-    right: -10px;
-    width: 42%;
-    max-width: 440px;
-    opacity: 0.95;
-  }
-
-  .stage-grid-mesh {
-    position: absolute;
-    inset: 0;
-    background-size: 36px 36px;
-    background-image:
-      linear-gradient(to right, rgba(13, 28, 18, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(13, 28, 18, 0.04) 1px, transparent 1px);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Centerpiece Typography & Wordmark */
-  .stage-centerpiece {
-    position: relative;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    max-width: 680px;
-    text-align: center;
-  }
-
-  .stage-emblem-wrap {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .stage-emblem {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    object-fit: contain;
-    position: relative;
-    z-index: 2;
-    filter: drop-shadow(0 0 16px rgba(83, 212, 62, 0.5));
-    animation: emblemPulse 4s infinite var(--ease-in-out);
-  }
-
-  @keyframes emblemPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-
-  .stage-emblem-glow {
-    position: absolute;
-    inset: -12px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(83, 212, 62, 0.4) 0%, transparent 70%);
-    filter: blur(12px);
-    z-index: 1;
-  }
-
-  .stage-brand-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .stage-wordmark {
-    max-width: 460px;
-    width: 88%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 24px rgba(83, 212, 62, 0.4));
-  }
-
-  .stage-slogan {
-    max-width: 380px;
-    width: 76%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 14px rgba(83, 212, 62, 0.3));
-    margin-bottom: 6px;
-  }
-
-  .stage-kicker {
-    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    color: #009E52;
-    text-transform: uppercase;
-  }
-
-  .stage-subline {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-secondary);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    max-width: 520px;
-    line-height: 1.5;
-  }
-
-  /* Floating Motion Graphic Chips */
-  .stage-chip {
-    position: absolute;
-    z-index: 6;
-    background: rgba(255, 255, 255, 0.94);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1.5px solid rgba(13, 28, 18, 0.12);
-    border-radius: var(--radius-md);
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: 0 10px 28px rgba(13, 28, 18, 0.08);
-    transition: transform var(--duration-fast) var(--ease-out),
-                border-color var(--duration-fast) var(--ease-out);
-    user-select: none;
-  }
-
-  .stage-chip:hover {
-    border-color: var(--brand-green);
-    transform: scale(1.04) !important;
-  }
-
-  .chip-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 2px solid var(--brand-green);
-    object-fit: cover;
-  }
-
-  .chip-icon-box {
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .chip-icon-box.green {
-    background: rgba(83, 212, 62, 0.12);
-    color: var(--brand-green);
-    border: 1px solid rgba(83, 212, 62, 0.3);
-  }
-
-  .chip-icon-box.gold {
-    background: rgba(250, 204, 21, 0.12);
-    color: var(--brand-gold);
-    border: 1px solid rgba(250, 204, 21, 0.3);
-  }
-
-  .chip-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    text-align: left;
-  }
-
-  .chip-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .chip-title {
-    font-family: var(--font-display);
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .chip-badge {
-    background: rgba(83, 212, 62, 0.15);
-    color: var(--brand-green);
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: var(--radius-full);
-  }
-
-  .chip-sub {
-    font-size: 0.76rem;
-    color: var(--text-muted);
-  }
-
-  /* Chip Positions */
-  .chip-tl { top: 32px; left: 36px; }
-  .chip-tr { top: 32px; right: 36px; }
-  .chip-bl { bottom: 32px; left: 36px; }
-  .chip-br { bottom: 32px; right: 36px; }
-
-  /* Subtle Spring Motion Floating Keyframes */
-  .float-anim-1 { animation: floatSlow1 4.5s var(--ease-in-out) infinite alternate; }
-  .float-anim-2 { animation: floatSlow2 5.0s var(--ease-in-out) infinite alternate; }
-  .float-anim-3 { animation: floatSlow2 4.2s var(--ease-in-out) infinite alternate; }
-  .float-anim-4 { animation: floatSlow1 4.8s var(--ease-in-out) infinite alternate; }
-
-  @keyframes floatSlow1 {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-7px); }
-  }
-
-  @keyframes floatSlow2 {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(6px); }
-  }
-
-  .hero-wave-divider {
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-wave-divider svg {
-    width: 100%;
-    height: 60px;
-    display: block;
-  }
-
-  /* Responsive Adaptations */
-  @media (max-width: 980px) {
-    .chip-tl, .chip-tr, .chip-bl, .chip-br {
+  @media (max-width: 900px) {
+    .metrics-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .metric-divider {
       display: none;
     }
-    .hero-stage {
-      min-height: 380px;
-      padding: 48px 24px;
-    }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .hero-section {
-      padding: 92px 0 0 0;
+      padding-top: 100px;
     }
 
     .hero-headline {
-      font-size: clamp(1.55rem, 5.6vw, 2.1rem);
-      line-height: 1.15;
-      margin-bottom: 16px;
-      max-width: 100%;
-      word-break: break-word;
-      overflow-wrap: break-word;
+      font-size: 2.1rem;
     }
 
     .hero-subtitle {
-      font-size: 0.90rem;
-      line-height: 1.55;
-      margin-bottom: 24px;
-      padding: 0 4px;
-      max-width: 100%;
+      font-size: 0.96rem;
+      margin-bottom: 28px;
     }
 
     .hero-actions {
       flex-direction: column;
       width: 100%;
       gap: 12px;
-      margin-bottom: 32px;
-      padding: 0;
     }
 
     .hero-actions .btn {
       width: 100%;
-      min-height: 48px;
+      justify-content: center;
     }
 
     .metrics-grid {
-      display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
       padding: 16px 12px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       width: 100%;
     }
 
@@ -592,31 +213,6 @@
     }
 
     .metric-divider {
-      display: none;
-    }
-
-    .hero-stage {
-      min-height: 280px;
-      padding: 32px 14px;
-      width: 100%;
-    }
-
-    .stage-wordmark {
-      max-width: 210px;
-      width: 85%;
-    }
-
-    .stage-slogan {
-      max-width: 190px;
-      width: 78%;
-    }
-
-    .stage-kicker {
-      font-size: 0.76rem;
-      letter-spacing: 0.05em;
-    }
-
-    .stage-subline {
       display: none;
     }
   }
@@ -638,40 +234,17 @@
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .stage-chip, .stage-emblem {
-      animation: none !important;
-    }
+  .hero-wave-divider {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-wave-divider svg {
+    width: 100%;
+    height: 60px;
+    display: block;
   }
 </style>
-
-<script>
-  // 3D perspective mouse tracking on hero stage (Emil Kowalski Gated Spring Physics & rAF Throttle)
-  const stage = document.getElementById('heroStage');
-  if (stage && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let rect = stage.getBoundingClientRect();
-    let rafId = 0;
-
-    window.addEventListener('resize', () => {
-      rect = stage.getBoundingClientRect();
-    });
-
-    stage.addEventListener('pointerenter', () => {
-      rect = stage.getBoundingClientRect();
-    });
-
-    stage.addEventListener('pointermove', (e) => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(() => {
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        stage.style.transform = `perspective(1000px) rotateX(${y * -7}deg) rotateY(${x * 7}deg)`;
-      });
-    });
-
-    stage.addEventListener('pointerleave', () => {
-      cancelAnimationFrame(rafId);
-      stage.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-    });
-  }
-</script>
