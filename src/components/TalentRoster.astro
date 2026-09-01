@@ -148,7 +148,7 @@ const creators = creatorsData.map((c: any, idx: number) => {
 
 <style>
   .roster-section {
-    background: linear-gradient(180deg, rgba(7, 9, 14, 0) 0%, rgba(14, 19, 31, 0.45) 50%, rgba(7, 9, 14, 0) 100%);
+    background: linear-gradient(180deg, rgba(250, 247, 238, 0) 0%, rgba(243, 238, 219, 0.45) 50%, rgba(250, 247, 238, 0) 100%);
   }
 
   .roster-header {
@@ -176,14 +176,15 @@ const creators = creatorsData.map((c: any, idx: number) => {
   }
 
   .pill-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-card);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid rgba(13, 28, 18, 0.12);
     color: var(--text-secondary);
     padding: 8px 18px;
     border-radius: var(--radius-full);
     font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
+    box-shadow: 0 2px 6px rgba(13, 28, 18, 0.04);
     transition: background var(--duration-fast) var(--ease-out),
                 border-color var(--duration-fast) var(--ease-out),
                 color var(--duration-fast) var(--ease-out),
@@ -191,28 +192,32 @@ const creators = creatorsData.map((c: any, idx: number) => {
   }
 
   .pill-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: #FFFFFF;
     color: var(--text-primary);
+    border-color: var(--brand-green);
   }
 
   .pill-btn.active {
-    background: var(--brand-green);
-    color: #061208;
-    border-color: var(--brand-green);
-    box-shadow: 0 0 16px rgba(83, 212, 62, 0.4);
+    background: linear-gradient(115deg, #00BF63 0%, #7ED957 40%, #00BF63 100%);
+    background-size: 200% 200%;
+    animation: moveButtonGradient 3.5s ease infinite;
+    color: #041608;
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 16px rgba(0, 191, 99, 0.35);
   }
 
   .search-box {
     display: flex;
     align-items: center;
     gap: 10px;
-    background: rgba(17, 24, 39, 0.7);
-    border: 1px solid var(--border-card);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(13, 28, 18, 0.12);
     border-radius: var(--radius-full);
     padding: 8px 18px;
     color: var(--text-muted);
     min-width: 280px;
     backdrop-filter: blur(12px);
+    box-shadow: 0 2px 8px rgba(13, 28, 18, 0.04);
   }
 
   .search-box input {
@@ -289,8 +294,8 @@ const creators = creatorsData.map((c: any, idx: number) => {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(13, 28, 18, 0.04);
+    border: 1px solid rgba(13, 28, 18, 0.08);
     border-radius: var(--radius-md);
     padding: 12px;
   }
@@ -321,8 +326,8 @@ const creators = creatorsData.map((c: any, idx: number) => {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(83, 212, 62, 0.06);
-    border: 1px solid rgba(83, 212, 62, 0.2);
+    background: rgba(0, 191, 99, 0.08);
+    border: 1px solid rgba(0, 191, 99, 0.22);
     padding: 8px 12px;
     border-radius: var(--radius-sm);
     font-size: 0.82rem;
@@ -348,6 +353,28 @@ const creators = creatorsData.map((c: any, idx: number) => {
     padding: 8px 10px;
     font-size: 0.85rem;
     white-space: nowrap;
+  }
+
+  .card-footer .open-kit-btn {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(13, 28, 18, 0.12);
+    color: var(--text-primary);
+    box-shadow: 0 2px 6px rgba(13, 28, 18, 0.04);
+  }
+
+  .card-footer .open-kit-btn:hover {
+    background: #FFFFFF;
+    border-color: var(--brand-green);
+    color: var(--brand-green);
+  }
+
+  .card-footer .yt-btn {
+    background: linear-gradient(115deg, #00BF63 0%, #7ED957 40%, #00BF63 100%);
+    background-size: 200% 200%;
+    animation: moveButtonGradient 3.5s ease infinite;
+    color: #041608;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 14px rgba(0, 191, 99, 0.3);
     text-align: center;
     justify-content: center;
   }

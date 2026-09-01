@@ -76,5 +76,89 @@ const {
 
     <Footer />
     <CreatorModal />
+
+    <!-- Ambient Motion Play/Pause Controller -->
+    <aside class="ambient-motion-controller" aria-label="Motion Controls">
+      <button id="ambientMotionToggle" class="ambient-motion-btn" title="Click to play or pause site motion">
+        <span class="emoji-toggle-icon" id="ambientEmojiIcon">▶️</span>
+        <span>Motion: <strong class="status-text" id="ambientStatusText">Active</strong></span>
+      </button>
+    </aside>
+
+    <script>
+      // Paper Plane Flight & Animated Play/Pause Microinteractions
+      function launchPaperPlane(x, y) {
+        const plane = document.createElement('div');
+        plane.className = 'paper-plane-flyer';
+        plane.style.left = `${x}px`;
+        plane.style.top = `${y}px`;
+        plane.innerHTML = `
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#00BF63" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        `;
+        document.body.appendChild(plane);
+        plane.addEventListener('animationend', () => plane.remove());
+      }
+
+      function spawnEmojiPop(x, y, emoji1 = '▶️', emoji2 = '⏸️') {
+        const pop = document.createElement('div');
+        pop.className = 'btn-emoji-pop';
+        pop.style.left = `${x}px`;
+        pop.style.top = `${y}px`;
+        pop.innerHTML = `<span>${emoji1}</span><span>✈️</span>`;
+        document.body.appendChild(pop);
+        setTimeout(() => {
+          const first = pop.querySelector('span');
+          if (first) first.textContent = emoji2;
+        }, 180);
+        pop.addEventListener('animationend', () => pop.remove());
+      }
+
+      // Attach to all interactive buttons
+      document.addEventListener('click', (e) => {
+        const target = e.target.closest('button, .btn, .pill-btn, .open-kit-btn, .yt-btn, .social-icon');
+        if (!target) return;
+
+        const rect = target.getBoundingClientRect();
+        const clickX = e.clientX || (rect.left + rect.width / 2);
+        const clickY = e.clientY || (rect.top + rect.height / 2);
+
+        // Launch soaring paper plane
+        launchPaperPlane(clickX, clickY);
+
+        // Trigger tactile Play & Pause emoji pulse
+        if (target.id !== 'ambientMotionToggle') {
+          spawnEmojiPop(rect.left + rect.width / 2, rect.top);
+        }
+      });
+
+      // Interactive Motion Play/Pause Controller
+      const motionToggle = document.getElementById('ambientMotionToggle');
+      const emojiIcon = document.getElementById('ambientEmojiIcon');
+      const statusText = document.getElementById('ambientStatusText');
+      let isPaused = false;
+
+      if (motionToggle && emojiIcon && statusText) {
+        motionToggle.addEventListener('click', () => {
+          isPaused = !isPaused;
+          motionToggle.classList.toggle('paused', isPaused);
+          
+          if (isPaused) {
+            emojiIcon.textContent = '⏸️';
+            statusText.textContent = 'Paused';
+            document.querySelectorAll('.bg-wave-elem, .stage-wave-img, .stage-chip, .btn-primary').forEach(el => {
+              el.style.animationPlayState = 'paused';
+            });
+          } else {
+            emojiIcon.textContent = '▶️';
+            statusText.textContent = 'Active';
+            document.querySelectorAll('.bg-wave-elem, .stage-wave-img, .stage-chip, .btn-primary').forEach(el => {
+              el.style.animationPlayState = 'running';
+            });
+          }
+        });
+      }
+    </script>
   </body>
 </html>
