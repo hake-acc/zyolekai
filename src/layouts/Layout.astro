@@ -77,14 +77,6 @@ const {
     <Footer />
     <CreatorModal />
 
-    <!-- Ambient Motion Play/Pause Controller -->
-    <aside class="ambient-motion-controller" aria-label="Motion Controls">
-      <button id="ambientMotionToggle" class="ambient-motion-btn" title="Click to play or pause site motion">
-        <span class="emoji-toggle-icon" id="ambientEmojiIcon">▶️</span>
-        <span>Motion: <strong class="status-text" id="ambientStatusText">Active</strong></span>
-      </button>
-    </aside>
-
     <script>
       // Paper Plane Flight & Animated Play/Pause Microinteractions
       function launchPaperPlane(x, y) {
@@ -128,37 +120,8 @@ const {
         launchPaperPlane(clickX, clickY);
 
         // Trigger tactile Play & Pause emoji pulse
-        if (target.id !== 'ambientMotionToggle') {
-          spawnEmojiPop(rect.left + rect.width / 2, rect.top);
-        }
+        spawnEmojiPop(rect.left + rect.width / 2, rect.top);
       });
-
-      // Interactive Motion Play/Pause Controller
-      const motionToggle = document.getElementById('ambientMotionToggle');
-      const emojiIcon = document.getElementById('ambientEmojiIcon');
-      const statusText = document.getElementById('ambientStatusText');
-      let isPaused = false;
-
-      if (motionToggle && emojiIcon && statusText) {
-        motionToggle.addEventListener('click', () => {
-          isPaused = !isPaused;
-          motionToggle.classList.toggle('paused', isPaused);
-          
-          if (isPaused) {
-            emojiIcon.textContent = '⏸️';
-            statusText.textContent = 'Paused';
-            document.querySelectorAll('.bg-wave-elem, .stage-wave-img, .stage-chip, .btn-primary').forEach(el => {
-              el.style.animationPlayState = 'paused';
-            });
-          } else {
-            emojiIcon.textContent = '▶️';
-            statusText.textContent = 'Active';
-            document.querySelectorAll('.bg-wave-elem, .stage-wave-img, .stage-chip, .btn-primary').forEach(el => {
-              el.style.animationPlayState = 'running';
-            });
-          }
-        });
-      }
     </script>
   </body>
 </html>
