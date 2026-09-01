@@ -189,13 +189,26 @@
     transition: transform var(--duration-instant) var(--ease-out);
   }
 
+  .calc-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 0 12px rgba(83, 212, 62, 0.6);
+    cursor: pointer;
+    transition: transform var(--duration-instant) var(--ease-out);
+  }
+
   @media (hover: hover) and (pointer: fine) {
-    .calc-slider::-webkit-slider-thumb:hover {
+    .calc-slider::-webkit-slider-thumb:hover,
+    .calc-slider::-moz-range-thumb:hover {
       transform: scale(1.15);
     }
   }
 
-  .calc-slider::-webkit-slider-thumb:active {
+  .calc-slider::-webkit-slider-thumb:active,
+  .calc-slider::-moz-range-thumb:active {
     transform: scale(0.95);
   }
 

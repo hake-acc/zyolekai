@@ -391,7 +391,7 @@
     position: relative;
     z-index: 2;
     filter: drop-shadow(0 0 16px rgba(83, 212, 62, 0.5));
-    animation: emblemPulse 4s infinite ease-in-out;
+    animation: emblemPulse 4s infinite var(--ease-in-out);
   }
 
   @keyframes emblemPulse {
@@ -543,10 +543,10 @@
   .chip-br { bottom: 32px; right: 36px; }
 
   /* Subtle Spring Motion Floating Keyframes */
-  .float-anim-1 { animation: floatSlow1 4.5s ease-in-out infinite alternate; }
-  .float-anim-2 { animation: floatSlow2 5.0s ease-in-out infinite alternate; }
-  .float-anim-3 { animation: floatSlow2 4.2s ease-in-out infinite alternate; }
-  .float-anim-4 { animation: floatSlow1 4.8s ease-in-out infinite alternate; }
+  .float-anim-1 { animation: floatSlow1 4.5s var(--ease-in-out) infinite alternate; }
+  .float-anim-2 { animation: floatSlow2 5.0s var(--ease-in-out) infinite alternate; }
+  .float-anim-3 { animation: floatSlow2 4.2s var(--ease-in-out) infinite alternate; }
+  .float-anim-4 { animation: floatSlow1 4.8s var(--ease-in-out) infinite alternate; }
 
   @keyframes floatSlow1 {
     0% { transform: translateY(0px); }
@@ -658,17 +658,31 @@
 </style>
 
 <script>
-  // 3D perspective mouse tracking on hero stage (Emil Kowalski Gated Spring Physics)
+  // 3D perspective mouse tracking on hero stage (Emil Kowalski Gated Spring Physics & rAF Throttle)
   const stage = document.getElementById('heroStage');
   if (stage && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let rect = stage.getBoundingClientRect();
+    let rafId = 0;
+
+    window.addEventListener('resize', () => {
+      rect = stage.getBoundingClientRect();
+    });
+
+    stage.addEventListener('pointerenter', () => {
+      rect = stage.getBoundingClientRect();
+    });
+
     stage.addEventListener('pointermove', (e) => {
-      const rect = stage.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      stage.style.transform = `perspective(1000px) rotateX(${y * -7}deg) rotateY(${x * 7}deg)`;
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        stage.style.transform = `perspective(1000px) rotateX(${y * -7}deg) rotateY(${x * 7}deg)`;
+      });
     });
 
     stage.addEventListener('pointerleave', () => {
+      cancelAnimationFrame(rafId);
       stage.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
     });
   }
