@@ -31,21 +31,33 @@ const {
     <meta name="keywords" content="ZyoleKai, creator agency, gaming sponsorships, Minecraft SMP, YouTubers, streamer deals, brand integrations, esports network" />
     <meta name="author" content="ZyoleKai Organization" />
 
+    <!-- Google Fonts: Outfit (Display) & Plus Jakarta Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Asset Preloads -->
+    <link rel="preload" href="/brand/logo.png" as="image" type="image/png" />
+    <link rel="preload" href="/brand/wordmark.png" as="image" type="image/png" />
+
     <!-- OpenGraph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://zyolekai.com" />
+    <meta property="og:url" content="https://zyolekai.vercel.app" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://zyolekai.com" />
+    <meta property="twitter:url" content="https://zyolekai.vercel.app" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={image} />
   </head>
   <body>
+    <!-- WCAG Priority 1: Skip to main content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div class="ambient-mesh" aria-hidden="true"></div>
     
     <!-- Real Chroma-Keyed Organic Waves Extracted from Official Banner -->

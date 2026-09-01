@@ -103,7 +103,9 @@ const creators = creatorsData.map((c: any, idx: number) => {
             <div class="creator-meta">
               <div class="creator-title-row">
                 <h3 class="creator-name">{c.name}</h3>
-                <span class="verified-dot" title="Verified ZyoleKai Creator">✓</span>
+                <svg class="verified-check-svg" width="17" height="17" viewBox="0 0 24 24" fill="var(--brand-green)" title="Verified ZyoleKai Creator">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
               </div>
               <p class="creator-sub-meta">{c.niche || 'Gaming Content Creator'}</p>
             </div>
@@ -269,22 +271,14 @@ const creators = creatorsData.map((c: any, idx: number) => {
   }
 
   .creator-name {
+    font-family: var(--font-display);
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--text-primary);
   }
 
-  .verified-dot {
-    font-size: 0.75rem;
-    background: rgba(83, 212, 62, 0.2);
-    color: var(--brand-green);
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-weight: 800;
+  .verified-check-svg {
+    flex-shrink: 0;
   }
 
   .creator-sub-meta {
@@ -316,6 +310,9 @@ const creators = creatorsData.map((c: any, idx: number) => {
   }
 
   .c-metric-val {
+    font-family: var(--font-display);
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-primary);

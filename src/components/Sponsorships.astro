@@ -29,9 +29,18 @@ import DealCalculator from './DealCalculator.astro';
           High-conversion 30–60 second in-video sponsorships, stream overlays, and dedicated review videos tailored to authentic gaming audiences.
         </p>
         <ul class="pillar-features">
-          <li>✓ Guaranteed minimum view thresholds</li>
-          <li>✓ Verified click tracking & affiliate vanity codes</li>
-          <li>✓ Dedicated campaign manager support</li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Guaranteed minimum view thresholds</span>
+          </li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Verified click tracking & vanity codes</span>
+          </li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Dedicated campaign manager support</span>
+          </li>
         </ul>
         <div class="pillar-footer">
           <span class="pillar-stat">100% Payout Escrow</span>
@@ -52,9 +61,18 @@ import DealCalculator from './DealCalculator.astro';
           Creator whitelists, coordinated event series, tournament livestreams, and player onboarding packages for growing survival and minigame servers.
         </p>
         <ul class="pillar-features">
-          <li>✓ Multiplayer video recordings with top talent</li>
-          <li>✓ Whitelist access & server launch hype</li>
-          <li>✓ Player conversion & community retention</li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Multiplayer video recordings with top talent</span>
+          </li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Whitelist access & server launch hype</span>
+          </li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Player conversion & community retention</span>
+          </li>
         </ul>
         <div class="pillar-footer">
           <span class="pillar-stat">Custom Event Coordination</span>
@@ -76,9 +94,18 @@ import DealCalculator from './DealCalculator.astro';
           High-performance AMD Ryzen/EPYC hardware, zero-lag Minecraft hosting, bot servers, and affiliate revenue share for partnered creators.
         </p>
         <ul class="pillar-features">
-          <li>✓ Free high-tier gaming servers for creators</li>
-          <li>✓ Custom promo codes & recurring rev-share</li>
-          <li>✓ Full DDOS protection & NVMe storage</li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Free high-tier gaming servers for creators</span>
+          </li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Custom promo codes & recurring rev-share</span>
+          </li>
+          <li>
+            <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Full DDOS protection & NVMe storage</span>
+          </li>
         </ul>
         <div class="pillar-footer">
           <span class="pillar-stat">Direct Hosting Partnerships</span>
@@ -146,6 +173,7 @@ import DealCalculator from './DealCalculator.astro';
   }
 
   .pillar-title {
+    font-family: var(--font-display);
     font-size: 1.35rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -163,17 +191,23 @@ import DealCalculator from './DealCalculator.astro';
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 0.88rem;
-    color: var(--text-muted);
+    gap: 12px;
+    font-size: 0.9rem;
     margin-bottom: 28px;
   }
 
   .pillar-features li {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 10px;
     color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .feature-check {
+    color: var(--brand-green);
+    flex-shrink: 0;
+    margin-top: 2px;
   }
 
   .pillar-footer {

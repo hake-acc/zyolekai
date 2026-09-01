@@ -35,6 +35,7 @@
   --glow-subtle: 0 0 16px rgba(83, 212, 62, 0.12);
 
   /* Typography */
+  --font-display: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
@@ -66,6 +67,35 @@
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 9999px;
+}
+
+/* Accessibility: Skip Link (WCAG Priority 1) */
+.skip-link {
+  position: fixed;
+  top: -80px;
+  left: 20px;
+  background: var(--brand-green);
+  color: #061208;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  z-index: 99999;
+  text-decoration: none;
+  transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 20px;
+  outline: 3px solid #FFFFFF;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* Accessibility: Universal Focus Ring */
+:focus-visible {
+  outline: 2px solid var(--brand-green);
+  outline-offset: 3px;
 }
 
 /* Reset & Base Setup */
@@ -290,6 +320,7 @@ button:active, .btn:active {
   background: rgba(83, 212, 62, 0.12);
   border: 1px solid var(--border-brand);
   color: var(--brand-green);
+  font-family: var(--font-display);
   font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -299,7 +330,30 @@ button:active, .btn:active {
   margin-bottom: 16px;
 }
 
+.radar-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-green);
+  animation: radarPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes radarPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(83, 212, 62, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(83, 212, 62, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(83, 212, 62, 0);
+  }
+}
+
 .section-title {
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
   line-height: 1.15;
