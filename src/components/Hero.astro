@@ -101,6 +101,7 @@
     margin-bottom: 28px;
     font-size: 0.88rem;
     backdrop-filter: blur(12px);
+    animation: cardFadeUp 200ms var(--ease-out) both;
   }
 
   .pill-glow {
@@ -135,6 +136,7 @@
     letter-spacing: -0.035em;
     margin-bottom: 24px;
     max-width: 960px;
+    animation: cardFadeUp 220ms var(--ease-out) 60ms both;
   }
 
   .gradient-text {
@@ -149,6 +151,7 @@
     max-width: 740px;
     line-height: 1.65;
     margin-bottom: 40px;
+    animation: cardFadeUp 220ms var(--ease-out) 120ms both;
   }
 
   .hero-actions {
@@ -158,6 +161,7 @@
     gap: 16px;
     margin-bottom: 56px;
     flex-wrap: wrap;
+    animation: cardFadeUp 220ms var(--ease-out) 180ms both;
   }
 
   .metrics-grid {
@@ -169,6 +173,7 @@
     padding: 24px 32px;
     margin-bottom: 64px;
     border-radius: var(--radius-lg);
+    animation: cardFadeUp 240ms var(--ease-out) 240ms both;
   }
 
   .metric-item {
@@ -219,6 +224,17 @@
     overflow: hidden;
     padding: 8px;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    transition: transform var(--duration-normal) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out),
+                border-color var(--duration-normal) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .hero-banner-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7), var(--glow-subtle);
+      border-color: var(--border-brand);
+    }
   }
 
   .hero-banner-img {

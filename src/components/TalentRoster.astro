@@ -53,9 +53,10 @@ const creators = creatorsData.map((c: any) => {
 
     <!-- Creators Grid -->
     <div class="creators-grid" id="creatorsGrid">
-      {creators.map((c: any) => (
+      {creators.map((c: any, idx: number) => (
         <article
-          class="creator-card glass-card"
+          class="creator-card glass-card animate-fade-up"
+          style={`animation-delay: ${Math.min(idx * 40, 600)}ms;`}
           data-name={c.name.toLowerCase()}
           data-niche={c.niche ? c.niche.toLowerCase() : ''}
           data-games={(c.games || []).join(' ').toLowerCase()}

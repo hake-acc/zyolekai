@@ -189,8 +189,14 @@
     transition: transform var(--duration-instant) var(--ease-out);
   }
 
-  .calc-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.15);
+  @media (hover: hover) and (pointer: fine) {
+    .calc-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  .calc-slider::-webkit-slider-thumb:active {
+    transform: scale(0.95);
   }
 
   .calc-output {

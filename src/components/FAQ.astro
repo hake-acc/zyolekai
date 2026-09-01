@@ -150,6 +150,15 @@ const faqItems = [
 
   .faq-answer-inner {
     overflow: hidden;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+  }
+
+  .faq-card.open .faq-answer-inner {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .faq-answer-inner p {
@@ -157,6 +166,15 @@ const faqItems = [
     color: var(--text-secondary);
     font-size: 0.94rem;
     line-height: 1.65;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-icon-arrow,
+    .faq-answer-collapse,
+    .faq-answer-inner {
+      transition: none !important;
+      transform: none !important;
+    }
   }
 </style>
 
