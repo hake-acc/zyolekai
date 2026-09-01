@@ -42,19 +42,19 @@ const creators = creatorsData.map((c: any, idx: number) => {
   <div class="container">
     <!-- Header -->
     <div class="roster-header">
-      <h2 class="section-title">Meet Our Creator Roster</h2>
+      <h2 class="section-title">Creator Talent Roster</h2>
       <p class="section-subtitle">
-        15 onboarded YouTube creators and gaming streamers with a combined audience of over 6.5 Million subscribers. Filter by category or inspect individual media kits.
+        Browse our signed creators across Minecraft storytelling, SMP series, and gaming entertainment. Review verified subscriber counts, recent average views, and individual media kits.
       </p>
     </div>
 
     <!-- Filter & Search Controls -->
     <div class="roster-controls">
       <div class="filter-pills" id="filterPills">
-        <button class="pill-btn active" data-filter="all">All Talent (15)</button>
+        <button class="pill-btn active" data-filter="all">All Creators (15)</button>
         <button class="pill-btn" data-filter="smp">Minecraft SMP</button>
-        <button class="pill-btn" data-filter="gaming">Gaming & Esports</button>
-        <button class="pill-btn" data-filter="high">High Reach (50k+)</button>
+        <button class="pill-btn" data-filter="gaming">Gaming & Variety</button>
+        <button class="pill-btn" data-filter="high">50k+ Subscribers</button>
       </div>
 
       <div class="search-box">
@@ -62,7 +62,7 @@ const creators = creatorsData.map((c: any, idx: number) => {
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" id="rosterSearch" placeholder="Search creators, games, or brands..." aria-label="Search creators" />
+        <input type="text" id="rosterSearch" placeholder="Search by creator name, game, or niche..." aria-label="Search creators" />
       </div>
     </div>
 
@@ -126,7 +126,7 @@ const creators = creatorsData.map((c: any, idx: number) => {
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
             </svg>
-            <span class="badge-text">Match: <strong>{c.brandMatch}</strong> ({c.matchScore})</span>
+            <span class="badge-text">Sponsor Fit: <strong>{c.brandMatch}</strong></span>
           </div>
 
           <div class="card-footer">
