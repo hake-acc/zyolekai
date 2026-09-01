@@ -103,6 +103,62 @@ body {
     radial-gradient(circle at 50% 75%, rgba(83, 212, 62, 0.07) 0%, transparent 55%);
 }
 
+/* Real Chroma-Keyed Organic Waves in Website Background */
+.banner-waves-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-wave-elem {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.32;
+  filter: drop-shadow(0 0 32px rgba(83, 212, 62, 0.22));
+  transition: opacity 1s var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.wave-tl {
+  top: -20px;
+  left: -20px;
+  width: clamp(240px, 32vw, 620px);
+  animation: waveFloatTL 9s ease-in-out infinite alternate;
+}
+
+.wave-tr {
+  top: 0;
+  right: 0;
+  width: clamp(220px, 30vw, 560px);
+  animation: waveFloatTR 10s ease-in-out infinite alternate;
+}
+
+.wave-bl {
+  bottom: 0;
+  left: 0;
+  width: clamp(220px, 28vw, 540px);
+  animation: waveFloatTR 11s ease-in-out infinite alternate;
+}
+
+.wave-br {
+  bottom: -20px;
+  right: -20px;
+  width: clamp(240px, 32vw, 600px);
+  animation: waveFloatTL 9.5s ease-in-out infinite alternate;
+}
+
+@keyframes waveFloatTL {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.28; }
+  100% { transform: translate(10px, 12px) scale(1.03); opacity: 0.42; }
+}
+
+@keyframes waveFloatTR {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.26; }
+  100% { transform: translate(-12px, 10px) scale(1.02); opacity: 0.38; }
+}
+
 /* Emil Kowalski Button Craft: Tactile :active Scale */
 button, .btn {
   display: inline-flex;

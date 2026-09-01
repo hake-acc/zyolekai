@@ -64,23 +64,16 @@
     <!-- Interactive Motion Graphics Showcase (Refurnished from Banner) -->
     <div class="hero-stage-wrapper">
       <div class="hero-stage glass-card" id="heroStage">
-        <!-- SVG Corner Waves (Layered #00BF63 & #7ED957 from original brand banner) -->
-        <svg class="stage-wave wave-top-right" viewBox="0 0 500 300" fill="none" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M120 0C240 60 380 40 500 180V0H120Z" fill="var(--wave-dark)" fill-opacity="0.45" />
-          <path d="M220 0C320 80 420 70 500 240V0H220Z" fill="var(--wave-bright)" fill-opacity="0.65" />
-          <path d="M340 0C400 60 450 70 500 140V0H340Z" fill="var(--brand-green)" fill-opacity="0.85" />
-        </svg>
-
-        <svg class="stage-wave wave-bottom-left" viewBox="0 0 500 300" fill="none" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M380 300C260 240 120 260 0 120V300H380Z" fill="var(--wave-dark)" fill-opacity="0.45" />
-          <path d="M280 300C180 220 80 230 0 60V300H280Z" fill="var(--wave-bright)" fill-opacity="0.65" />
-          <path d="M160 300C100 240 50 230 0 160V300H160Z" fill="var(--brand-green)" fill-opacity="0.85" />
-        </svg>
+        <!-- Precision Chroma-Keyed Organic Waves from Banner -->
+        <img src="/brand/corner_wave_tr.png" alt="" class="stage-wave-img wave-tr" aria-hidden="true" />
+        <img src="/brand/corner_wave_bl.png" alt="" class="stage-wave-img wave-bl" aria-hidden="true" />
+        <img src="/brand/corner_wave_tl.png" alt="" class="stage-wave-img wave-tl" aria-hidden="true" />
+        <img src="/brand/corner_wave_br.png" alt="" class="stage-wave-img wave-br" aria-hidden="true" />
 
         <!-- Subtle Ambient Grid Mesh -->
         <div class="stage-grid-mesh" aria-hidden="true"></div>
 
-        <!-- Centerpiece Content with Real Selectable Typography -->
+        <!-- Centerpiece Content with Exact Transparent Wordmark & Slogan -->
         <div class="stage-centerpiece">
           <div class="stage-emblem-wrap">
             <img src="/brand/logo.png" alt="ZyoleKai 3D Emblem" class="stage-emblem" />
@@ -88,7 +81,8 @@
           </div>
 
           <div class="stage-brand-wrap">
-            <img src="/brand/wordmark.png" alt="ZyoleKai" class="stage-wordmark" />
+            <img src="/brand/exact_zyolekai_logo.png" alt="ZyoleKai" class="stage-wordmark" />
+            <img src="/brand/exact_slogan.png" alt="Built For Perfection." class="stage-slogan" />
             <p class="stage-kicker">THE PREMIER CREATOR & GAMING NETWORK</p>
             <p class="stage-subline">VERIFIED TALENT ROSTER • BRAND VIDEO INTEGRATIONS • MINECRAFT SMPS</p>
           </div>
@@ -318,24 +312,43 @@
     will-change: transform;
   }
 
-  /* Corner Waves extracted from brand banner design */
-  .stage-wave {
+  /* Real Chroma-Keyed Organic Waves in the Stage */
+  .stage-wave-img {
     position: absolute;
-    width: 42%;
-    height: 60%;
     pointer-events: none;
     z-index: 1;
-    transition: transform 6s ease-in-out;
+    opacity: 0.65;
+    filter: drop-shadow(0 0 24px rgba(83, 212, 62, 0.28));
   }
 
-  .wave-top-right {
+  .stage-wave-img.wave-tr {
     top: 0;
     right: 0;
+    width: 48%;
+    max-width: 520px;
   }
 
-  .wave-bottom-left {
+  .stage-wave-img.wave-bl {
     bottom: 0;
     left: 0;
+    width: 46%;
+    max-width: 480px;
+  }
+
+  .stage-wave-img.wave-tl {
+    top: -10px;
+    left: -10px;
+    width: 42%;
+    max-width: 440px;
+    opacity: 0.55;
+  }
+
+  .stage-wave-img.wave-br {
+    bottom: -10px;
+    right: -10px;
+    width: 42%;
+    max-width: 440px;
+    opacity: 0.55;
   }
 
   .stage-grid-mesh {
@@ -403,15 +416,24 @@
   }
 
   .stage-wordmark {
-    max-width: 320px;
-    width: 85%;
+    max-width: 460px;
+    width: 88%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 4px 18px rgba(83, 212, 62, 0.3));
+    filter: drop-shadow(0 4px 24px rgba(83, 212, 62, 0.4));
+  }
+
+  .stage-slogan {
+    max-width: 380px;
+    width: 76%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 14px rgba(83, 212, 62, 0.3));
+    margin-bottom: 6px;
   }
 
   .stage-kicker {
-    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    font-size: clamp(0.85rem, 1.8vw, 1.05rem);
     font-weight: 800;
     letter-spacing: 0.12em;
     color: var(--wave-bright);
