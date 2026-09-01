@@ -1,0 +1,59 @@
+---
+import '../styles/design-tokens.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import CreatorModal from '../components/CreatorModal.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "ZyoleKai • Premier Creator Community & Gaming Agency",
+  description = "ZyoleKai connects top gaming YouTubers, streamers, and influencers with verified brand sponsorships, Minecraft SMP deals, and cloud hosting infrastructure.",
+  image = "/brand/hero_banner.png"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/brand/logo.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="ZyoleKai, creator agency, gaming sponsorships, Minecraft SMP, YouTubers, streamer deals, brand integrations, esports network" />
+    <meta name="author" content="ZyoleKai Organization" />
+
+    <!-- OpenGraph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zyolekai.com" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://zyolekai.com" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+  </head>
+  <body>
+    <div class="ambient-mesh" aria-hidden="true"></div>
+    <Navbar />
+    
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+    <CreatorModal />
+  </body>
+</html>

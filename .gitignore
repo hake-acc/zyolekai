@@ -1,0 +1,15 @@
+# Build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Environment / local configs
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db

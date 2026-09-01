@@ -1,0 +1,271 @@
+---
+// Hero.astro - Emil Kowalski Craft Standards
+---
+
+<section class="hero-section">
+  <div class="container hero-container">
+    <!-- Top Pill -->
+    <div class="hero-pill">
+      <span class="pill-glow"></span>
+      <span class="pill-tag">ZyoleKai Ecosystem</span>
+      <span class="pill-sep">•</span>
+      <span class="pill-desc">The Premier Gaming & Creator Agency</span>
+    </div>
+
+    <!-- Main Headline -->
+    <h1 class="hero-headline">
+      Where Creators & Brands <br />
+      <span class="gradient-text">Scale With Precision.</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="hero-subtitle">
+      ZyoleKai connects verified gaming YouTubers, Twitch streamers, and influencers with commercial brand sponsorships, Minecraft SMP event series, and high-performance cloud hosting.
+    </p>
+
+    <!-- CTAs -->
+    <div class="hero-actions">
+      <a href="#roster" class="btn btn-primary">
+        <span>Explore Talent Roster</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+
+      <a href="#sponsorships" class="btn btn-secondary">
+        <span>Sponsorship Programs</span>
+      </a>
+    </div>
+
+    <!-- Metrics Bar -->
+    <div class="metrics-grid glass-card">
+      <div class="metric-item">
+        <div class="metric-value">15<span class="metric-plus">+</span></div>
+        <div class="metric-label">Verified Creators</div>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-item">
+        <div class="metric-value">6.5M<span class="metric-plus">+</span></div>
+        <div class="metric-label">Combined Subscribers</div>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-item">
+        <div class="metric-value">100<span class="metric-plus">%</span></div>
+        <div class="metric-label">Verified Payouts</div>
+      </div>
+      <div class="metric-divider"></div>
+      <div class="metric-item">
+        <div class="metric-value">24/7</div>
+        <div class="metric-label">Creator Support Desk</div>
+      </div>
+    </div>
+
+    <!-- Hero Visual Card Showcase -->
+    <div class="hero-visual-wrapper">
+      <div class="hero-banner-card glass-card">
+        <img src="/brand/hero_banner.png" alt="ZyoleKai Premier Network Banner" class="hero-banner-img" />
+        <div class="banner-overlay">
+          <div class="overlay-badge">
+            <span class="badge-dot"></span>
+            <span>Active Creator Network</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 160px 0 80px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(83, 212, 62, 0.08);
+    border: 1px solid var(--border-brand);
+    border-radius: var(--radius-full);
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    font-size: 0.88rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .pill-glow {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    box-shadow: 0 0 12px var(--brand-green);
+  }
+
+  .pill-tag {
+    font-weight: 700;
+    color: var(--brand-green);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  .pill-sep {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .pill-desc {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+    max-width: 960px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #FFFFFF 20%, #53D43E 70%, #22C55E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 740px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 56px;
+    flex-wrap: wrap;
+  }
+
+  .metrics-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 920px;
+    padding: 24px 32px;
+    margin-bottom: 64px;
+    border-radius: var(--radius-lg);
+  }
+
+  .metric-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .metric-value {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+  }
+
+  .metric-plus {
+    color: var(--brand-green);
+    font-size: 0.85em;
+    margin-left: 2px;
+  }
+
+  .metric-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .metric-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .hero-visual-wrapper {
+    width: 100%;
+    max-width: 1080px;
+    position: relative;
+  }
+
+  .hero-banner-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    padding: 8px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero-banner-img {
+    width: 100%;
+    height: auto;
+    border-radius: calc(var(--radius-lg) - 4px);
+    display: block;
+  }
+
+  .banner-overlay {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+  }
+
+  .overlay-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(11, 15, 23, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(83, 212, 62, 0.3);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    box-shadow: 0 0 10px var(--brand-green);
+  }
+
+  @media (max-width: 768px) {
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding: 24px;
+    }
+
+    .metric-divider {
+      display: none;
+    }
+  }
+</style>

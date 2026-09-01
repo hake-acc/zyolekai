@@ -1,0 +1,198 @@
+---
+import DealCalculator from './DealCalculator.astro';
+---
+
+<section id="sponsorships" class="section sponsorships-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="sponsorship-header">
+      <div class="section-badge">Brand & Creator Ecosystem</div>
+      <h2 class="section-title">Sponsorship Programs Built For Results</h2>
+      <p class="section-subtitle">
+        We bridge leading game publishers, hardware brands, Minecraft SMP networks, and cloud hosting providers with verified content creators through verified Discord escrow workflows.
+      </p>
+    </div>
+
+    <!-- 3 Pillars Cards -->
+    <div class="pillars-grid">
+      <!-- Pillar 1: Brand Campaigns -->
+      <div class="pillar-card glass-card">
+        <div class="pillar-icon-box brand-glow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <h3 class="pillar-title">Brand Video Integrations</h3>
+        <p class="pillar-desc">
+          High-conversion 30–60 second in-video sponsorships, stream overlays, and dedicated review videos tailored to authentic gaming audiences.
+        </p>
+        <ul class="pillar-features">
+          <li>✓ Guaranteed minimum view thresholds</li>
+          <li>✓ Verified click tracking & affiliate vanity codes</li>
+          <li>✓ Dedicated campaign manager support</li>
+        </ul>
+        <div class="pillar-footer">
+          <span class="pillar-stat">100% Payout Escrow</span>
+        </div>
+      </div>
+
+      <!-- Pillar 2: Minecraft SMP Deals -->
+      <div class="pillar-card glass-card">
+        <div class="pillar-icon-box smp-glow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="pillar-title">Minecraft SMP Series Deals</h3>
+        <p class="pillar-desc">
+          Creator whitelists, coordinated event series, tournament livestreams, and player onboarding packages for growing survival and minigame servers.
+        </p>
+        <ul class="pillar-features">
+          <li>✓ Multiplayer video recordings with top talent</li>
+          <li>✓ Whitelist access & server launch hype</li>
+          <li>✓ Player conversion & community retention</li>
+        </ul>
+        <div class="pillar-footer">
+          <span class="pillar-stat">Custom Event Coordination</span>
+        </div>
+      </div>
+
+      <!-- Pillar 3: Cloud & Game Server Hosting -->
+      <div class="pillar-card glass-card">
+        <div class="pillar-icon-box hosting-glow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+          </svg>
+        </div>
+        <h3 class="pillar-title">Cloud & Hosting Sponsorships</h3>
+        <p class="pillar-desc">
+          High-performance AMD Ryzen/EPYC hardware, zero-lag Minecraft hosting, bot servers, and affiliate revenue share for partnered creators.
+        </p>
+        <ul class="pillar-features">
+          <li>✓ Free high-tier gaming servers for creators</li>
+          <li>✓ Custom promo codes & recurring rev-share</li>
+          <li>✓ Full DDOS protection & NVMe storage</li>
+        </ul>
+        <div class="pillar-footer">
+          <span class="pillar-stat">Direct Hosting Partnerships</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Deal Calculator -->
+    <DealCalculator />
+  </div>
+</section>
+
+<style>
+  .sponsorship-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 56px;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .pillar-card {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    position: relative;
+  }
+
+  .pillar-icon-box {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-md);
+    background: rgba(83, 212, 62, 0.1);
+    border: 1px solid var(--border-brand);
+    color: var(--brand-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .brand-glow {
+    box-shadow: 0 0 20px rgba(83, 212, 62, 0.2);
+  }
+
+  .smp-glow {
+    color: #FACC15;
+    border-color: rgba(250, 204, 21, 0.3);
+    background: rgba(250, 204, 21, 0.1);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+  }
+
+  .hosting-glow {
+    color: #06B6D4;
+    border-color: rgba(6, 182, 212, 0.3);
+    background: rgba(6, 182, 212, 0.1);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  }
+
+  .pillar-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .pillar-desc {
+    color: var(--text-secondary);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .pillar-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .pillar-features li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+  }
+
+  .pillar-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pillar-stat {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--brand-green);
+  }
+
+  @media (max-width: 960px) {
+    .pillars-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

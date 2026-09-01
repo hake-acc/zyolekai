@@ -1,0 +1,297 @@
+---
+// DealCalculator.astro - Emil Kowalski Interactive Component
+---
+
+<div class="calculator-card glass-card">
+  <div class="calc-header">
+    <span class="calc-tag">Interactive Estimator</span>
+    <h3 class="calc-title">Campaign Reach & ROI Calculator</h3>
+    <p class="calc-desc">Select your target campaign tier and format to calculate projected reach and creator placements.</p>
+  </div>
+
+  <div class="calc-grid">
+    <!-- Sliders & Inputs -->
+    <div class="calc-inputs">
+      <div class="input-group">
+        <div class="input-header">
+          <label for="campaignType">Campaign Format</label>
+          <span id="typeBadge" class="val-badge">Brand Integration</span>
+        </div>
+        <select id="campaignType" class="calc-select">
+          <option value="integration" selected>In-Video Integration (30-60s)</option>
+          <option value="smp">Minecraft SMP Dedicated Series</option>
+          <option value="hosting">Game Server / Cloud Infrastructure</option>
+          <option value="stream">Live Stream Overlay & Shoutouts</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <div class="input-header">
+          <label for="creatorTier">Target Creator Count</label>
+          <span id="creatorCountDisplay" class="val-badge">3 Creators</span>
+        </div>
+        <input type="range" id="creatorRange" min="1" max="10" value="3" class="calc-slider" />
+      </div>
+
+      <div class="input-group">
+        <div class="input-header">
+          <label for="viewsSlider">Target Audience Reach</label>
+          <span id="viewsDisplay" class="val-badge">150,000 Views</span>
+        </div>
+        <input type="range" id="viewsRange" min="20000" max="1000000" step="20000" value="150000" class="calc-slider" />
+      </div>
+    </div>
+
+    <!-- Live Output Card -->
+    <div class="calc-output">
+      <div class="output-box">
+        <span class="out-lbl">Projected Campaign Impressions</span>
+        <span class="out-val" id="impressionsVal">225,000+</span>
+        <span class="out-sub">Across verified YouTube uploads</span>
+      </div>
+
+      <div class="output-details">
+        <div class="out-detail-row">
+          <span>Matchmaking Support:</span>
+          <strong class="text-green">Dedicated Sponsor Handler</strong>
+        </div>
+        <div class="out-detail-row">
+          <span>Verification Method:</span>
+          <strong>Timestamped Analytics Proof</strong>
+        </div>
+        <div class="out-detail-row">
+          <span>Turnaround Time:</span>
+          <strong>12–24 Hours</strong>
+        </div>
+      </div>
+
+      <a href="https://discord.gg/zyolekai" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill" style="width: 100%; margin-top: 16px;">
+        <span>Book Campaign via Discord</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .calculator-card {
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    background: rgba(14, 19, 31, 0.85);
+    border: 1px solid var(--border-brand);
+    margin-top: 48px;
+    box-shadow: var(--shadow-lg), var(--glow-subtle);
+  }
+
+  .calc-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 36px auto;
+  }
+
+  .calc-tag {
+    color: var(--brand-green);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  .calc-title {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .calc-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+
+  .calc-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .input-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .val-badge {
+    background: rgba(83, 212, 62, 0.12);
+    border: 1px solid rgba(83, 212, 62, 0.3);
+    color: var(--brand-green);
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+  }
+
+  .calc-select {
+    background: rgba(17, 24, 39, 0.9);
+    border: 1px solid var(--border-card);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .calc-select:focus {
+    border-color: var(--brand-green);
+  }
+
+  .calc-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .calc-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 0 12px rgba(83, 212, 62, 0.6);
+    cursor: pointer;
+    transition: transform var(--duration-instant) var(--ease-out);
+  }
+
+  .calc-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  .calc-output {
+    background: rgba(11, 15, 23, 0.8);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .output-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .out-lbl {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .out-val {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--brand-green);
+    line-height: 1.1;
+  }
+
+  .out-sub {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .output-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.88rem;
+  }
+
+  .out-detail-row {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+  }
+
+  .out-detail-row strong {
+    color: var(--text-primary);
+  }
+
+  .text-green {
+    color: var(--brand-green) !important;
+  }
+
+  @media (max-width: 840px) {
+    .calc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const typeSelect = document.getElementById('campaignType') as HTMLSelectElement;
+  const typeBadge = document.getElementById('typeBadge');
+  const creatorRange = document.getElementById('creatorRange') as HTMLInputElement;
+  const creatorCountDisplay = document.getElementById('creatorCountDisplay');
+  const viewsRange = document.getElementById('viewsRange') as HTMLInputElement;
+  const viewsDisplay = document.getElementById('viewsDisplay');
+  const impressionsVal = document.getElementById('impressionsVal');
+
+  function updateEstimates() {
+    if (!creatorRange || !viewsRange || !impressionsVal) return;
+
+    const creators = parseInt(creatorRange.value);
+    const targetViews = parseInt(viewsRange.value);
+
+    if (creatorCountDisplay) {
+      creatorCountDisplay.textContent = `${creators} Creator${creators > 1 ? 's' : ''}`;
+    }
+
+    if (viewsDisplay) {
+      viewsDisplay.textContent = `${targetViews.toLocaleString()} Views`;
+    }
+
+    // Multiply views by multiplier based on creator overlap & social impressions
+    const totalImpressions = Math.round(targetViews * 1.35 * (1 + (creators - 1) * 0.15));
+    impressionsVal.textContent = `${totalImpressions.toLocaleString()}+`;
+
+    if (typeBadge && typeSelect) {
+      const selectedOption = typeSelect.options[typeSelect.selectedIndex];
+      typeBadge.textContent = selectedOption.text.split('(')[0].trim();
+    }
+  }
+
+  if (typeSelect) typeSelect.addEventListener('change', updateEstimates);
+  if (creatorRange) creatorRange.addEventListener('input', updateEstimates);
+  if (viewsRange) viewsRange.addEventListener('input', updateEstimates);
+</script>

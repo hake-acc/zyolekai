@@ -1,0 +1,301 @@
+---
+// CreatorModal.astro - Emil Kowalski Craft Standards
+---
+
+<div id="creatorModal" class="modal-backdrop" aria-hidden="true" role="dialog">
+  <div class="modal-dialog glass-card" id="modalDialog">
+    <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-body" id="modalBody">
+      <!-- Dynamically filled by JavaScript -->
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(4, 7, 12, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    max-width: 760px;
+    background: rgba(14, 19, 31, 0.95);
+    border: 1px solid var(--border-brand);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), var(--glow-subtle);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px;
+    transform: scale(0.95);
+    transform-origin: center center;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .modal-backdrop.open .modal-dialog {
+    transform: scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-card);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+  }
+
+  .modal-close:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-primary);
+  }
+</style>
+
+<script>
+  const backdrop = document.getElementById('creatorModal');
+  const dialog = document.getElementById('modalDialog');
+  const closeBtn = document.getElementById('modalCloseBtn');
+  const modalBody = document.getElementById('modalBody');
+
+  function closeModal() {
+    if (backdrop) {
+      backdrop.classList.remove('open');
+      backdrop.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (closeBtn && backdrop) {
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && backdrop.classList.contains('open')) {
+        closeModal();
+      }
+    });
+  }
+
+  // Global trigger function
+  window.openCreatorModal = function(creatorData) {
+    if (!backdrop || !modalBody) return;
+
+    modalBody.innerHTML = `
+      <div class="creator-modal-content">
+        <div class="modal-header">
+          <img src="${creatorData.avatar || '/brand/logo.png'}" alt="${creatorData.name}" class="modal-avatar" />
+          <div class="modal-header-info">
+            <div class="modal-title-row">
+              <h2 class="modal-name">${creatorData.name}</h2>
+              <span class="verified-badge">✓ Verified</span>
+            </div>
+            <p class="modal-niche">${creatorData.niche || 'Gaming Entertainment'} • ${creatorData.videoCount || '50+ videos'}</p>
+          </div>
+        </div>
+
+        <div class="modal-media-kit-preview">
+          <img src="/creators/card_${creatorData.id}.png" alt="${creatorData.name} Media Kit Card" class="modal-card-img" onerror="this.style.display='none'" />
+        </div>
+
+        <div class="modal-stats-grid">
+          <div class="modal-stat-box">
+            <span class="stat-box-label">Subscribers</span>
+            <span class="stat-box-val">${creatorData.subscribers || 'N/A'}</span>
+          </div>
+          <div class="modal-stat-box">
+            <span class="stat-box-label">Average Views (Last 10)</span>
+            <span class="stat-box-val">${creatorData.avgViews || 'N/A'}</span>
+          </div>
+          <div class="modal-stat-box">
+            <span class="stat-box-label">Median Views</span>
+            <span class="stat-box-val">${creatorData.medianViews || 'N/A'}</span>
+          </div>
+        </div>
+
+        <div class="modal-match-box">
+          <h4 class="match-heading">Recommended Brand Sponsorship</h4>
+          <p class="match-text"><strong>${creatorData.brandMatch || 'Gaming Infrastructure'}</strong> (${creatorData.matchScore || '95% Compatibility'})</p>
+          <p class="match-pitch">${creatorData.pitchAngle || 'High audience retention and strong conversion for creator campaigns.'}</p>
+        </div>
+
+        <div class="modal-actions">
+          <a href="${creatorData.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <span>Watch on YouTube ▶</span>
+          </a>
+          <a href="https://discord.gg/zyolekai" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <span>Sponsor ${creatorData.name}</span>
+          </a>
+        </div>
+      </div>
+    `;
+
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+</script>
+
+<style is:global>
+  .creator-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .modal-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--brand-green);
+    object-fit: cover;
+  }
+
+  .modal-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .modal-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .verified-badge {
+    background: rgba(83, 212, 62, 0.15);
+    color: var(--brand-green);
+    border: 1px solid var(--border-brand);
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+  }
+
+  .modal-niche {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+  }
+
+  .modal-card-img {
+    width: 100%;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-card);
+    display: block;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  }
+
+  .modal-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .modal-stat-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-box-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .stat-box-val {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .modal-match-box {
+    background: rgba(83, 212, 62, 0.06);
+    border: 1px solid var(--border-brand);
+    padding: 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .match-heading {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--brand-green);
+    margin-bottom: 6px;
+  }
+
+  .match-text {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .match-pitch {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .modal-stats-grid {
+      grid-template-columns: 1fr;
+    }
+    .modal-actions {
+      flex-direction: column;
+    }
+    .modal-actions .btn {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,404 @@
+---
+import creatorsData from '../data/creators.json';
+import brandMatchesData from '../data/brand_matches.json';
+
+const matchesMap = new Map();
+brandMatchesData.forEach((m: any) => {
+  matchesMap.set(m.creatorId, m);
+});
+
+const creators = creatorsData.map((c: any) => {
+  const match = matchesMap.get(c.id) || {};
+  const topMatch = (match.topBrandMatches && match.topBrandMatches[0]) || {};
+  return {
+    ...c,
+    avgViewsFormatted: match.avgViewsFormatted || 'N/A',
+    medianViewsFormatted: match.medianViewsFormatted || 'N/A',
+    brandMatch: topMatch.brand || 'Game Server Hosting',
+    matchScore: topMatch.compatibilityScore || '95%',
+    pitchAngle: topMatch.pitchAngle || 'High audience retention and engagement.',
+    games: c.games || ['Minecraft', 'SMP', 'Gaming']
+  };
+});
+---
+
+<section id="roster" class="section roster-section">
+  <div class="container">
+    <!-- Header -->
+    <div class="roster-header">
+      <div class="section-badge">Verified Talent Network</div>
+      <h2 class="section-title">Meet Our Creator Roster</h2>
+      <p class="section-subtitle">
+        15 onboarded YouTube creators and gaming streamers with a combined audience of over 6.5 Million subscribers. Filter by category or inspect individual media kits.
+      </p>
+    </div>
+
+    <!-- Filter & Search Controls -->
+    <div class="roster-controls">
+      <div class="filter-pills" id="filterPills">
+        <button class="pill-btn active" data-filter="all">All Talent (15)</button>
+        <button class="pill-btn" data-filter="smp">Minecraft SMP</button>
+        <button class="pill-btn" data-filter="gaming">Gaming & Esports</button>
+        <button class="pill-btn" data-filter="high">High Reach (50k+)</button>
+      </div>
+
+      <div class="search-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="rosterSearch" placeholder="Search creators, games, or brands..." aria-label="Search creators" />
+      </div>
+    </div>
+
+    <!-- Creators Grid -->
+    <div class="creators-grid" id="creatorsGrid">
+      {creators.map((c: any) => (
+        <article
+          class="creator-card glass-card"
+          data-name={c.name.toLowerCase()}
+          data-niche={c.niche ? c.niche.toLowerCase() : ''}
+          data-games={(c.games || []).join(' ').toLowerCase()}
+          data-subs={c.subscribers}
+          data-creator={JSON.stringify({
+            id: c.id,
+            name: c.name,
+            avatar: c.avatar,
+            youtubeUrl: c.youtubeUrl,
+            subscribers: c.subscribers,
+            avgViews: c.avgViewsFormatted,
+            medianViews: c.medianViewsFormatted,
+            niche: c.niche,
+            videoCount: c.videoCount,
+            brandMatch: c.brandMatch,
+            matchScore: c.matchScore,
+            pitchAngle: c.pitchAngle
+          })}
+        >
+          <div class="card-header">
+            <img
+              src={c.avatar || '/brand/logo.png'}
+              alt={c.name}
+              class="creator-avatar"
+              loading="lazy"
+              onerror="this.src='/brand/logo.png'"
+            />
+            <div class="creator-meta">
+              <div class="creator-title-row">
+                <h3 class="creator-name">{c.name}</h3>
+                <span class="verified-dot" title="Verified ZyoleKai Creator">✓</span>
+              </div>
+              <p class="creator-sub-meta">{c.niche || 'Gaming Content Creator'}</p>
+            </div>
+          </div>
+
+          <div class="card-metrics">
+            <div class="c-metric">
+              <span class="c-metric-lbl">Subscribers</span>
+              <span class="c-metric-val">{c.subscribers}</span>
+            </div>
+            <div class="c-metric">
+              <span class="c-metric-lbl">Median Views</span>
+              <span class="c-metric-val">{c.medianViewsFormatted}</span>
+            </div>
+          </div>
+
+          <div class="card-brand-badge">
+            <span class="badge-icon">💼</span>
+            <span class="badge-text">Match: <strong>{c.brandMatch}</strong> ({c.matchScore})</span>
+          </div>
+
+          <div class="card-footer">
+            <button class="btn btn-secondary btn-pill open-kit-btn" style="flex: 1;">
+              <span>Media Kit</span>
+            </button>
+            <a href={c.youtubeUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill yt-btn" aria-label={`View ${c.name} on YouTube`}>
+              <span>YouTube</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 22c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 2c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .roster-section {
+    background: linear-gradient(180deg, rgba(7, 9, 14, 0) 0%, rgba(14, 19, 31, 0.45) 50%, rgba(7, 9, 14, 0) 100%);
+  }
+
+  .roster-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+
+  .roster-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .filter-pills {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .pill-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-card);
+    color: var(--text-secondary);
+    padding: 8px 18px;
+    border-radius: var(--radius-full);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+  }
+
+  .pill-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+  }
+
+  .pill-btn.active {
+    background: var(--brand-green);
+    color: #061208;
+    border-color: var(--brand-green);
+    box-shadow: 0 0 16px rgba(83, 212, 62, 0.4);
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-full);
+    padding: 8px 18px;
+    color: var(--text-muted);
+    min-width: 280px;
+    backdrop-filter: blur(12px);
+  }
+
+  .search-box input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .search-box input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .creators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .creator-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    border-radius: var(--radius-lg);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .creator-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--brand-green);
+  }
+
+  .creator-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .creator-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .creator-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .verified-dot {
+    font-size: 0.75rem;
+    background: rgba(83, 212, 62, 0.2);
+    color: var(--brand-green);
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 800;
+  }
+
+  .creator-sub-meta {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .card-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    padding: 12px;
+  }
+
+  .c-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .c-metric-lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .c-metric-val {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .card-brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(83, 212, 62, 0.06);
+    border: 1px solid rgba(83, 212, 62, 0.2);
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+
+  .card-brand-badge strong {
+    color: var(--brand-green);
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .yt-btn {
+    padding: 8px 16px;
+  }
+
+  @media (max-width: 768px) {
+    .roster-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .search-box {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Filter and Search Client Script
+  const searchInput = document.getElementById('rosterSearch') as HTMLInputElement;
+  const filterPills = document.querySelectorAll('.pill-btn');
+  const cards = document.querySelectorAll('.creator-card') as NodeListOf<HTMLElement>;
+
+  let currentFilter = 'all';
+  let currentSearch = '';
+
+  function filterCards() {
+    cards.forEach(card => {
+      const name = card.dataset.name || '';
+      const niche = card.dataset.niche || '';
+      const games = card.dataset.games || '';
+      const subs = card.dataset.subs || '';
+
+      // Match category
+      let categoryMatch = true;
+      if (currentFilter === 'smp') {
+        categoryMatch = games.includes('smp') || games.includes('minecraft') || niche.includes('minecraft');
+      } else if (currentFilter === 'gaming') {
+        categoryMatch = niche.includes('gaming') || niche.includes('entertainment');
+      } else if (currentFilter === 'high') {
+        categoryMatch = subs.includes('K') && parseInt(subs) >= 50 || subs.includes('M');
+      }
+
+      // Match search
+      const textMatch = name.includes(currentSearch) || niche.includes(currentSearch) || games.includes(currentSearch);
+
+      if (categoryMatch && textMatch) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      filterCards();
+    });
+  }
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      currentFilter = pill.getAttribute('data-filter') || 'all';
+      filterCards();
+    });
+  });
+
+  // Wire Media Kit Modal Clicks
+  cards.forEach(card => {
+    const kitBtn = card.querySelector('.open-kit-btn');
+    if (kitBtn) {
+      kitBtn.addEventListener('click', () => {
+        const creatorData = JSON.parse(card.dataset.creator || '{}');
+        if ((window as any).openCreatorModal) {
+          (window as any).openCreatorModal(creatorData);
+        }
+      });
+    }
+  });
+</script>
