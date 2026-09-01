@@ -326,7 +326,7 @@ button:active, .btn:active {
   }
 
   .section-title {
-    font-size: clamp(1.6rem, 5.8vw, 2.2rem);
+    font-size: clamp(1.45rem, 5.2vw, 2.0rem);
     line-height: 1.2;
     word-break: break-word;
     overflow-wrap: break-word;
