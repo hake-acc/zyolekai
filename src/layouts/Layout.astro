@@ -130,6 +130,39 @@ const {
         // Trigger tactile Play & Pause emoji pulse
         spawnEmojiPop(rect.left + rect.width / 2, rect.top);
       });
+
+      // Directional Page Sliding View Transitions (Spatial Awareness)
+      const PAGE_SEQUENCE = ['/', '/roster', '/sponsorships', '/community', '/faq'];
+
+      document.addEventListener('astro:before-preparation', (ev) => {
+        try {
+          const fromPath = window.location.pathname.replace(/\/$/, '') || '/';
+          const toPath = new URL(ev.to).pathname.replace(/\/$/, '') || '/';
+
+          if (fromPath.startsWith('/roster/') && toPath === '/roster') {
+            document.documentElement.setAttribute('data-direction', 'back');
+            return;
+          }
+
+          if (toPath.startsWith('/roster/')) {
+            document.documentElement.setAttribute('data-direction', 'forward');
+            return;
+          }
+
+          const fromIdx = PAGE_SEQUENCE.indexOf(fromPath);
+          const toIdx = PAGE_SEQUENCE.indexOf(toPath);
+
+          if (fromIdx !== -1 && toIdx !== -1) {
+            document.documentElement.setAttribute('data-direction', toIdx < fromIdx ? 'back' : 'forward');
+          } else if (toPath === '/') {
+            document.documentElement.setAttribute('data-direction', 'back');
+          } else {
+            document.documentElement.setAttribute('data-direction', 'forward');
+          }
+        } catch {
+          document.documentElement.setAttribute('data-direction', 'forward');
+        }
+      });
     </script>
   </body>
 </html>

@@ -476,40 +476,77 @@ button:active, .btn:active {
 }
 
 /* =========================================================================
-   CSS View Transitions (Smooth Zoom Navigation Between Pages)
-   Adheres to Emil Kowalski & animate skill: transform & opacity only, 320ms ease-out
+   CSS View Transitions (Directional Page Slide Navigation)
+   Adheres to Emil Kowalski & animate skill rules:
+   - Strictly transform (translateX) and opacity only (GPU accelerated)
+   - Duration: 260ms (responsive, under 300ms)
+   - Easing: cubic-bezier(0.23, 1, 0.32, 1) (--ease-out)
    ========================================================================= */
 @view-transition {
   navigation: auto;
 }
 
-::view-transition-old(root) {
-  animation: page-zoom-out 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+/* Forward Navigation (Default): Current page slides out left, next page slides in from right */
+::view-transition-old(root),
+[data-direction="forward"]::view-transition-old(root) {
+  animation: pageSlideOutLeft 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
-::view-transition-new(root) {
-  animation: page-zoom-in 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+::view-transition-new(root),
+[data-direction="forward"]::view-transition-new(root) {
+  animation: pageSlideInRight 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
-@keyframes page-zoom-out {
+/* Backward Navigation: Current page slides out right, previous page slides in from left */
+[data-direction="back"]::view-transition-old(root) {
+  animation: pageSlideOutRight 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+[data-direction="back"]::view-transition-new(root) {
+  animation: pageSlideInLeft 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+@keyframes pageSlideOutLeft {
   0% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
   }
   100% {
     opacity: 0;
-    transform: scale(1.04);
+    transform: translateX(-48px);
   }
 }
 
-@keyframes page-zoom-in {
+@keyframes pageSlideInRight {
   0% {
     opacity: 0;
-    transform: scale(0.95);
+    transform: translateX(54px);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
+  }
+}
+
+@keyframes pageSlideOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+}
+
+@keyframes pageSlideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-54px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 

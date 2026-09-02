@@ -1,6 +1,6 @@
 import json, os
 
-report_name = 'lighthouse_report_webp.json' if os.path.exists('lighthouse_report_webp.json') else 'lighthouse_report.json'
+report_name = 'lighthouse_report_slide.json' if os.path.exists('lighthouse_report_slide.json') else 'lighthouse_report.json'
 print("Report analyzed:", report_name)
 with open(report_name, 'r', encoding='utf-8') as f:
     data = json.load(f)
