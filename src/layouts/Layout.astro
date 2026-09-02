@@ -105,23 +105,31 @@ const {
 
     <script>
       // Codrops Page Transition Controller
-      // 1. Zoom In / Zoom Out for Viewing Creator Media Kit
-      // 2. Move to Left / Move to Right (Slide) for standard page navigation
+      // 1. Move to Left / Move to Right (Slide) between standard pages (0.6s)
+      // 2. Zoom In / Zoom Out for Viewing Creator Media Kit (0.6s)
+      function determineTransition(fromPath: string, toPath: string, direction?: string): string {
+        const isEnteringMediaKit = toPath.startsWith('/roster/') && toPath !== '/roster' && toPath !== '/roster/';
+        const isExitingMediaKit = fromPath.startsWith('/roster/') && fromPath !== '/roster' && fromPath !== '/roster/';
+
+        if (isEnteringMediaKit) return 'zoom-in';
+        if (isExitingMediaKit && (toPath === '/roster' || toPath === '/roster/' || toPath === '')) return 'zoom-out';
+        if (direction === 'back') return 'slide-right';
+        return 'slide-left';
+      }
+
       document.addEventListener('astro:before-preparation', (event: any) => {
         const fromPath = (event.from ? event.from.pathname : window.location.pathname).replace(/\/$/, '') || '/';
         const toPath = (event.to ? event.to.pathname : '').replace(/\/$/, '') || '/';
+        const transitionType = determineTransition(fromPath, toPath, event.direction);
 
-        const isEnteringMediaKit = toPath.startsWith('/roster/') && toPath !== '/roster';
-        const isExitingMediaKit = fromPath.startsWith('/roster/') && fromPath !== '/roster';
+        document.documentElement.setAttribute('data-transition', transitionType);
+      });
 
-        if (isEnteringMediaKit) {
-          document.documentElement.setAttribute('data-transition', 'zoom-in');
-        } else if (isExitingMediaKit && (toPath === '/roster' || toPath === '')) {
-          document.documentElement.setAttribute('data-transition', 'zoom-out');
-        } else if (event.direction === 'back') {
-          document.documentElement.setAttribute('data-transition', 'slide-right');
-        } else {
-          document.documentElement.setAttribute('data-transition', 'slide-left');
+      // Crucial: Copy data-transition to new incoming document so View Transitions selectors match!
+      document.addEventListener('astro:before-swap', (event: any) => {
+        const currentTransition = document.documentElement.getAttribute('data-transition');
+        if (currentTransition && event.newDocument) {
+          event.newDocument.documentElement.setAttribute('data-transition', currentTransition);
         }
       });
 
@@ -137,15 +145,19 @@ const {
           return;
         }
 
-        if (href.startsWith('/roster/') && href !== '/roster' && href !== '/roster/') {
-          document.documentElement.setAttribute('data-transition', 'zoom-in');
-        } else if (target.classList.contains('back-link') || ((href === '/roster' || href === '/roster/') && window.location.pathname.startsWith('/roster/'))) {
-          document.documentElement.setAttribute('data-transition', 'zoom-out');
+        const fromPath = window.location.pathname.replace(/\/$/, '') || '/';
+        const toPath = href.replace(/\/$/, '') || '/';
+        if (toPath.startsWith('/')) {
+          const transitionType = determineTransition(fromPath, toPath);
+          document.documentElement.setAttribute('data-transition', transitionType);
         }
       });
 
       document.addEventListener('astro:page-load', () => {
-        document.documentElement.removeAttribute('data-transition');
+        // Keep data-transition active throughout the 600ms transition, then clean up
+        setTimeout(() => {
+          document.documentElement.removeAttribute('data-transition');
+        }, 650);
       });
 
       // Paper Plane Flight & Animated Play/Pause Microinteractions

@@ -468,86 +468,119 @@ button:active, .btn:active {
 }
 
 /* =========================================================================
-   Codrops Page Transitions
-   1. Move to Left / Move to Right (Slide) for standard page navigation
-   2. Zoom In / Zoom Out specifically for Viewing Creator Media Kit
+   Codrops 1:1 Page Transitions Architecture
+   - Reference: https://tympanus.net/Development/PageTransitions/
+   - Duration: 0.6s (600ms) with Codrops cubic-bezier(0.7, 0, 0.3, 1) ease
+   - 1. Move to Left / Move to Right (Slide) between standard pages
+   - 2. Zoom In / Zoom Out specifically for Viewing Creator Media Kit
    ========================================================================= */
 
-/* Default / Move to Left (Slide Left) */
+/* Disable root crossfade so only main content executes the Codrops transition */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+/* Ensure view-transition-group matches the 0.6s duration */
+::view-transition-group(main-content) {
+  animation-duration: 0.6s !important;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
+}
+
+::view-transition-old(main-content),
+::view-transition-new(main-content) {
+  animation-duration: 0.6s !important;
+  animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
+  animation-fill-mode: both !important;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* 1. Codrops Move to Left / From Right (Forward Slide) */
 :root[data-transition="slide-left"]::view-transition-old(main-content),
 :root:not([data-transition])::view-transition-old(main-content) {
-  animation: codropsMoveToLeft 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptMoveToLeft !important;
+  z-index: 1;
 }
 :root[data-transition="slide-left"]::view-transition-new(main-content),
 :root:not([data-transition])::view-transition-new(main-content) {
-  animation: codropsMoveFromRight 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptMoveFromRight !important;
+  z-index: 2;
 }
 
-/* Move to Right (Slide Right on Back Navigation) */
+/* 2. Codrops Move to Right / From Left (Backwards Slide) */
 :root[data-transition="slide-right"]::view-transition-old(main-content) {
-  animation: codropsMoveToRight 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptMoveToRight !important;
+  z-index: 1;
 }
 :root[data-transition="slide-right"]::view-transition-new(main-content) {
-  animation: codropsMoveFromLeft 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptMoveFromLeft !important;
+  z-index: 2;
 }
 
-/* Zoom In (Viewing Creator Media Kit) */
+/* 3. Codrops Zoom In / Scale Down (Viewing Creator Media Kit) */
 :root[data-transition="zoom-in"]::view-transition-old(main-content) {
-  animation: codropsScaleDown 300ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptScaleDown !important;
+  z-index: 1;
 }
 :root[data-transition="zoom-in"]::view-transition-new(main-content) {
-  animation: codropsZoomIn 320ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptZoomIn !important;
+  z-index: 2;
 }
 
-/* Zoom Out (Exiting Creator Media Kit Back to Roster) */
+/* 4. Codrops Zoom Out / Scale Up (Exiting Creator Media Kit Back to Roster) */
 :root[data-transition="zoom-out"]::view-transition-old(main-content) {
-  animation: codropsZoomOut 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptZoomOut !important;
+  z-index: 2;
 }
 :root[data-transition="zoom-out"]::view-transition-new(main-content) {
-  animation: codropsScaleUp 300ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation-name: ptScaleUp !important;
+  z-index: 1;
 }
 
-/* --- Codrops Keyframes --- */
-@keyframes codropsMoveToLeft {
+/* --- Exact Codrops PageTransitions Keyframes --- */
+@keyframes ptMoveToLeft {
   from { transform: translateX(0%); opacity: 1; }
-  to { transform: translateX(-100%); opacity: 0.85; }
+  to { transform: translateX(-100%); opacity: 0.8; }
 }
 
-@keyframes codropsMoveFromRight {
-  from { transform: translateX(100%); opacity: 0.85; }
+@keyframes ptMoveFromRight {
+  from { transform: translateX(100%); opacity: 0.8; }
   to { transform: translateX(0%); opacity: 1; }
 }
 
-@keyframes codropsMoveToRight {
+@keyframes ptMoveToRight {
   from { transform: translateX(0%); opacity: 1; }
-  to { transform: translateX(100%); opacity: 0.85; }
+  to { transform: translateX(100%); opacity: 0.8; }
 }
 
-@keyframes codropsMoveFromLeft {
-  from { transform: translateX(-100%); opacity: 0.85; }
+@keyframes ptMoveFromLeft {
+  from { transform: translateX(-100%); opacity: 0.8; }
   to { transform: translateX(0%); opacity: 1; }
 }
 
-/* Codrops Zoom In: Previous page scales down, Media Kit zooms in from depth */
-@keyframes codropsScaleDown {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.88); opacity: 0; }
+/* Codrops Animation 21: Scale Down */
+@keyframes ptScaleDown {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.85); }
 }
 
-@keyframes codropsZoomIn {
-  from { transform: scale(0.82); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+/* Codrops Animation 22: Zoom In */
+@keyframes ptZoomIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* Codrops Zoom Out: Media Kit zooms out, Previous page scales back up */
-@keyframes codropsZoomOut {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.82); opacity: 0; }
+/* Codrops Animation 23: Zoom Out */
+@keyframes ptZoomOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.8); }
 }
 
-@keyframes codropsScaleUp {
-  from { transform: scale(0.88); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+/* Codrops Animation 24: Scale Up */
+@keyframes ptScaleUp {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* Accessibility: Respect Reduced Motion */
