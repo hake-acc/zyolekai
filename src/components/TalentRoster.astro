@@ -240,6 +240,21 @@ const creators = creatorsData.map((c: any, idx: number) => {
     flex-direction: column;
     gap: 18px;
     border-radius: var(--radius-lg);
+    transition: transform var(--duration-fast) var(--ease-spring),
+                box-shadow var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .creator-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--brand-green);
+      box-shadow: 0 16px 36px rgba(0, 191, 99, 0.16);
+    }
+  }
+
+  .creator-card:active {
+    transform: scale(0.985);
   }
 
   .card-header {

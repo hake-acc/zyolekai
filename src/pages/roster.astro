@@ -223,13 +223,23 @@ const creators = creatorsData;
     font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--duration-fast) var(--ease-out);
+    transition: background-color var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out),
+                color var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
     font-family: var(--font-sans);
   }
 
-  .pill-btn:hover {
-    border-color: rgba(0, 191, 99, 0.4);
-    color: var(--text-primary);
+  @media (hover: hover) and (pointer: fine) {
+    .pill-btn:hover {
+      border-color: rgba(0, 191, 99, 0.4);
+      color: var(--text-primary);
+    }
+  }
+
+  .pill-btn:active {
+    transform: scale(0.96);
   }
 
   .pill-btn.active {
@@ -295,10 +305,16 @@ const creators = creatorsData;
                 border-color var(--duration-fast) var(--ease-out);
   }
 
-  .creator-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--brand-green);
-    box-shadow: 0 16px 36px rgba(0, 191, 99, 0.16);
+  @media (hover: hover) and (pointer: fine) {
+    .creator-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--brand-green);
+      box-shadow: 0 16px 36px rgba(0, 191, 99, 0.16);
+    }
+  }
+
+  .creator-card:active {
+    transform: scale(0.985);
   }
 
   .card-header {
