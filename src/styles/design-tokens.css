@@ -468,15 +468,86 @@ button:active, .btn:active {
 }
 
 /* =========================================================================
-   CSS View Transitions (Smooth Page Slide Navigation)
-   Adheres to Emil Kowalski & animate skill rules:
-   - GPU composited transform & opacity only
-   - 260ms duration, cubic-bezier(0.23, 1, 0.32, 1)
+   Codrops Page Transitions
+   1. Move to Left / Move to Right (Slide) for standard page navigation
+   2. Zoom In / Zoom Out specifically for Viewing Creator Media Kit
    ========================================================================= */
-::view-transition-old(main-content),
-::view-transition-new(main-content) {
-  animation-duration: 260ms;
-  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+
+/* Default / Move to Left (Slide Left) */
+:root[data-transition="slide-left"]::view-transition-old(main-content),
+:root:not([data-transition])::view-transition-old(main-content) {
+  animation: codropsMoveToLeft 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+:root[data-transition="slide-left"]::view-transition-new(main-content),
+:root:not([data-transition])::view-transition-new(main-content) {
+  animation: codropsMoveFromRight 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* Move to Right (Slide Right on Back Navigation) */
+:root[data-transition="slide-right"]::view-transition-old(main-content) {
+  animation: codropsMoveToRight 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+:root[data-transition="slide-right"]::view-transition-new(main-content) {
+  animation: codropsMoveFromLeft 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* Zoom In (Viewing Creator Media Kit) */
+:root[data-transition="zoom-in"]::view-transition-old(main-content) {
+  animation: codropsScaleDown 300ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+:root[data-transition="zoom-in"]::view-transition-new(main-content) {
+  animation: codropsZoomIn 320ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* Zoom Out (Exiting Creator Media Kit Back to Roster) */
+:root[data-transition="zoom-out"]::view-transition-old(main-content) {
+  animation: codropsZoomOut 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+:root[data-transition="zoom-out"]::view-transition-new(main-content) {
+  animation: codropsScaleUp 300ms cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+
+/* --- Codrops Keyframes --- */
+@keyframes codropsMoveToLeft {
+  from { transform: translateX(0%); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0.85; }
+}
+
+@keyframes codropsMoveFromRight {
+  from { transform: translateX(100%); opacity: 0.85; }
+  to { transform: translateX(0%); opacity: 1; }
+}
+
+@keyframes codropsMoveToRight {
+  from { transform: translateX(0%); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0.85; }
+}
+
+@keyframes codropsMoveFromLeft {
+  from { transform: translateX(-100%); opacity: 0.85; }
+  to { transform: translateX(0%); opacity: 1; }
+}
+
+/* Codrops Zoom In: Previous page scales down, Media Kit zooms in from depth */
+@keyframes codropsScaleDown {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.88); opacity: 0; }
+}
+
+@keyframes codropsZoomIn {
+  from { transform: scale(0.82); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Codrops Zoom Out: Media Kit zooms out, Previous page scales back up */
+@keyframes codropsZoomOut {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.82); opacity: 0; }
+}
+
+@keyframes codropsScaleUp {
+  from { transform: scale(0.88); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* Accessibility: Respect Reduced Motion */

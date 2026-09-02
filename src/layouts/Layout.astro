@@ -1,6 +1,6 @@
 ---
 import '../styles/design-tokens.css';
-import { ClientRouter, slide } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import CreatorModal from '../components/CreatorModal.astro';
@@ -96,7 +96,7 @@ const {
 
     <Navbar />
     
-    <main id="main-content" transition:name="main-content" transition:animate={slide({ duration: '260ms' })}>
+    <main id="main-content" transition:name="main-content">
       <slot />
     </main>
 
@@ -104,8 +104,52 @@ const {
     <CreatorModal />
 
     <script>
+      // Codrops Page Transition Controller
+      // 1. Zoom In / Zoom Out for Viewing Creator Media Kit
+      // 2. Move to Left / Move to Right (Slide) for standard page navigation
+      document.addEventListener('astro:before-preparation', (event: any) => {
+        const fromPath = (event.from ? event.from.pathname : window.location.pathname).replace(/\/$/, '') || '/';
+        const toPath = (event.to ? event.to.pathname : '').replace(/\/$/, '') || '/';
+
+        const isEnteringMediaKit = toPath.startsWith('/roster/') && toPath !== '/roster';
+        const isExitingMediaKit = fromPath.startsWith('/roster/') && fromPath !== '/roster';
+
+        if (isEnteringMediaKit) {
+          document.documentElement.setAttribute('data-transition', 'zoom-in');
+        } else if (isExitingMediaKit && (toPath === '/roster' || toPath === '')) {
+          document.documentElement.setAttribute('data-transition', 'zoom-out');
+        } else if (event.direction === 'back') {
+          document.documentElement.setAttribute('data-transition', 'slide-right');
+        } else {
+          document.documentElement.setAttribute('data-transition', 'slide-left');
+        }
+      });
+
+      // Immediate pre-click detection to prime data-transition before snapshot
+      document.addEventListener('click', (e: MouseEvent) => {
+        const target = (e.target as HTMLElement)?.closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href') || '';
+        const customTransition = target.getAttribute('data-transition');
+
+        if (customTransition) {
+          document.documentElement.setAttribute('data-transition', customTransition);
+          return;
+        }
+
+        if (href.startsWith('/roster/') && href !== '/roster' && href !== '/roster/') {
+          document.documentElement.setAttribute('data-transition', 'zoom-in');
+        } else if (target.classList.contains('back-link') || ((href === '/roster' || href === '/roster/') && window.location.pathname.startsWith('/roster/'))) {
+          document.documentElement.setAttribute('data-transition', 'zoom-out');
+        }
+      });
+
+      document.addEventListener('astro:page-load', () => {
+        document.documentElement.removeAttribute('data-transition');
+      });
+
       // Paper Plane Flight & Animated Play/Pause Microinteractions
-      function launchPaperPlane(x, y) {
+      function launchPaperPlane(x: number, y: number) {
         const plane = document.createElement('div');
         plane.className = 'paper-plane-flyer';
         plane.style.left = `${x}px`;
@@ -119,7 +163,7 @@ const {
         plane.addEventListener('animationend', () => plane.remove());
       }
 
-      function spawnEmojiPop(x, y, emoji1 = '▶️', emoji2 = '⏸️') {
+      function spawnEmojiPop(x: number, y: number, emoji1 = '▶️', emoji2 = '⏸️') {
         const pop = document.createElement('div');
         pop.className = 'btn-emoji-pop';
         pop.style.left = `${x}px`;
@@ -133,19 +177,16 @@ const {
         pop.addEventListener('animationend', () => pop.remove());
       }
 
-      // Attach to all interactive buttons
-      document.addEventListener('click', (e) => {
-        const target = e.target.closest('button, .btn, .pill-btn, .open-kit-btn, .yt-btn, .social-icon');
+      // Attach to interactive buttons
+      document.addEventListener('click', (e: MouseEvent) => {
+        const target = (e.target as HTMLElement)?.closest('button, .btn, .pill-btn, .open-kit-btn, .yt-btn, .social-icon');
         if (!target) return;
 
         const rect = target.getBoundingClientRect();
         const clickX = e.clientX || (rect.left + rect.width / 2);
         const clickY = e.clientY || (rect.top + rect.height / 2);
 
-        // Launch soaring paper plane
         launchPaperPlane(clickX, clickY);
-
-        // Trigger tactile Play & Pause emoji pulse
         spawnEmojiPop(rect.left + rect.width / 2, rect.top);
       });
     </script>
