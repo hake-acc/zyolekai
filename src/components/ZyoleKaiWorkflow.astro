@@ -1,0 +1,689 @@
+---
+// ZyoleKaiWorkflow.astro - Real-time Motion Graphics Workflow Visualizer
+// Replaces static interactive tools with a living, animated SVG node graph
+---
+
+<div class="workflow-section glass-card" id="zyolekaiWorkflow">
+  <div class="workflow-header">
+    <div class="workflow-kicker-row">
+      <span class="live-pulse-dot"></span>
+      <span class="workflow-kicker-text">Real-Time Agency Pipeline</span>
+    </div>
+    <h2 class="workflow-title">The ZyoleKai Workflow</h2>
+    <p class="workflow-subtitle">
+      Watch how our agency guides gaming creators from initial media kit benchmarks to brand outreach, commercial negotiation, and guaranteed sponsorship payout.
+    </p>
+    
+    <!-- Dynamic Stage Tracker Badge -->
+    <div class="active-stage-indicator" id="workflowStageBadge">
+      <span class="indicator-prefix">Current Phase:</span>
+      <strong id="stageLabelText" class="indicator-name">1. Creator Talent Benchmarking</strong>
+    </div>
+  </div>
+
+  <!-- SVG Motion Graphics Canvas -->
+  <div class="workflow-canvas-container">
+    <svg
+      id="workflowSvg"
+      viewBox="0 0 1000 320"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      class="workflow-svg"
+      preserveAspectRatio="xMidYMid meet"
+    >
+      <defs>
+        <!-- Emerald Chroma Gradients -->
+        <linearGradient id="wfEmeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00BF63" />
+          <stop offset="100%" stop-color="#007A3D" />
+        </linearGradient>
+
+        <linearGradient id="wfActiveGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#00BF63" />
+          <stop offset="50%" stop-color="#53D43E" />
+          <stop offset="100%" stop-color="#00BF63" />
+        </linearGradient>
+
+        <!-- Emerald Glow Filter -->
+        <filter id="wfGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="3.5" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+
+      <!-- Faint Background Dotted Guide Path -->
+      <path
+        id="faintPath"
+        d="M 100 135 C 200 60, 200 90, 300 90 C 400 90, 400 175, 500 175 C 600 175, 600 85, 700 85 C 800 85, 800 135, 900 135"
+        class="path-base-faint"
+      />
+
+      <!-- Active Green Illuminated Path (Reveals dynamically as arrow travels) -->
+      <path
+        id="illuminatedPath"
+        d="M 100 135 C 200 60, 200 90, 300 90 C 400 90, 400 175, 500 175 C 600 175, 600 85, 700 85 C 800 85, 800 135, 900 135"
+        class="path-active-illuminated"
+      />
+
+      <!-- Fast Rewind Return Arc (For Arrow Quick Reset) -->
+      <path
+        id="returnPath"
+        d="M 900 135 C 750 255, 250 255, 100 135"
+        class="path-return-arc"
+      />
+
+      <!-- Dynamic Moving Arrow Traveler -->
+      <g id="workflowArrow" class="arrow-traveler" transform="translate(100, 135)">
+        <circle r="14" fill="rgba(0, 191, 99, 0.2)" class="arrow-beacon-ring" />
+        <circle r="7" fill="#00BF63" filter="url(#wfGlow)" />
+        <polygon points="12,0 -8,-7 -3,0 -8,7" fill="#041608" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round" />
+      </g>
+
+      <!-- CHECKPOINT 1: Signed Creator Talent -->
+      <g class="wf-node" id="node1" transform="translate(100, 135)">
+        <circle r="36" class="node-bg-circle" />
+        <circle r="36" class="node-glow-ring" />
+        <!-- Creator Media Kit Icon -->
+        <g class="node-icon-group">
+          <rect x="-13" y="-13" width="26" height="26" rx="6" fill="none" stroke="url(#wfEmeraldGrad)" stroke-width="2" />
+          <path d="M-6 -4 L6 -4 M-6 1 L3 1 M-6 6 L0 6" stroke="url(#wfEmeraldGrad)" stroke-width="2" stroke-linecap="round" />
+        </g>
+        <!-- Animated Checkmark Badge -->
+        <g class="wf-check-badge" id="check1">
+          <circle r="11" fill="#00BF63" stroke="#FFFFFF" stroke-width="1.8" />
+          <path d="M-4 -0.5 L-1 2.5 L4 -2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+      </g>
+
+      <!-- CHECKPOINT 2: Brand Outreach -->
+      <g class="wf-node" id="node2" transform="translate(300, 90)">
+        <circle r="36" class="node-bg-circle" />
+        <circle r="36" class="node-glow-ring" />
+        <!-- Outreach Paper Plane / Dispatch Icon -->
+        <g class="node-icon-group">
+          <path d="M-11 9 L11 -1 L-2 11 L-3 3 Z" fill="none" stroke="url(#wfEmeraldGrad)" stroke-width="2" stroke-linejoin="round" />
+          <path d="M-2 11 L11 -1" stroke="url(#wfEmeraldGrad)" stroke-width="1.8" stroke-linecap="round" />
+        </g>
+        <!-- Animated Checkmark Badge -->
+        <g class="wf-check-badge" id="check2">
+          <circle r="11" fill="#00BF63" stroke="#FFFFFF" stroke-width="1.8" />
+          <path d="M-4 -0.5 L-1 2.5 L4 -2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+      </g>
+
+      <!-- CHECKPOINT 3: Brand Response & Commercial Terms -->
+      <g class="wf-node" id="node3" transform="translate(500, 175)">
+        <circle r="36" class="node-bg-circle" />
+        <circle r="36" class="node-glow-ring" />
+        <!-- Handshake / Alignment Icon -->
+        <g class="node-icon-group">
+          <path d="M-11 -3 L-4 4 L0 0 L-7 -7 Z" fill="none" stroke="url(#wfEmeraldGrad)" stroke-width="1.8" stroke-linejoin="round" />
+          <path d="M11 -3 L4 4 L0 0 L7 -7 Z" fill="none" stroke="url(#wfEmeraldGrad)" stroke-width="1.8" stroke-linejoin="round" />
+          <circle cx="0" cy="8" r="4" fill="none" stroke="url(#wfEmeraldGrad)" stroke-width="1.8" />
+        </g>
+        <!-- Animated Checkmark Badge -->
+        <g class="wf-check-badge" id="check3">
+          <circle r="11" fill="#00BF63" stroke="#FFFFFF" stroke-width="1.8" />
+          <path d="M-4 -0.5 L-1 2.5 L4 -2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+      </g>
+
+      <!-- CHECKPOINT 4: Content Production & 48h Review -->
+      <g class="wf-node" id="node4" transform="translate(700, 85)">
+        <circle r="36" class="node-bg-circle" />
+        <circle r="36" class="node-glow-ring" />
+        <!-- 4K Video Reel / SMP Integration Icon -->
+        <g class="node-icon-group">
+          <rect x="-12" y="-9" width="24" height="18" rx="4" fill="none" stroke="url(#wfEmeraldGrad)" stroke-width="2" />
+          <polygon points="-3,-4 5,0 -3,4" fill="url(#wfEmeraldGrad)" />
+        </g>
+        <!-- Animated Checkmark Badge -->
+        <g class="wf-check-badge" id="check4">
+          <circle r="11" fill="#00BF63" stroke="#FFFFFF" stroke-width="1.8" />
+          <path d="M-4 -0.5 L-1 2.5 L4 -2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+      </g>
+
+      <!-- CHECKPOINT 5: Sponsorship Delivery & Payout -->
+      <g class="wf-node" id="node5" transform="translate(900, 135)">
+        <circle r="38" class="node-bg-circle final-node-bg" />
+        <circle r="38" class="node-glow-ring final-glow-ring" />
+        <!-- Golden Verified Shield & Payout Icon -->
+        <g class="node-icon-group">
+          <path d="M0 -11 L10 -6 L10 2 C10 8 0 13 0 13 C0 13 -10 8 -10 2 L-10 -6 Z" fill="none" stroke="url(#wfEmeraldGrad)" stroke-width="2" stroke-linejoin="round" />
+          <path d="M-3 0 L-1 2 L4 -3" stroke="#00BF63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+        <!-- Animated Checkmark Badge -->
+        <g class="wf-check-badge" id="check5">
+          <circle r="12" fill="#00BF63" stroke="#FFFFFF" stroke-width="1.8" />
+          <path d="M-4 -0.5 L-1 2.5 L4 -2.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </g>
+      </g>
+    </svg>
+
+    <!-- Node Text Labels (Positioned Below/Above Each Node) -->
+    <div class="wf-labels-grid">
+      <div class="wf-label-card card-node-1" data-stage="1">
+        <span class="wf-step-num">STEP 01</span>
+        <h4 class="wf-step-title">Signed Creator</h4>
+        <p class="wf-step-desc">15 YouTubers verified with analytics benchmarks & media kits ready.</p>
+      </div>
+
+      <div class="wf-label-card card-node-2" data-stage="2">
+        <span class="wf-step-num">STEP 02</span>
+        <h4 class="wf-step-title">Brand Outreach</h4>
+        <p class="wf-step-desc">Targeted pitching to game publishers, server hosts, and gaming hardware.</p>
+      </div>
+
+      <div class="wf-label-card card-node-3" data-stage="3">
+        <span class="wf-step-num">STEP 03</span>
+        <h4 class="wf-step-title">Brand Response</h4>
+        <p class="wf-step-desc">Brief alignment, CPM negotiation, and 0% upfront fee protection.</p>
+      </div>
+
+      <div class="wf-label-card card-node-4" data-stage="4">
+        <span class="wf-step-num">STEP 04</span>
+        <h4 class="wf-step-title">Production & Review</h4>
+        <p class="wf-step-desc">Seamless integration script review with mandatory 48-hour preview draft.</p>
+      </div>
+
+      <div class="wf-label-card card-node-5" data-stage="5">
+        <span class="wf-step-num">STEP 05</span>
+        <h4 class="wf-step-title">Sponsorships Payout</h4>
+        <p class="wf-step-desc">Live public upload, tracked conversion metrics, and prompt creator payout.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Workflow Controls -->
+  <div class="workflow-controls-bar">
+    <button type="button" class="btn btn-secondary btn-pill" id="btnPauseResume">
+      <span id="pauseResumeIcon">⏸</span>
+      <span id="pauseResumeText">Pause Motion</span>
+    </button>
+
+    <div class="workflow-progress-track">
+      <div class="workflow-progress-fill" id="workflowProgressFill"></div>
+    </div>
+
+    <a href="https://discord.gg/zyolekai" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill">
+      <span>Initiate Campaign ↗</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  // ZyoleKai Workflow Engine: 60fps Precision SVG Vector Animator
+  function initZyoleKaiWorkflow() {
+    const section = document.getElementById('zyolekaiWorkflow');
+    if (!section) return;
+
+    const faintPath = document.getElementById('faintPath') as SVGPathElement | null;
+    const illuminatedPath = document.getElementById('illuminatedPath') as SVGPathElement | null;
+    const returnPath = document.getElementById('returnPath') as SVGPathElement | null;
+    const arrow = document.getElementById('workflowArrow');
+    const stageBadge = document.getElementById('stageLabelText');
+    const progressFill = document.getElementById('workflowProgressFill');
+    const btnPause = document.getElementById('btnPauseResume');
+    const pauseIcon = document.getElementById('pauseResumeIcon');
+    const pauseText = document.getElementById('pauseResumeText');
+
+    if (!faintPath || !illuminatedPath || !returnPath || !arrow) return;
+
+    const forwardLength = faintPath.getTotalLength();
+    const returnLength = returnPath.getTotalLength();
+
+    // Prepare illuminated path with stroke-dasharray
+    illuminatedPath.style.strokeDasharray = `${forwardLength}`;
+    illuminatedPath.style.strokeDashoffset = `${forwardLength}`;
+
+    // Node milestones on forward path (0.0 to 1.0)
+    // Node 1: 0.0, Node 2: 0.25, Node 3: 0.50, Node 4: 0.75, Node 5: 1.0
+    const stages = [
+      { progress: 0.00, checkId: 'check1', nodeId: 'node1', title: '1. Signed Creator Benchmarks' },
+      { progress: 0.25, checkId: 'check2', nodeId: 'node2', title: '2. Outreaching to Brands' },
+      { progress: 0.50, checkId: 'check3', nodeId: 'node3', title: '3. Brand Response & Brief Locked' },
+      { progress: 0.75, checkId: 'check4', nodeId: 'node4', title: '4. Content Production & 48h SLA' },
+      { progress: 1.00, checkId: 'check5', nodeId: 'node5', title: '5. Sponsorship Delivery & Payout' },
+    ];
+
+    const cards = document.querySelectorAll('.wf-label-card');
+
+    let isPlaying = true;
+    let isVisible = true;
+    let animationFrameId: number;
+    let startTime: number | null = null;
+
+    // Durations:
+    // Forward trip: 7.5s (smooth, clear pace)
+    // Hold at end: 1.2s (celebration)
+    // Fast Rewind Return: 0.9s (snappy quick return as requested)
+    const FORWARD_DURATION = 7500;
+    const HOLD_DURATION = 1200;
+    const RETURN_DURATION = 900;
+    const TOTAL_CYCLE = FORWARD_DURATION + HOLD_DURATION + RETURN_DURATION;
+
+    // IntersectionObserver to only animate when user sees it (100% performance)
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0].isIntersecting;
+      if (isVisible && isPlaying) {
+        startTime = null;
+        animationFrameId = requestAnimationFrame(animateStep);
+      } else {
+        cancelAnimationFrame(animationFrameId);
+      }
+    }, { threshold: 0.15 });
+
+    observer.observe(section);
+
+    function updateChecksAndNodes(tNormalized: number, isForward: boolean) {
+      stages.forEach((st, idx) => {
+        const checkEl = document.getElementById(st.checkId);
+        const nodeEl = document.getElementById(st.nodeId);
+        const cardEl = cards[idx] as HTMLElement | null;
+
+        if (isForward && tNormalized >= st.progress) {
+          checkEl?.classList.add('checked');
+          nodeEl?.classList.add('active-node');
+          cardEl?.classList.add('active-card');
+        } else if (!isForward) {
+          // Rewinding
+          checkEl?.classList.remove('checked');
+          nodeEl?.classList.remove('active-node');
+          cardEl?.classList.remove('active-card');
+        } else {
+          checkEl?.classList.remove('checked');
+          nodeEl?.classList.remove('active-node');
+          cardEl?.classList.remove('active-card');
+        }
+      });
+    }
+
+    function updateStageTitle(tNormalized: number) {
+      if (!stageBadge) return;
+      if (tNormalized < 0.25) {
+        stageBadge.textContent = stages[0].title;
+      } else if (tNormalized < 0.50) {
+        stageBadge.textContent = stages[1].title;
+      } else if (tNormalized < 0.75) {
+        stageBadge.textContent = stages[2].title;
+      } else if (tNormalized < 0.98) {
+        stageBadge.textContent = stages[3].title;
+      } else {
+        stageBadge.textContent = stages[4].title;
+      }
+    }
+
+    function animateStep(timestamp: number) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = (timestamp - startTime) % TOTAL_CYCLE;
+
+      if (elapsed < FORWARD_DURATION) {
+        // Forward traveling
+        const t = elapsed / FORWARD_DURATION;
+        const currentDistance = t * forwardLength;
+        const point = faintPath.getPointAtLength(currentDistance);
+
+        // Calculate tangent angle for arrow rotation
+        const nextDist = Math.min(currentDistance + 2, forwardLength);
+        const nextPoint = faintPath.getPointAtLength(nextDist);
+        const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
+
+        arrow.setAttribute('transform', `translate(${point.x}, ${point.y}) rotate(${angle})`);
+
+        // Reveal illuminated green dotted path up to arrow position
+        illuminatedPath.style.strokeDashoffset = `${forwardLength - currentDistance}`;
+
+        updateChecksAndNodes(t, true);
+        updateStageTitle(t);
+
+        if (progressFill) {
+          progressFill.style.width = `${t * 100}%`;
+        }
+      } else if (elapsed < FORWARD_DURATION + HOLD_DURATION) {
+        // Final Hold at Node 5
+        const endPoint = faintPath.getPointAtLength(forwardLength);
+        arrow.setAttribute('transform', `translate(${endPoint.x}, ${endPoint.y}) rotate(0)`);
+        illuminatedPath.style.strokeDashoffset = '0';
+        updateChecksAndNodes(1.0, true);
+        if (stageBadge) stageBadge.textContent = "5. Sponsorships Complete ✓ Verified & Paid!";
+        if (progressFill) progressFill.style.width = '100%';
+      } else {
+        // Fast Rewind Return Arc (User: "arrow quickly moving back to starting point then looping it")
+        const returnElapsed = elapsed - (FORWARD_DURATION + HOLD_DURATION);
+        const tReturn = returnElapsed / RETURN_DURATION;
+        const returnDist = tReturn * returnLength;
+        const point = returnPath.getPointAtLength(returnDist);
+
+        const nextDist = Math.min(returnDist + 2, returnLength);
+        const nextPoint = returnPath.getPointAtLength(nextDist);
+        const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
+
+        arrow.setAttribute('transform', `translate(${point.x}, ${point.y}) rotate(${angle})`);
+
+        // Fade/reset illuminated path during return
+        illuminatedPath.style.strokeDashoffset = `${forwardLength * (1 - (1 - tReturn))}`;
+
+        updateChecksAndNodes(0, false);
+        if (stageBadge) stageBadge.textContent = "Resetting Loop for Next Creator...";
+        if (progressFill) progressFill.style.width = `${(1 - tReturn) * 100}%`;
+      }
+
+      if (isPlaying && isVisible) {
+        animationFrameId = requestAnimationFrame(animateStep);
+      }
+    }
+
+    // Pause / Resume interaction
+    btnPause?.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        if (pauseIcon) pauseIcon.textContent = '⏸';
+        if (pauseText) pauseText.textContent = 'Pause Motion';
+        startTime = null;
+        animationFrameId = requestAnimationFrame(animateStep);
+      } else {
+        if (pauseIcon) pauseIcon.textContent = '▶';
+        if (pauseText) pauseText.textContent = 'Resume Motion';
+        cancelAnimationFrame(animationFrameId);
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initZyoleKaiWorkflow);
+  document.addEventListener('astro:page-load', initZyoleKaiWorkflow);
+</script>
+
+<style>
+  .workflow-section {
+    padding: 44px 36px;
+    margin: 56px auto 0 auto;
+    max-width: 1140px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.94);
+    border: 1.5px solid rgba(13, 28, 18, 0.12);
+    box-shadow: 0 16px 44px rgba(13, 28, 18, 0.06);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .workflow-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 32px auto;
+  }
+
+  .workflow-kicker-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 191, 99, 0.08);
+    border: 1px solid rgba(0, 191, 99, 0.22);
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #008744;
+    margin-bottom: 14px;
+  }
+
+  .live-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    box-shadow: 0 0 10px var(--brand-green);
+    animation: liveDotPulse 1.8s ease-in-out infinite;
+  }
+
+  @keyframes liveDotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.6; }
+  }
+
+  .workflow-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+    margin-bottom: 12px;
+  }
+
+  .workflow-subtitle {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .active-stage-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(0, 191, 99, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 191, 99, 0.12);
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    font-size: 0.88rem;
+  }
+
+  .indicator-prefix {
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .indicator-name {
+    color: #008744;
+    font-weight: 800;
+    font-family: var(--font-display);
+  }
+
+  /* SVG Canvas Styling */
+  .workflow-canvas-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .workflow-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Faint Guide Path */
+  .path-base-faint {
+    stroke: rgba(13, 28, 18, 0.12);
+    stroke-width: 3.5;
+    stroke-dasharray: 6 8;
+    fill: none;
+    transition: stroke 200ms ease;
+  }
+
+  /* Active Illuminated Path */
+  .path-active-illuminated {
+    stroke: url(#wfActiveGlow);
+    stroke-width: 4;
+    stroke-dasharray: 6 8;
+    stroke-linecap: round;
+    fill: none;
+    filter: drop-shadow(0 0 6px rgba(0, 191, 99, 0.5));
+  }
+
+  /* Quick Return Path (Hidden from user sight, guides arrow rewind) */
+  .path-return-arc {
+    stroke: transparent;
+    stroke-width: 1;
+    fill: none;
+  }
+
+  /* Arrow Traveler */
+  .arrow-traveler {
+    cursor: pointer;
+    transition: filter 200ms ease;
+  }
+
+  .arrow-beacon-ring {
+    animation: beaconPulse 1.4s ease-out infinite;
+  }
+
+  @keyframes beaconPulse {
+    0% { r: 8; opacity: 0.8; }
+    100% { r: 22; opacity: 0; }
+  }
+
+  /* Nodes */
+  .wf-node {
+    cursor: pointer;
+    transition: transform 220ms var(--ease-spring);
+  }
+
+  .node-bg-circle {
+    fill: #FFFFFF;
+    stroke: rgba(13, 28, 18, 0.14);
+    stroke-width: 2.2;
+    transition: stroke 240ms ease, fill 240ms ease;
+  }
+
+  .node-glow-ring {
+    fill: none;
+    stroke: transparent;
+    stroke-width: 4;
+    transition: stroke 240ms ease;
+  }
+
+  .wf-node.active-node .node-bg-circle {
+    stroke: var(--brand-green);
+    fill: #FFFFFF;
+  }
+
+  .wf-node.active-node .node-glow-ring {
+    stroke: rgba(0, 191, 99, 0.28);
+  }
+
+  .final-node-bg {
+    stroke-width: 2.8;
+  }
+
+  .node-icon-group {
+    transition: transform 200ms var(--ease-spring);
+  }
+
+  .wf-node:hover .node-icon-group {
+    transform: scale(1.14);
+  }
+
+  /* Checkmark Badges */
+  .wf-check-badge {
+    transform: translate(24px, -24px) scale(0);
+    transform-origin: center;
+    transition: transform 260ms var(--ease-spring);
+    filter: drop-shadow(0 2px 6px rgba(0, 191, 99, 0.4));
+  }
+
+  .wf-check-badge.checked {
+    transform: translate(24px, -24px) scale(1);
+  }
+
+  /* Labels Grid */
+  .wf-labels-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 14px;
+  }
+
+  .wf-label-card {
+    padding: 16px 14px;
+    border-radius: var(--radius-md);
+    background: rgba(13, 28, 18, 0.03);
+    border: 1px solid rgba(13, 28, 18, 0.08);
+    transition: transform var(--duration-fast) var(--ease-spring),
+                border-color var(--duration-fast) var(--ease-out),
+                background-color var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-out);
+    text-align: left;
+  }
+
+  .wf-step-num {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 4px;
+    transition: color 200ms ease;
+  }
+
+  .wf-step-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    font-family: var(--font-display);
+  }
+
+  .wf-step-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  /* Active Label Card Highlight */
+  .wf-label-card.active-card {
+    background: #FFFFFF;
+    border-color: var(--brand-green);
+    box-shadow: 0 8px 24px rgba(0, 191, 99, 0.14);
+    transform: translateY(-3px);
+  }
+
+  .wf-label-card.active-card .wf-step-num {
+    color: #008744;
+  }
+
+  /* Controls & Progress */
+  .workflow-controls-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(13, 28, 18, 0.08);
+  }
+
+  .workflow-progress-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(13, 28, 18, 0.08);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .workflow-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00BF63, #53D43E);
+    border-radius: var(--radius-full);
+    transition: width 80ms linear;
+    box-shadow: 0 0 8px var(--brand-green);
+  }
+
+  @media (max-width: 860px) {
+    .workflow-section {
+      padding: 32px 20px;
+    }
+    .wf-labels-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .workflow-controls-bar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+    }
+  }
+</style>
