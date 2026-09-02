@@ -104,8 +104,9 @@ const creators = creatorsData.map((c: any, idx: number) => {
             <div class="creator-meta">
               <div class="creator-title-row">
                 <h3 class="creator-name">{c.name}</h3>
-                <svg class="verified-check-svg" width="17" height="17" viewBox="0 0 24 24" fill="var(--brand-green)" title="Verified ZyoleKai Creator">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                <svg class="verified-check-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" title="Verified ZyoleKai Creator" aria-label="Verified Creator">
+                  <path d="M12 2.2L19.5 5.5v5.8c0 5-3.3 9.4-7.5 10.5-4.2-1.1-7.5-5.5-7.5-10.5V5.5L12 2.2z" fill="url(#emeraldGrad)"></path>
+                  <path d="M9 11.8l2.2 2.2 4.3-4.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
               </div>
               <p class="creator-sub-meta">{c.niche || 'Gaming Content Creator'}</p>

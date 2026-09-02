@@ -4,19 +4,20 @@ import DealCalculator from '../components/DealCalculator.astro';
 
 const sponsorshipTiers = [
   {
-    title: "Dedicated In-Video Placements",
-    tagline: "High-retention mid-roll & sponsored segments",
-    desc: "60–90 second dedicated integrations woven organically into high-retention gaming videos. Includes verified 30-day view benchmarks, tracked description links, and pinned comment placements.",
+    id: "video",
+    title: "Dedicated YouTube Video Integration",
+    tagline: "High-impact creator endorsements & dedicated segments",
+    desc: "Seamless 60–90 second dedicated integrations natively embedded into high-performing gaming videos. Includes tracked links, pinned comment discount codes, and guaranteed placement.",
     features: [
       "Native creator script integration (no robotic reads)",
       "Dedicated description links & pinned comment discounts",
       "Verified 30-day YouTube Studio analytics reporting",
       "Mandatory 48-hour preview review before public upload"
     ],
-    badge: "CAMPAIGN-MANAGED",
-    icon: "🎬"
+    badge: "CAMPAIGN-MANAGED"
   },
   {
+    id: "smp",
     title: "Minecraft SMP & Tournament Series",
     tagline: "Live interactive multiplayer event sponsorship",
     desc: "Sponsor competitive creator SMP seasons, tournament livestreams, and server launches. Your brand is featured in-game with custom items, server broadcasts, and multi-creator streams.",
@@ -26,10 +27,10 @@ const sponsorshipTiers = [
       "Coordinated community recording sessions",
       "Exclusive Discord announcement & event role pings"
     ],
-    badge: "EVENT-BASED",
-    icon: "⚔️"
+    badge: "EVENT-BASED"
   },
   {
+    id: "hosting",
     title: "Server Hosting & Cloud Infrastructure",
     tagline: "Authentic infrastructure ambassadorships",
     desc: "Long-term partnerships for game server hosts, VPNs, cloud computing, and gaming hardware. Creators build tutorials, stress-test servers live, and offer trackable discount codes.",
@@ -39,8 +40,7 @@ const sponsorshipTiers = [
       "Custom creator promo codes with tracked conversions",
       "Discord community endorsement & tech support showcase"
     ],
-    badge: "AMBASSADORSHIPS",
-    icon: "🌐"
+    badge: "AMBASSADORSHIPS"
   }
 ];
 ---
@@ -87,7 +87,31 @@ const sponsorshipTiers = [
         {sponsorshipTiers.map(tier => (
           <div class="tier-card glass-card">
             <div class="tier-top">
-              <span class="tier-icon">{tier.icon}</span>
+              <div class="tier-icon-wrap" aria-hidden="true">
+                {tier.id === 'video' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="tier-svg">
+                    <rect x="2" y="4" width="20" height="16" rx="4" stroke="url(#emeraldGrad)"></rect>
+                    <path d="M10 9.5l5 2.5-5 2.5v-5z" fill="url(#emeraldGrad)" stroke="none"></path>
+                    <path d="M2 8h20" stroke="url(#emeraldGrad)"></path>
+                  </svg>
+                )}
+                {tier.id === 'smp' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="tier-svg">
+                    <path d="M14.5 4l5.5 5.5-11 11H3.5v-5.5L14.5 4z" stroke="url(#emeraldGrad)"></path>
+                    <path d="M9.5 4L4 9.5l11 11h5.5v-5.5L9.5 4z" stroke="url(#emeraldGrad)"></path>
+                    <circle cx="12" cy="12" r="2.2" fill="url(#emeraldGrad)" stroke="none"></circle>
+                  </svg>
+                )}
+                {tier.id === 'hosting' && (
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="tier-svg">
+                    <rect x="3" y="4" width="18" height="6" rx="2" stroke="url(#emeraldGrad)"></rect>
+                    <rect x="3" y="14" width="18" height="6" rx="2" stroke="url(#emeraldGrad)"></rect>
+                    <circle cx="7" cy="7" r="1.2" fill="url(#emeraldGrad)" stroke="none"></circle>
+                    <circle cx="7" cy="17" r="1.2" fill="url(#emeraldGrad)" stroke="none"></circle>
+                    <path d="M14 7h3M14 17h3" stroke="url(#emeraldGrad)"></path>
+                  </svg>
+                )}
+              </div>
               <span class="tier-badge">{tier.badge}</span>
             </div>
 
@@ -228,10 +252,21 @@ const sponsorshipTiers = [
                 box-shadow var(--duration-fast) var(--ease-out);
   }
 
-  .tier-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--brand-green);
-    box-shadow: 0 16px 36px rgba(0, 191, 99, 0.15);
+  @media (hover: hover) and (pointer: fine) {
+    .tier-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--brand-green);
+      box-shadow: 0 16px 36px rgba(0, 191, 99, 0.15);
+    }
+    .tier-card:hover .tier-icon-wrap {
+      transform: scale(1.08) rotate(3deg);
+      border-color: var(--brand-green);
+      background: rgba(0, 191, 99, 0.14);
+    }
+  }
+
+  .tier-card:active {
+    transform: scale(0.985);
   }
 
   .tier-top {
@@ -241,8 +276,23 @@ const sponsorshipTiers = [
     margin-bottom: 18px;
   }
 
-  .tier-icon {
-    font-size: 2rem;
+  .tier-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    background: rgba(0, 191, 99, 0.08);
+    border: 1.5px solid rgba(0, 191, 99, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--duration-fast) var(--ease-spring),
+                border-color var(--duration-fast) var(--ease-out),
+                background-color var(--duration-fast) var(--ease-out);
+  }
+
+  .tier-svg {
+    width: 26px;
+    height: 26px;
   }
 
   .tier-badge {
