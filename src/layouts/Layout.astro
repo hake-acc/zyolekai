@@ -1,5 +1,6 @@
 ---
 import '../styles/design-tokens.css';
+import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import CreatorModal from '../components/CreatorModal.astro';
@@ -53,6 +54,9 @@ const {
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={image} />
+
+    <!-- Astro View Transitions for Client-side Navigation -->
+    <ClientRouter />
   </head>
   <body>
     <!-- WCAG Priority 1: Skip to main content -->

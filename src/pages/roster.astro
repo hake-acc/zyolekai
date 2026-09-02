@@ -1,0 +1,461 @@
+---
+import Layout from '../layouts/Layout.astro';
+import creatorsData from '../data/creators.json';
+
+const creators = creatorsData;
+---
+
+<Layout
+  title="Creator Talent Roster & 1:1 Media Kits | ZyoleKai Agency"
+  description="Explore ZyoleKai's signed creator roster of 15 gaming and Minecraft YouTubers. Access verified YouTube statistics, lifetime reach, and 1:1 brand media kits."
+>
+  <section class="section roster-page-section">
+    <div class="container">
+      <!-- Roster Page Hero Header -->
+      <div class="roster-page-header">
+        <div class="roster-kicker-pill">
+          <span class="status-dot"></span>
+          <span>Official Agency Roster • 2026 Edition</span>
+        </div>
+        
+        <h1 class="roster-page-title">
+          Creator Talent Roster &amp; <span>1:1 Media Kits</span>
+        </h1>
+        
+        <p class="roster-page-subtitle">
+          Representing 15 premier gaming creators across Minecraft SMP, storytelling, and high-retention entertainment. Explore verified YouTube statistics, average views, and individual downloadable media kits.
+        </p>
+
+        <!-- Quick Action Bar -->
+        <div class="roster-header-actions">
+          <a
+            href="/ZyoleKai_Creator_Roster_Media_Kits_2026.pdf"
+            download="ZyoleKai_Creator_Roster_Media_Kits_2026.pdf"
+            class="btn btn-primary btn-pill"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span>Download Master PDF Portfolio (18 Pages)</span>
+          </a>
+
+          <a href="https://discord.gg/zyolekai" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-pill">
+            <span>Book Campaign via Discord</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Filter & Search Controls -->
+      <div class="roster-controls">
+        <div class="filter-pills" id="filterPills">
+          <button class="pill-btn active" data-filter="all">All Creators (15)</button>
+          <button class="pill-btn" data-filter="smp">Minecraft SMP</button>
+          <button class="pill-btn" data-filter="gaming">Gaming &amp; Variety</button>
+          <button class="pill-btn" data-filter="high">50k+ Subscribers</button>
+        </div>
+
+        <div class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="rosterSearch" placeholder="Search by creator name, niche, or handle..." aria-label="Search creators" />
+        </div>
+      </div>
+
+      <!-- Creators Grid -->
+      <div class="creators-grid" id="creatorsGrid">
+        {creators.map((c: any) => (
+          <article
+            class="creator-card glass-card"
+            data-name={c.name.toLowerCase()}
+            data-niche={c.niche ? c.niche.toLowerCase() : ''}
+            data-subs={c.subscribers}
+          >
+            <div class="card-header">
+              <img
+                src={c.avatarUrl || '/brand/logo.png'}
+                alt={c.name}
+                class="creator-avatar"
+                loading="lazy"
+                onerror="this.src='/brand/logo.png'"
+              />
+              <div class="creator-meta">
+                <div class="creator-title-row">
+                  <h3 class="creator-name">{c.name}</h3>
+                  <svg class="verified-check-svg" width="17" height="17" viewBox="0 0 24 24" fill="var(--brand-green)" title="Verified ZyoleKai Creator">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <p class="creator-sub-meta">{c.niche || 'Gaming Content Creator'}</p>
+              </div>
+            </div>
+
+            <div class="card-metrics">
+              <div class="c-metric">
+                <span class="c-metric-lbl">Subscribers</span>
+                <span class="c-metric-val">{c.subscribersShort}</span>
+              </div>
+              <div class="c-metric">
+                <span class="c-metric-lbl">Avg. Views</span>
+                <span class="c-metric-val">{c.avgViewsShort}</span>
+              </div>
+            </div>
+
+            <div class="card-metrics" style="margin-top: -6px; padding-top: 0; border-top: none;">
+              <div class="c-metric">
+                <span class="c-metric-lbl">Total Views</span>
+                <span class="c-metric-val" style="font-size: 1.05rem;">{c.totalViewsShort}</span>
+              </div>
+              <div class="c-metric">
+                <span class="c-metric-lbl">Typical RPM</span>
+                <span class="c-metric-val text-brand" style="font-size: 1.05rem;">{c.rpm}</span>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <a href={`/roster/${c.slug}`} class="btn btn-secondary btn-pill" style="flex: 1; text-align: center; justify-content: center;">
+                <span>View 1:1 Media Kit →</span>
+              </a>
+              <a href={c.youtubeUrl} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill">
+                <span>YouTube ↗</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .roster-page-section {
+    padding: 110px 0 80px 0;
+  }
+
+  .roster-page-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 48px;
+  }
+
+  .roster-kicker-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 191, 99, 0.1);
+    border: 1px solid rgba(0, 191, 99, 0.25);
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #008744;
+    margin-bottom: 16px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    box-shadow: 0 0 8px var(--brand-green);
+  }
+
+  .roster-page-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .roster-page-title span {
+    color: var(--brand-green);
+  }
+
+  .roster-page-subtitle {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    color: var(--text-secondary);
+    max-width: 680px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .roster-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .roster-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+
+  .filter-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .pill-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1.5px solid rgba(13, 28, 18, 0.1);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-out);
+    font-family: var(--font-sans);
+  }
+
+  .pill-btn:hover {
+    border-color: rgba(0, 191, 99, 0.4);
+    color: var(--text-primary);
+  }
+
+  .pill-btn.active {
+    background: var(--brand-green);
+    border-color: var(--brand-green);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(0, 191, 99, 0.3);
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1.5px solid rgba(13, 28, 18, 0.12);
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    min-width: 320px;
+    transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .search-box:focus-within {
+    border-color: var(--brand-green);
+    box-shadow: 0 0 0 3px rgba(0, 191, 99, 0.15);
+  }
+
+  .search-box svg {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .search-box input {
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    font-family: var(--font-sans);
+    width: 100%;
+  }
+
+  .search-box input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .creators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .creator-card {
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1.5px solid rgba(13, 28, 18, 0.1);
+    box-shadow: 0 8px 24px rgba(13, 28, 18, 0.04);
+    transition: transform var(--duration-fast) var(--ease-spring),
+                box-shadow var(--duration-fast) var(--ease-out),
+                border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .creator-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand-green);
+    box-shadow: 0 16px 36px rgba(0, 191, 99, 0.16);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .creator-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 2px solid var(--brand-green);
+    box-shadow: 0 0 12px rgba(0, 191, 99, 0.2);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .creator-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .creator-title-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .creator-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .verified-check-svg {
+    flex-shrink: 0;
+  }
+
+  .creator-sub-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 14px;
+    background: #FAF7EE;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(13, 28, 18, 0.06);
+  }
+
+  .c-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .c-metric-lbl {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .c-metric-val {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+
+  .text-brand {
+    color: #008744;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .roster-page-section {
+      padding: 80px 0 60px 0;
+    }
+
+    .roster-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .search-box {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+</style>
+
+<script>
+  const filterPills = document.querySelectorAll('#filterPills .pill-btn');
+  const searchInput = document.getElementById('rosterSearch') as HTMLInputElement;
+  const cards = document.querySelectorAll('.creator-card') as NodeListOf<HTMLElement>;
+
+  let currentFilter = 'all';
+  let searchQuery = '';
+
+  filterPills.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterPills.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.getAttribute('data-filter') || 'all';
+      applyFilters();
+    });
+  });
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value.toLowerCase().trim();
+      applyFilters();
+    });
+  }
+
+  function applyFilters() {
+    cards.forEach(card => {
+      const name = card.getAttribute('data-name') || '';
+      const niche = card.getAttribute('data-niche') || '';
+      const subs = card.getAttribute('data-subs') || '';
+
+      const matchesSearch = !searchQuery || name.includes(searchQuery) || niche.includes(searchQuery);
+
+      let matchesPill = true;
+      if (currentFilter === 'smp') {
+        matchesPill = niche.includes('smp') || name.includes('scaft') || name.includes('spider') || name.includes('flame');
+      } else if (currentFilter === 'gaming') {
+        matchesPill = true;
+      } else if (currentFilter === 'high') {
+        matchesPill = subs.includes('M') || (subs.includes('K') && parseFloat(subs) >= 50);
+      }
+
+      if (matchesSearch && matchesPill) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>

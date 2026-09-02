@@ -1,0 +1,325 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DealCalculator from '../components/DealCalculator.astro';
+
+const sponsorshipTiers = [
+  {
+    title: "Dedicated In-Video Placements",
+    tagline: "High-retention mid-roll & sponsored segments",
+    desc: "60–90 second dedicated integrations woven organically into high-retention gaming videos. Includes verified 30-day view benchmarks, tracked description links, and pinned comment placements.",
+    features: [
+      "Native creator script integration (no robotic reads)",
+      "Dedicated description links & pinned comment discounts",
+      "Verified 30-day YouTube Studio analytics reporting",
+      "Mandatory 48-hour preview review before public upload"
+    ],
+    badge: "CAMPAIGN-MANAGED",
+    icon: "🎬"
+  },
+  {
+    title: "Minecraft SMP & Tournament Series",
+    tagline: "Live interactive multiplayer event sponsorship",
+    desc: "Sponsor competitive creator SMP seasons, tournament livestreams, and server launches. Your brand is featured in-game with custom items, server broadcasts, and multi-creator streams.",
+    features: [
+      "In-game branded arenas, items, and custom lore",
+      "Cross-promoted creator livestreams and vods",
+      "Coordinated community recording sessions",
+      "Exclusive Discord announcement & event role pings"
+    ],
+    badge: "EVENT-BASED",
+    icon: "⚔️"
+  },
+  {
+    title: "Server Hosting & Cloud Infrastructure",
+    tagline: "Authentic infrastructure ambassadorships",
+    desc: "Long-term partnerships for game server hosts, VPNs, cloud computing, and gaming hardware. Creators build tutorials, stress-test servers live, and offer trackable discount codes.",
+    features: [
+      "Dedicated server setup tutorials and gameplay showcases",
+      "Long-term brand ambassadorships & affiliate revenue share",
+      "Custom creator promo codes with tracked conversions",
+      "Discord community endorsement & tech support showcase"
+    ],
+    badge: "AMBASSADORSHIPS",
+    icon: "🌐"
+  }
+];
+---
+
+<Layout
+  title="Brand Sponsorships & Campaign Placements | ZyoleKai Agency"
+  description="Book dedicated gaming video integrations, Minecraft SMP tournament series, and server infrastructure partnerships across 15 verified creators."
+>
+  <section class="section sponsorships-page-section">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="spons-header">
+        <div class="spons-kicker-pill">
+          <span class="status-dot"></span>
+          <span>Commercial Partnerships • 2026</span>
+        </div>
+
+        <h1 class="spons-title">
+          Brand Sponsorships &amp; <span>Campaign Placements</span>
+        </h1>
+
+        <p class="spons-subtitle">
+          Direct creator integrations across 15 verified gaming channels with 6.5M+ combined subscribers and over 1.1 Billion lifetime views. Transparent contracts, verified analytics, and guaranteed deliverables.
+        </p>
+
+        <div class="spons-stats-row">
+          <div class="s-stat-chip">
+            <span class="s-stat-num">5–7 Days</span>
+            <span class="s-stat-lbl">Production Turnaround</span>
+          </div>
+          <div class="s-stat-chip">
+            <span class="s-stat-num">48 Hours</span>
+            <span class="s-stat-lbl">Preview Draft SLA</span>
+          </div>
+          <div class="s-stat-chip">
+            <span class="s-stat-num">0%</span>
+            <span class="s-stat-lbl">Creator Upfront Fees</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Tier Cards -->
+      <div class="tiers-grid">
+        {sponsorshipTiers.map(tier => (
+          <div class="tier-card glass-card">
+            <div class="tier-top">
+              <span class="tier-icon">{tier.icon}</span>
+              <span class="tier-badge">{tier.badge}</span>
+            </div>
+
+            <h3 class="tier-title">{tier.title}</h3>
+            <p class="tier-tagline">{tier.tagline}</p>
+            <p class="tier-desc">{tier.desc}</p>
+
+            <ul class="tier-features">
+              {tier.features.map(f => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-green)" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a href="https://discord.gg/zyolekai" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-pill tier-btn">
+              <span>Book This Format</span>
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Campaign Reach Estimator -->
+      <DealCalculator />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .sponsorships-page-section {
+    padding: 110px 0 80px 0;
+  }
+
+  .spons-header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 56px;
+  }
+
+  .spons-kicker-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 191, 99, 0.1);
+    border: 1px solid rgba(0, 191, 99, 0.25);
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #008744;
+    margin-bottom: 16px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    box-shadow: 0 0 8px var(--brand-green);
+  }
+
+  .spons-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .spons-title span {
+    color: var(--brand-green);
+  }
+
+  .spons-subtitle {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+    color: var(--text-secondary);
+    max-width: 680px;
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .spons-stats-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .s-stat-chip {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(13, 28, 18, 0.1);
+    border-radius: var(--radius-full);
+    padding: 8px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 12px rgba(13, 28, 18, 0.04);
+  }
+
+  .s-stat-num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--brand-green);
+  }
+
+  .s-stat-lbl {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+  }
+
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+
+  .tier-card {
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.94);
+    border: 1.5px solid rgba(13, 28, 18, 0.1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(13, 28, 18, 0.04);
+    transition: transform var(--duration-fast) var(--ease-spring),
+                border-color var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .tier-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--brand-green);
+    box-shadow: 0 16px 36px rgba(0, 191, 99, 0.15);
+  }
+
+  .tier-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+
+  .tier-icon {
+    font-size: 2rem;
+  }
+
+  .tier-badge {
+    background: rgba(0, 191, 99, 0.1);
+    color: #008744;
+    border: 1px solid rgba(0, 191, 99, 0.25);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.06em;
+  }
+
+  .tier-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .tier-tagline {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--brand-green);
+    margin-bottom: 12px;
+  }
+
+  .tier-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .tier-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding: 0;
+  }
+
+  .tier-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .tier-features li svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .tier-btn {
+    margin-top: auto;
+    width: 100%;
+    justify-content: center;
+  }
+
+  @media (max-width: 960px) {
+    .tiers-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sponsorships-page-section {
+      padding: 80px 0 60px 0;
+    }
+    .tier-card {
+      padding: 24px 16px;
+    }
+  }
+</style>

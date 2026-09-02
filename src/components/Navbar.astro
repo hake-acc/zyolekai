@@ -1,5 +1,15 @@
 ---
 // Navbar.astro - Emil Kowalski Craft Standards
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.replace(/\/$/, '') || '/';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Talent Roster', href: '/roster' },
+  { label: 'Sponsorships', href: '/sponsorships' },
+  { label: 'Community', href: '/community' },
+  { label: 'FAQ', href: '/faq' },
+];
 ---
 
 <header class="navbar-wrapper">
@@ -12,11 +22,14 @@
 
     <!-- Desktop Navigation Links -->
     <div class="nav-links">
-      <a href="#" class="nav-item">Home</a>
-      <a href="#roster" class="nav-item">Talent Roster</a>
-      <a href="#sponsorships" class="nav-item">Sponsorships</a>
-      <a href="#community" class="nav-item">Community</a>
-      <a href="#faq" class="nav-item">FAQ</a>
+      {navLinks.map((link) => {
+        const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+        return (
+          <a href={link.href} class={`nav-item ${isActive ? 'active' : ''}`}>
+            {link.label}
+          </a>
+        );
+      })}
     </div>
 
     <!-- Actions -->
@@ -38,11 +51,14 @@
 
   <!-- Mobile Drawer -->
   <div class="mobile-drawer" id="mobileDrawer">
-    <a href="#" class="drawer-item">Home</a>
-    <a href="#roster" class="drawer-item">Talent Roster</a>
-    <a href="#sponsorships" class="drawer-item">Sponsorships</a>
-    <a href="#community" class="drawer-item">Community</a>
-    <a href="#faq" class="drawer-item">FAQ</a>
+    {navLinks.map((link) => {
+      const isActive = link.href === '/' ? currentPath === '/' : currentPath.startsWith(link.href);
+      return (
+        <a href={link.href} class={`drawer-item ${isActive ? 'active' : ''}`}>
+          {link.label}
+        </a>
+      );
+    })}
     <a href="https://discord.gg/zyolekai" target="_blank" class="btn btn-primary" style="margin-top: 12px; width: 100%;">
       Join Discord Server
     </a>
@@ -136,9 +152,15 @@
     box-shadow: 0 0 8px var(--brand-green);
   }
 
-  .nav-item:hover::after {
+  .nav-item:hover::after,
+  .nav-item.active::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  .nav-item.active {
+    color: var(--brand-green);
+    font-weight: 700;
   }
 
   .nav-actions {
@@ -212,6 +234,11 @@
     font-size: 1rem;
     padding: 10px 0;
     border-bottom: 1px solid rgba(13, 28, 18, 0.08);
+  }
+
+  .drawer-item.active {
+    color: var(--brand-green);
+    font-weight: 700;
   }
 
   @media (max-width: 768px) {
