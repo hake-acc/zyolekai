@@ -1,21 +1,89 @@
 ---
 import '../styles/design-tokens.css';
-import { ClientRouter } from 'astro:transitions';
+import { ClientRouter, type TransitionDirectionalAnimations } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import CreatorModal from '../components/CreatorModal.astro';
+
+// Codrops PageTransitions 1:1 Directional Animations
+// Reference: https://tympanus.net/Development/PageTransitions/
+export const codropsSlide: TransitionDirectionalAnimations = {
+  forwards: {
+    old: {
+      name: 'ptMoveToLeft',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    },
+    new: {
+      name: 'ptMoveFromRight',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    }
+  },
+  backwards: {
+    old: {
+      name: 'ptMoveToRight',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    },
+    new: {
+      name: 'ptMoveFromLeft',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    }
+  }
+};
+
+export const codropsZoom: TransitionDirectionalAnimations = {
+  forwards: {
+    old: {
+      name: 'ptScaleDown',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    },
+    new: {
+      name: 'ptZoomIn',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    }
+  },
+  backwards: {
+    old: {
+      name: 'ptZoomOut',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    },
+    new: {
+      name: 'ptScaleUp',
+      duration: '0.6s',
+      easing: 'cubic-bezier(0.7, 0, 0.3, 1)',
+      fillMode: 'both'
+    }
+  }
+};
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  transitionType?: 'slide' | 'zoom';
 }
 
 const {
   title = "ZyoleKai • Gaming Talent Management & Brand Partnerships",
   description = "ZyoleKai represents 15 gaming creators with over 6.5M combined subscribers. We manage YouTube sponsorships, Minecraft SMP events, and brand partnerships.",
-  image = "/brand/hero_banner.png"
+  image = "/brand/hero_banner.png",
+  transitionType = 'slide'
 } = Astro.props;
+
+const activeTransition = transitionType === 'zoom' ? codropsZoom : codropsSlide;
 ---
 
 <!doctype html>
@@ -96,7 +164,7 @@ const {
 
     <Navbar />
     
-    <main id="main-content" transition:name="main-content">
+    <main id="main-content" transition:name="main-content" transition:animate={activeTransition}>
       <slot />
     </main>
 
@@ -204,3 +272,64 @@ const {
     </script>
   </body>
 </html>
+
+<style is:global>
+  /* Codrops PageTransitions 1:1 Keyframes */
+  @keyframes ptMoveToLeft {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-100%); }
+  }
+
+  @keyframes ptMoveFromRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0%); }
+  }
+
+  @keyframes ptMoveToRight {
+    from { transform: translateX(0%); }
+    to { transform: translateX(100%); }
+  }
+
+  @keyframes ptMoveFromLeft {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0%); }
+  }
+
+  /* Codrops Animation 21: Scale Down */
+  @keyframes ptScaleDown {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(0.8); opacity: 0; }
+  }
+
+  /* Codrops Animation 22: Zoom In */
+  @keyframes ptZoomIn {
+    from { transform: scale(0.75); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* Codrops Animation 23: Zoom Out */
+  @keyframes ptZoomOut {
+    from { transform: scale(1); opacity: 1; }
+    to { transform: scale(0.75); opacity: 0; }
+  }
+
+  /* Codrops Animation 24: Scale Up */
+  @keyframes ptScaleUp {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  /* Force solid opaque page during transitions to prevent transparent fade effect */
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
+    mix-blend-mode: normal !important;
+    background-color: #F9F6EE !important;
+    backface-visibility: hidden !important;
+    overflow: hidden !important;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+</style>
