@@ -2,7 +2,7 @@
 // CreatorModal.astro - Emil Kowalski Craft Standards
 ---
 
-<div id="creatorModal" class="modal-backdrop" aria-hidden="true" role="dialog">
+<div id="creatorModal" class="modal-backdrop" aria-hidden="true" inert role="dialog">
   <div class="modal-dialog glass-card" id="modalDialog">
     <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -107,6 +107,7 @@
     if (backdrop) {
       backdrop.classList.remove('open');
       backdrop.setAttribute('aria-hidden', 'true');
+      backdrop.setAttribute('inert', '');
       document.body.style.overflow = '';
     }
   }
@@ -126,6 +127,9 @@
   // Global trigger function
   window.openCreatorModal = function(creatorData) {
     if (!backdrop || !modalBody) return;
+    backdrop.removeAttribute('inert');
+    backdrop.setAttribute('aria-hidden', 'false');
+    backdrop.classList.add('open');
 
     modalBody.innerHTML = `
       <div class="creator-modal-content">

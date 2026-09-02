@@ -3,8 +3,6 @@
    Crafted following Emil Kowalski's Design Engineering & Animation Philosophy
    ========================================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
-
 :root {
   /* Brand Palette (Cream from Official Banner & Radiant Emerald Waves) */
   --banner-cream: #FAF7EE;
@@ -168,6 +166,7 @@ main, section, .container {
   filter: drop-shadow(0 4px 20px rgba(0, 191, 99, 0.15));
   transition: opacity 1s var(--ease-out);
   will-change: transform, opacity;
+  height: auto;
 }
 
 .wave-tl {

@@ -32,14 +32,18 @@ const {
     <meta name="keywords" content="ZyoleKai, creator agency, gaming sponsorships, Minecraft SMP, YouTubers, streamer deals, brand integrations, esports network" />
     <meta name="author" content="ZyoleKai Organization" />
 
-    <!-- Google Fonts: Outfit (Display) & Plus Jakarta Sans (Body) -->
+    <!-- Google Fonts: Asynchronous Non-Blocking Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    </noscript>
 
     <!-- Asset Preloads -->
-    <link rel="preload" href="/brand/logo.png" as="image" type="image/png" />
-    <link rel="preload" href="/brand/wordmark.png" as="image" type="image/png" />
+    <link rel="preload" href="/brand/logo.webp" as="image" type="image/webp" />
+    <link rel="preload" href="/brand/wordmark.webp" as="image" type="image/webp" />
 
     <!-- OpenGraph / Facebook -->
     <meta property="og:type" content="website" />
@@ -66,10 +70,10 @@ const {
     
     <!-- Real Chroma-Keyed Organic Waves Extracted from Official Banner -->
     <div class="banner-waves-bg" aria-hidden="true">
-      <img src="/brand/corner_wave_tl.png" alt="" class="bg-wave-elem wave-tl" />
-      <img src="/brand/corner_wave_tr.png" alt="" class="bg-wave-elem wave-tr" />
-      <img src="/brand/corner_wave_bl.png" alt="" class="bg-wave-elem wave-bl" />
-      <img src="/brand/corner_wave_br.png" alt="" class="bg-wave-elem wave-br" />
+      <img src="/brand/corner_wave_tl.webp" alt="" class="bg-wave-elem wave-tl" width="1743" height="969" />
+      <img src="/brand/corner_wave_tr.webp" alt="" class="bg-wave-elem wave-tr" width="1438" height="177" />
+      <img src="/brand/corner_wave_bl.webp" alt="" class="bg-wave-elem wave-bl" width="1541" height="168" />
+      <img src="/brand/corner_wave_br.webp" alt="" class="bg-wave-elem wave-br" width="1636" height="864" />
     </div>
 
     <Navbar />
