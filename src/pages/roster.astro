@@ -78,13 +78,13 @@ const creators = creatorsData;
           >
             <div class="card-header">
               <img
-                src={c.avatarUrl || '/brand/logo.png'}
+                src={c.avatar || c.avatarUrl || `/avatars/${c.slug}.webp`}
                 alt={c.name}
                 class="creator-avatar"
                 width="54"
                 height="54"
                 loading="lazy"
-                onerror="this.src='/brand/logo.png'"
+                onerror="this.src='/brand/logo.webp'"
               />
               <div class="creator-meta">
                 <div class="creator-title-row">

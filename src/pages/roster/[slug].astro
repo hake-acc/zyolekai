@@ -85,10 +85,12 @@ const mediaKitImg = `/media-kits/${creator.slug}.png`;
           <div class="profile-card glass-card">
             <div class="creator-header-row">
               <img
-                src={creator.avatarUrl || '/brand/logo.png'}
+                src={creator.avatar || creator.avatarUrl || `/avatars/${creator.slug}.webp`}
                 alt={creator.name}
                 class="creator-hero-avatar"
-                onerror="this.src='/brand/logo.png'"
+                width="84"
+                height="84"
+                onerror="this.src='/brand/logo.webp'"
               />
               <div class="creator-title-meta">
                 <div class="name-badge-row">

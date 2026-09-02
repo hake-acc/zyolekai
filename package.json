@@ -3,6 +3,7 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
+    "sync": "python scripts/sync_innertube.py",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",

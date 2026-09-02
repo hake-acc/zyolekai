@@ -476,78 +476,15 @@ button:active, .btn:active {
 }
 
 /* =========================================================================
-   CSS View Transitions (Directional Page Slide Navigation)
+   CSS View Transitions (Smooth Page Slide Navigation)
    Adheres to Emil Kowalski & animate skill rules:
-   - Strictly transform (translateX) and opacity only (GPU accelerated)
-   - Duration: 260ms (responsive, under 300ms)
-   - Easing: cubic-bezier(0.23, 1, 0.32, 1) (--ease-out)
+   - GPU composited transform & opacity only
+   - 260ms duration, cubic-bezier(0.23, 1, 0.32, 1)
    ========================================================================= */
-@view-transition {
-  navigation: auto;
-}
-
-/* Forward Navigation (Default): Current page slides out left, next page slides in from right */
-::view-transition-old(root),
-[data-direction="forward"]::view-transition-old(root) {
-  animation: pageSlideOutLeft 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-::view-transition-new(root),
-[data-direction="forward"]::view-transition-new(root) {
-  animation: pageSlideInRight 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-/* Backward Navigation: Current page slides out right, previous page slides in from left */
-[data-direction="back"]::view-transition-old(root) {
-  animation: pageSlideOutRight 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-[data-direction="back"]::view-transition-new(root) {
-  animation: pageSlideInLeft 260ms cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-
-@keyframes pageSlideOutLeft {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-48px);
-  }
-}
-
-@keyframes pageSlideInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(54px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pageSlideOutRight {
-  0% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(48px);
-  }
-}
-
-@keyframes pageSlideInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-54px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
+::view-transition-old(main-content),
+::view-transition-new(main-content) {
+  animation-duration: 260ms;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Accessibility: Respect Reduced Motion */
@@ -558,8 +495,8 @@ button:active, .btn:active {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
+  ::view-transition-old(main-content),
+  ::view-transition-new(main-content) {
     animation: none !important;
   }
 }

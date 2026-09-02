@@ -134,7 +134,7 @@
     modalBody.innerHTML = `
       <div class="creator-modal-content">
         <div class="modal-header">
-          <img src="${creatorData.avatar || '/brand/logo.png'}" alt="${creatorData.name}" class="modal-avatar" />
+          <img src="${creatorData.avatar || creatorData.avatarUrl || '/brand/logo.webp'}" alt="${creatorData.name}" class="modal-avatar" width="72" height="72" onerror="this.src='/brand/logo.webp'" />
           <div class="modal-header-info">
             <div class="modal-title-row">
               <h2 class="modal-name">${creatorData.name}</h2>
