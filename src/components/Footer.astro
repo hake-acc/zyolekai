@@ -11,8 +11,8 @@
     <img src="/brand/corner_wave_bl.png" alt="" class="footer-wave wave-bl" aria-hidden="true" />
     <img src="/brand/corner_wave_br.png" alt="" class="footer-wave wave-br" aria-hidden="true" />
 
-    <!-- Soft Radial Grid Mesh -->
-    <div class="footer-grid-mesh" aria-hidden="true"></div>
+    <!-- Ambient Emerald Aura Glow (Zero Rectangular Box or Hard Grids) -->
+    <div class="footer-ambient-aura" aria-hidden="true"></div>
 
     <div class="container footer-banner-container">
       <!-- Floating Talent Proof Chip 1 -->
@@ -129,18 +129,14 @@
       <p class="copyright-text">
         © {new Date().getFullYear()} ZyoleKai. Non-exclusive gaming creator representation.
       </p>
-      <div class="footer-status-pill">
-        <span class="status-dot"></span>
-        <span>Official Discord Partner Community</span>
-      </div>
     </div>
   </div>
 </footer>
 
 <style>
   .footer-wrapper {
-    background: #F4EEDB;
-    border-top: 1.5px solid rgba(13, 28, 18, 0.1);
+    background: var(--bg-canvas);
+    border-top: none;
     padding: 0 0 36px 0;
     position: relative;
     z-index: 1;
@@ -150,60 +146,56 @@
   .footer-banner-showcase {
     position: relative;
     overflow: hidden;
-    padding: 68px 20px 72px 20px;
+    padding: 40px 20px 60px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
+    background: transparent;
   }
 
   .footer-wave {
     position: absolute;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.88;
-    filter: drop-shadow(0 4px 18px rgba(0, 191, 99, 0.2));
+    opacity: 0.82;
+    filter: drop-shadow(0 4px 20px rgba(0, 191, 99, 0.18));
   }
 
   .footer-wave.wave-tl {
-    top: -15px;
-    left: -15px;
-    width: 32%;
-    max-width: 380px;
-  }
-
-  .footer-wave.wave-tr {
-    top: -15px;
-    right: -15px;
-    width: 34%;
-    max-width: 400px;
-  }
-
-  .footer-wave.wave-bl {
-    bottom: -15px;
-    left: -15px;
+    top: 0;
+    left: 0;
     width: 30%;
     max-width: 360px;
   }
 
-  .footer-wave.wave-br {
-    bottom: -15px;
-    right: -15px;
+  .footer-wave.wave-tr {
+    top: 0;
+    right: 0;
     width: 32%;
     max-width: 380px;
   }
 
-  .footer-grid-mesh {
+  .footer-wave.wave-bl {
+    bottom: 0;
+    left: 0;
+    width: 28%;
+    max-width: 340px;
+  }
+
+  .footer-wave.wave-br {
+    bottom: 0;
+    right: 0;
+    width: 30%;
+    max-width: 360px;
+  }
+
+  .footer-ambient-aura {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 1;
-    background-size: 36px 36px;
-    background-image:
-      linear-gradient(to right, rgba(13, 28, 18, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(13, 28, 18, 0.04) 1px, transparent 1px);
-    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.95) 25%, transparent 75%);
-    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.95) 25%, transparent 75%);
+    background: radial-gradient(circle at 50% 50%, rgba(0, 191, 99, 0.08) 0%, rgba(126, 217, 87, 0.04) 40%, transparent 70%);
   }
 
   .footer-banner-container {
@@ -515,31 +507,12 @@
   .footer-bottom {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding-top: 32px;
     border-top: 1px solid rgba(13, 28, 18, 0.08);
     font-size: 0.85rem;
     color: var(--text-muted);
-  }
-
-  .footer-status-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(13, 28, 18, 0.1);
-    padding: 6px 14px;
-    border-radius: var(--radius-full);
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-  }
-
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--brand-green);
-    box-shadow: 0 0 8px var(--brand-green);
+    text-align: center;
   }
 
   @media (max-width: 900px) {

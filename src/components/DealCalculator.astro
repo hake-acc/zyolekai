@@ -13,31 +13,58 @@
     <div class="calc-inputs">
       <div class="input-group">
         <div class="input-header">
-          <label for="campaignType">Campaign Format</label>
-          <span id="typeBadge" class="val-badge">In-Video Integration</span>
+          <label>Campaign Format</label>
+          <span id="typeBadge" class="val-badge">In-Video Dedicated</span>
         </div>
-        <select id="campaignType" class="calc-select">
-          <option value="integration" selected>In-Video Integration (30-60s)</option>
-          <option value="smp">Minecraft SMP Dedicated Series</option>
-          <option value="hosting">Game Server / Cloud Infrastructure</option>
-          <option value="stream">Live Stream Integration & Shoutouts</option>
-        </select>
+        <div class="format-picker-grid" role="radiogroup" aria-label="Campaign Format Selection">
+          <button type="button" class="format-card-btn active" data-type="integration" data-label="In-Video Dedicated">
+            <div class="format-icon-wrap">🎬</div>
+            <div class="format-text-wrap">
+              <span class="format-card-title">In-Video Dedicated</span>
+              <span class="format-card-sub">60–90s Placement</span>
+            </div>
+          </button>
+          
+          <button type="button" class="format-card-btn" data-type="smp" data-label="Minecraft SMP">
+            <div class="format-icon-wrap">⚔️</div>
+            <div class="format-text-wrap">
+              <span class="format-card-title">Minecraft SMP</span>
+              <span class="format-card-sub">Multi-Creator Series</span>
+            </div>
+          </button>
+
+          <button type="button" class="format-card-btn" data-type="hosting" data-label="Server Hosting">
+            <div class="format-icon-wrap">🌐</div>
+            <div class="format-text-wrap">
+              <span class="format-card-title">Server Hosting</span>
+              <span class="format-card-sub">Infrastructure Deal</span>
+            </div>
+          </button>
+
+          <button type="button" class="format-card-btn" data-type="stream" data-label="Live Stream">
+            <div class="format-icon-wrap">📡</div>
+            <div class="format-text-wrap">
+              <span class="format-card-title">Live Stream</span>
+              <span class="format-card-sub">Broadcast Shoutouts</span>
+            </div>
+          </button>
+        </div>
       </div>
 
       <div class="input-group">
         <div class="input-header">
-          <label for="creatorTier">Target Creator Count</label>
+          <label for="creatorRange">Target Creator Count</label>
           <span id="creatorCountDisplay" class="val-badge">3 Creators</span>
         </div>
-        <input type="range" id="creatorRange" min="1" max="10" value="3" class="calc-slider" />
+        <input type="range" id="creatorRange" min="1" max="10" value="3" class="calc-slider" aria-label="Target Creator Count" />
       </div>
 
       <div class="input-group">
         <div class="input-header">
-          <label for="viewsSlider">Target Audience Views</label>
+          <label for="viewsRange">Target Audience Views</label>
           <span id="viewsDisplay" class="val-badge">150,000 Views</span>
         </div>
-        <input type="range" id="viewsRange" min="20000" max="1000000" step="20000" value="150000" class="calc-slider" />
+        <input type="range" id="viewsRange" min="20000" max="1000000" step="20000" value="150000" class="calc-slider" aria-label="Target Audience Views" />
       </div>
     </div>
 
@@ -87,8 +114,6 @@
     margin: 0 auto 36px auto;
   }
 
-
-
   .calc-title {
     font-family: var(--font-display);
     font-size: clamp(1.4rem, 2.5vw, 1.9rem);
@@ -100,6 +125,7 @@
   .calc-desc {
     color: var(--text-secondary);
     font-size: 0.95rem;
+    line-height: 1.55;
   }
 
   .calc-grid {
@@ -118,7 +144,7 @@
   .input-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
   .input-header {
@@ -126,70 +152,147 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.92rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-primary);
   }
 
   .val-badge {
-    background: rgba(83, 212, 62, 0.12);
-    border: 1px solid rgba(83, 212, 62, 0.3);
-    color: var(--brand-green);
+    background: rgba(0, 191, 99, 0.12);
+    border: 1px solid rgba(0, 191, 99, 0.28);
+    color: #008744;
     font-size: 0.8rem;
-    padding: 3px 10px;
+    padding: 3px 12px;
     border-radius: var(--radius-full);
     font-weight: 700;
   }
 
-  .calc-select {
-    background: rgba(17, 24, 39, 0.9);
-    border: 1px solid var(--border-card);
-    color: var(--text-primary);
-    padding: 12px 16px;
+  /* Interactive Format Cards Grid (Replaces Black Select Box) */
+  .format-picker-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .format-card-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #FFFFFF;
+    border: 1.5px solid rgba(13, 28, 18, 0.12);
     border-radius: var(--radius-md);
-    font-family: var(--font-sans);
-    font-size: 0.95rem;
-    outline: none;
     cursor: pointer;
-    transition: border-color var(--duration-fast) var(--ease-out);
+    text-align: left;
+    transition: all var(--duration-fast) var(--ease-spring);
+    position: relative;
+    user-select: none;
+    font-family: var(--font-sans);
   }
 
-  .calc-select:focus {
+  .format-card-btn:hover {
+    border-color: rgba(0, 191, 99, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(13, 28, 18, 0.06);
+  }
+
+  .format-card-btn.active {
+    background: #FFFFFF;
     border-color: var(--brand-green);
+    border-width: 2px;
+    box-shadow: 0 4px 16px rgba(0, 191, 99, 0.2);
   }
 
+  .format-card-btn.active::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand-green);
+    box-shadow: 0 0 6px var(--brand-green);
+  }
+
+  .format-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: rgba(0, 191, 99, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .format-card-btn.active .format-icon-wrap {
+    background: rgba(0, 191, 99, 0.16);
+  }
+
+  .format-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .format-card-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .format-card-sub {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Sliders with high contrast tracks & tactile thumbs */
   .calc-slider {
     -webkit-appearance: none;
     appearance: none;
     width: 100%;
     height: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 4px;
+    background: rgba(13, 28, 18, 0.12);
+    border-radius: var(--radius-full);
     outline: none;
     cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-out);
+  }
+
+  .calc-slider:hover {
+    background: rgba(13, 28, 18, 0.18);
   }
 
   .calc-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: var(--brand-green);
-    border: 2px solid #FFFFFF;
-    box-shadow: 0 0 12px rgba(83, 212, 62, 0.6);
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 191, 99, 0.4), 0 0 0 1px rgba(13, 28, 18, 0.1);
     cursor: pointer;
-    transition: transform var(--duration-instant) var(--ease-out);
+    transition: transform var(--duration-fast) var(--ease-spring);
   }
 
   .calc-slider::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: var(--brand-green);
-    border: 2px solid #FFFFFF;
-    box-shadow: 0 0 12px rgba(83, 212, 62, 0.6);
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 191, 99, 0.4), 0 0 0 1px rgba(13, 28, 18, 0.1);
     cursor: pointer;
-    transition: transform var(--duration-instant) var(--ease-out);
+    transition: transform var(--duration-fast) var(--ease-spring);
   }
 
   @media (hover: hover) and (pointer: fine) {
@@ -204,14 +307,16 @@
     transform: scale(0.95);
   }
 
+  /* Output Card */
   .calc-output {
-    background: #F4EEDB;
-    border: 1.5px solid rgba(13, 28, 18, 0.1);
+    background: #FAF7EE;
+    border: 1.5px solid rgba(0, 191, 99, 0.25);
     border-radius: var(--radius-lg);
     padding: 28px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    box-shadow: 0 8px 24px rgba(13, 28, 18, 0.04);
   }
 
   .output-box {
@@ -223,24 +328,25 @@
   }
 
   .out-lbl {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.06em;
   }
 
   .out-val {
     font-family: var(--font-display);
     font-feature-settings: "tnum";
     font-variant-numeric: tabular-nums;
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     font-weight: 800;
     color: var(--brand-green);
     line-height: 1.1;
   }
 
   .out-sub {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--text-secondary);
   }
 
@@ -248,12 +354,13 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-size: 0.88rem;
   }
 
   .out-detail-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    font-size: 0.88rem;
     color: var(--text-secondary);
   }
 
@@ -261,22 +368,26 @@
     color: var(--text-primary);
   }
 
-  .text-green {
-    color: var(--brand-green) !important;
+  .out-detail-row .text-green {
+    color: #008744;
   }
 
-  @media (max-width: 840px) {
-    .calculator-card {
-      padding: 24px 18px;
-    }
-
-    .calc-header {
-      margin-bottom: 24px;
-    }
-
+  @media (max-width: 900px) {
     .calc-grid {
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 32px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .calculator-card {
+      padding: 24px 16px;
+      margin-top: 32px;
+    }
+
+    .format-picker-grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
     }
 
     .calc-output {
@@ -284,13 +395,13 @@
     }
 
     .out-val {
-      font-size: clamp(1.8rem, 6vw, 2.2rem);
+      font-size: 2.0rem;
     }
   }
 </style>
 
 <script>
-  const typeSelect = document.getElementById('campaignType') as HTMLSelectElement;
+  const formatButtons = document.querySelectorAll('.format-card-btn');
   const typeBadge = document.getElementById('typeBadge');
   const creatorRange = document.getElementById('creatorRange') as HTMLInputElement;
   const creatorCountDisplay = document.getElementById('creatorCountDisplay');
@@ -298,31 +409,48 @@
   const viewsDisplay = document.getElementById('viewsDisplay');
   const impressionsVal = document.getElementById('impressionsVal');
 
+  let currentMultiplier = 1.35;
+
+  formatButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      formatButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const label = btn.getAttribute('data-label') || 'In-Video Dedicated';
+      const type = btn.getAttribute('data-type') || 'integration';
+      if (typeBadge) typeBadge.textContent = label;
+
+      if (type === 'integration') currentMultiplier = 1.35;
+      else if (type === 'smp') currentMultiplier = 1.65;
+      else if (type === 'hosting') currentMultiplier = 1.25;
+      else if (type === 'stream') currentMultiplier = 1.45;
+
+      updateEstimates();
+    });
+  });
+
+  let rAF = 0;
   function updateEstimates() {
-    if (!creatorRange || !viewsRange || !impressionsVal) return;
+    cancelAnimationFrame(rAF);
+    rAF = requestAnimationFrame(() => {
+      if (!creatorRange || !viewsRange || !impressionsVal) return;
 
-    const creators = parseInt(creatorRange.value);
-    const targetViews = parseInt(viewsRange.value);
+      const creators = parseInt(creatorRange.value);
+      const targetViews = parseInt(viewsRange.value);
 
-    if (creatorCountDisplay) {
-      creatorCountDisplay.textContent = `${creators} Creator${creators > 1 ? 's' : ''}`;
-    }
+      if (creatorCountDisplay) {
+        creatorCountDisplay.textContent = `${creators} Creator${creators > 1 ? 's' : ''}`;
+      }
 
-    if (viewsDisplay) {
-      viewsDisplay.textContent = `${targetViews.toLocaleString()} Views`;
-    }
+      if (viewsDisplay) {
+        viewsDisplay.textContent = `${targetViews.toLocaleString()} Views`;
+      }
 
-    // Multiply views by multiplier based on creator overlap & social impressions
-    const totalImpressions = Math.round(targetViews * 1.35 * (1 + (creators - 1) * 0.15));
-    impressionsVal.textContent = `${totalImpressions.toLocaleString()}+`;
-
-    if (typeBadge && typeSelect) {
-      const selectedOption = typeSelect.options[typeSelect.selectedIndex];
-      typeBadge.textContent = selectedOption.text.split('(')[0].trim();
-    }
+      // Multiply views by multiplier based on creator overlap & social impressions
+      const totalImpressions = Math.round(targetViews * currentMultiplier * (1 + (creators - 1) * 0.15));
+      impressionsVal.textContent = `${totalImpressions.toLocaleString()}+`;
+    });
   }
 
-  if (typeSelect) typeSelect.addEventListener('change', updateEstimates);
   if (creatorRange) creatorRange.addEventListener('input', updateEstimates);
   if (viewsRange) viewsRange.addEventListener('input', updateEstimates);
 </script>
