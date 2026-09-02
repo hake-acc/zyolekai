@@ -231,22 +231,14 @@ button:active, .btn:active {
   transform: scale(0.96) !important;
 }
 
-/* Animated Moving Gradient on Primary Buttons */
+/* Executive Solid Emerald Primary Button (Distilled from AI Rainbow Animation) */
 .btn-primary {
-  background: linear-gradient(115deg, #00BF63 0%, #7ED957 32%, #45D13D 68%, #00BF63 100%);
-  background-size: 260% 260%;
-  animation: moveButtonGradient 4s ease infinite;
+  background: var(--brand-green);
   color: #041608;
   font-weight: 700;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
   padding: 12px 26px;
-  box-shadow: 0 6px 20px rgba(0, 191, 99, 0.32), 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-@keyframes moveButtonGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  box-shadow: 0 4px 16px rgba(0, 191, 99, 0.28);
 }
 
 .btn-secondary {
