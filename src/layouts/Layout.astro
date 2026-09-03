@@ -176,55 +176,70 @@ const activeTransition = transitionType === 'zoom' ? codropsZoom : codropsSlide;
       // 1. Move to Left / Move to Right (Slide) between standard pages (0.6s)
       // 2. Zoom In / Zoom Out for Viewing Creator Media Kit (0.6s)
       function determineTransition(fromPath: string, toPath: string, direction?: string): string {
-        const isEnteringMediaKit = toPath.startsWith('/roster/') && toPath !== '/roster' && toPath !== '/roster/';
-        const isExitingMediaKit = fromPath.startsWith('/roster/') && fromPath !== '/roster' && fromPath !== '/roster/';
+        const cleanFrom = fromPath.replace(/\/$/, '') || '/';
+        const cleanTo = toPath.replace(/\/$/, '') || '/';
+        const isEnteringMediaKit = cleanTo.startsWith('/roster/') && cleanTo !== '/roster';
+        const isExitingMediaKit = cleanFrom.startsWith('/roster/') && cleanFrom !== '/roster';
 
         if (isEnteringMediaKit) return 'zoom-in';
-        if (isExitingMediaKit && (toPath === '/roster' || toPath === '/roster/' || toPath === '')) return 'zoom-out';
+        if (isExitingMediaKit) return 'zoom-out';
         if (direction === 'back') return 'slide-right';
         return 'slide-left';
       }
 
       document.addEventListener('astro:before-preparation', (event: any) => {
-        const fromPath = (event.from ? event.from.pathname : window.location.pathname).replace(/\/$/, '') || '/';
-        const toPath = (event.to ? event.to.pathname : '').replace(/\/$/, '') || '/';
+        const fromPath = (event.from ? event.from.pathname : window.location.pathname);
+        const toPath = (event.to ? event.to.pathname : '');
         const transitionType = determineTransition(fromPath, toPath, event.direction);
 
+        // Crucial: assign to event.direction so Astro's router assigns data-astro-transition
+        event.direction = transitionType;
+        document.documentElement.setAttribute('data-astro-transition', transitionType);
         document.documentElement.setAttribute('data-transition', transitionType);
       });
 
-      // Crucial: Copy data-transition to new incoming document so View Transitions selectors match!
+      // Crucial: Copy transition attributes to incoming document before swap
       document.addEventListener('astro:before-swap', (event: any) => {
-        const currentTransition = document.documentElement.getAttribute('data-transition');
+        const currentTransition = document.documentElement.getAttribute('data-astro-transition') || 
+                                  document.documentElement.getAttribute('data-transition');
         if (currentTransition && event.newDocument) {
+          event.newDocument.documentElement.setAttribute('data-astro-transition', currentTransition);
           event.newDocument.documentElement.setAttribute('data-transition', currentTransition);
         }
       });
 
-      // Immediate pre-click detection to prime data-transition before snapshot
+      // Immediate pre-click detection to prime transition state before snapshot
       document.addEventListener('click', (e: MouseEvent) => {
         const target = (e.target as HTMLElement)?.closest('a');
         if (!target) return;
         const href = target.getAttribute('href') || '';
-        const customTransition = target.getAttribute('data-transition');
+        const customTransition = target.getAttribute('data-transition') || target.getAttribute('data-astro-direction');
 
         if (customTransition) {
+          document.documentElement.setAttribute('data-astro-transition', customTransition);
           document.documentElement.setAttribute('data-transition', customTransition);
           return;
         }
 
-        const fromPath = window.location.pathname.replace(/\/$/, '') || '/';
-        const toPath = href.replace(/\/$/, '') || '/';
-        if (toPath.startsWith('/')) {
-          const transitionType = determineTransition(fromPath, toPath);
+        const fromPath = window.location.pathname;
+        if (href.startsWith('/')) {
+          const transitionType = determineTransition(fromPath, href);
+          document.documentElement.setAttribute('data-astro-transition', transitionType);
           document.documentElement.setAttribute('data-transition', transitionType);
         }
       });
 
       document.addEventListener('astro:page-load', () => {
-        // Keep data-transition active throughout the 600ms transition, then clean up
+        // Keep transition active throughout the 600ms transition, then synchronize
         setTimeout(() => {
-          document.documentElement.removeAttribute('data-transition');
+          const path = window.location.pathname.replace(/\/$/, '') || '/';
+          if (path.startsWith('/roster/') && path !== '/roster') {
+            document.documentElement.setAttribute('data-transition', 'zoom-in');
+            document.documentElement.setAttribute('data-astro-transition', 'zoom-in');
+          } else {
+            document.documentElement.setAttribute('data-transition', 'slide-left');
+            document.documentElement.setAttribute('data-astro-transition', 'slide-left');
+          }
         }, 650);
       });
 

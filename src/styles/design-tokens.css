@@ -503,48 +503,66 @@ button:active, .btn:active {
 
 /* 1. Codrops Move to Left / From Right (Forward Slide between standard pages) */
 :root[data-transition="slide-left"]::view-transition-old(main-content),
+:root[data-astro-transition="slide-left"]::view-transition-old(main-content),
+:root[data-astro-transition="forward"]::view-transition-old(main-content),
 :root:not([data-transition])::view-transition-old(main-content) {
   animation-name: ptMoveToLeft !important;
-  z-index: 1;
+  z-index: 1 !important;
 }
 :root[data-transition="slide-left"]::view-transition-new(main-content),
+:root[data-astro-transition="slide-left"]::view-transition-new(main-content),
+:root[data-astro-transition="forward"]::view-transition-new(main-content),
 :root:not([data-transition])::view-transition-new(main-content) {
   animation-name: ptMoveFromRight !important;
-  z-index: 2;
-  box-shadow: -25px 0 60px rgba(13, 28, 18, 0.25) !important;
+  z-index: 2 !important;
+  box-shadow: -25px 0 60px rgba(13, 28, 18, 0.3) !important;
+  border-left: 3px solid #00BF63 !important;
 }
 
 /* 2. Codrops Move to Right / From Left (Backwards Slide between standard pages) */
-:root[data-transition="slide-right"]::view-transition-old(main-content) {
+:root[data-transition="slide-right"]::view-transition-old(main-content),
+:root[data-astro-transition="slide-right"]::view-transition-old(main-content),
+:root[data-astro-transition="back"]::view-transition-old(main-content) {
   animation-name: ptMoveToRight !important;
-  z-index: 1;
+  z-index: 1 !important;
 }
-:root[data-transition="slide-right"]::view-transition-new(main-content) {
+:root[data-transition="slide-right"]::view-transition-new(main-content),
+:root[data-astro-transition="slide-right"]::view-transition-new(main-content),
+:root[data-astro-transition="back"]::view-transition-new(main-content) {
   animation-name: ptMoveFromLeft !important;
-  z-index: 2;
-  box-shadow: 25px 0 60px rgba(13, 28, 18, 0.25) !important;
+  z-index: 2 !important;
+  box-shadow: 25px 0 60px rgba(13, 28, 18, 0.3) !important;
+  border-right: 3px solid #00BF63 !important;
 }
 
 /* 3. Codrops Zoom In / Scale Down (Viewing Creator Media Kit) */
-:root[data-transition="zoom-in"]::view-transition-old(main-content) {
+:root[data-transition="zoom-in"]::view-transition-old(main-content),
+:root[data-astro-transition="zoom-in"]::view-transition-old(main-content) {
   animation-name: ptScaleDown !important;
-  z-index: 1;
+  z-index: 1 !important;
 }
-:root[data-transition="zoom-in"]::view-transition-new(main-content) {
+:root[data-transition="zoom-in"]::view-transition-new(main-content),
+:root[data-astro-transition="zoom-in"]::view-transition-new(main-content) {
   animation-name: ptZoomIn !important;
-  z-index: 2;
-  box-shadow: 0 25px 90px rgba(13, 28, 18, 0.35) !important;
+  z-index: 2 !important;
+  box-shadow: 0 25px 100px rgba(13, 28, 18, 0.4) !important;
+  border: 3px solid #00BF63 !important;
+  border-radius: 20px !important;
 }
 
 /* 4. Codrops Zoom Out / Scale Up (Exiting Creator Media Kit Back to Roster) */
-:root[data-transition="zoom-out"]::view-transition-old(main-content) {
+:root[data-transition="zoom-out"]::view-transition-old(main-content),
+:root[data-astro-transition="zoom-out"]::view-transition-old(main-content) {
   animation-name: ptZoomOut !important;
-  z-index: 2;
-  box-shadow: 0 25px 90px rgba(13, 28, 18, 0.35) !important;
+  z-index: 2 !important;
+  box-shadow: 0 25px 100px rgba(13, 28, 18, 0.4) !important;
+  border: 3px solid #00BF63 !important;
+  border-radius: 20px !important;
 }
-:root[data-transition="zoom-out"]::view-transition-new(main-content) {
+:root[data-transition="zoom-out"]::view-transition-new(main-content),
+:root[data-astro-transition="zoom-out"]::view-transition-new(main-content) {
   animation-name: ptScaleUp !important;
-  z-index: 1;
+  z-index: 1 !important;
 }
 
 /* --- Exact Codrops PageTransitions Keyframes (Solid Physical Motion) --- */
