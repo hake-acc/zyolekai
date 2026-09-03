@@ -87,7 +87,7 @@ const activeTransition = transitionType === 'zoom' ? codropsZoom : codropsSlide;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-transition={transitionType === 'zoom' ? 'zoom-in' : 'slide-left'}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -295,28 +295,34 @@ const activeTransition = transitionType === 'zoom' ? codropsZoom : codropsSlide;
     to { transform: translateX(0%); }
   }
 
-  /* Codrops Animation 21: Scale Down */
+  /* Codrops Animation 21: Scale Down (Outgoing page shrinks into background) */
   @keyframes ptScaleDown {
     from { transform: scale(1); opacity: 1; }
-    to { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(0.60); opacity: 0.2; }
   }
 
-  /* Codrops Animation 22: Zoom In */
+  /* Codrops Animation 22: Zoom In (Incoming Media Kit starts at 60% scale and zooms into camera - fully opaque!) */
   @keyframes ptZoomIn {
-    from { transform: scale(0.75); opacity: 0; }
+    from { transform: scale(0.60); opacity: 1; }
     to { transform: scale(1); opacity: 1; }
   }
 
-  /* Codrops Animation 23: Zoom Out */
+  /* Codrops Animation 23: Zoom Out (Outgoing Media Kit shrinks down into distance) */
   @keyframes ptZoomOut {
     from { transform: scale(1); opacity: 1; }
-    to { transform: scale(0.75); opacity: 0; }
+    to { transform: scale(0.60); opacity: 0; }
   }
 
-  /* Codrops Animation 24: Scale Up */
+  /* Codrops Animation 24: Scale Up (Incoming Roster grows from 60% back to full scale) */
   @keyframes ptScaleUp {
-    from { transform: scale(0.8); opacity: 0; }
+    from { transform: scale(0.60); opacity: 0.3; }
     to { transform: scale(1); opacity: 1; }
+  }
+
+  /* Allow incoming/outgoing surfaces to translate and scale beyond group bounds without clipping */
+  ::view-transition-group(main-content),
+  ::view-transition-image-pair(main-content) {
+    overflow: visible !important;
   }
 
   /* Force solid opaque page during transitions to prevent transparent fade effect */
@@ -325,7 +331,7 @@ const activeTransition = transitionType === 'zoom' ? codropsZoom : codropsSlide;
     mix-blend-mode: normal !important;
     background-color: #F9F6EE !important;
     backface-visibility: hidden !important;
-    overflow: hidden !important;
+    transform-style: preserve-3d !important;
   }
 
   ::view-transition-old(root),

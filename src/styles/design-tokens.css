@@ -468,11 +468,11 @@ button:active, .btn:active {
 }
 
 /* =========================================================================
-   Codrops 1:1 Page Transitions Architecture
+   Codrops 1:1 Page Transitions Architecture (Physical Motion, Zero Fade)
    - Reference: https://tympanus.net/Development/PageTransitions/
-   - Duration: 0.6s (600ms) with Codrops cubic-bezier(0.7, 0, 0.3, 1) ease
+   - Duration: 0.6s with Codrops cubic-bezier(0.7, 0, 0.3, 1)
    - 1. Move to Left / Move to Right (Slide) between standard pages
-   - 2. Zoom In / Zoom Out specifically for Viewing Creator Media Kit
+   - 2. Zoom In / Zoom Out for Viewing Creator Media Kit
    ========================================================================= */
 
 /* Disable root crossfade so only main content executes the Codrops transition */
@@ -481,33 +481,27 @@ button:active, .btn:active {
   animation: none !important;
 }
 
-/* Isolate image pair so pseudo-elements don't bleed or blend */
+/* Allow incoming/outgoing surfaces to translate and scale beyond group bounds without clipping */
+::view-transition-group(main-content),
 ::view-transition-image-pair(main-content) {
-  isolation: isolate !important;
-}
-
-/* Ensure view-transition-group matches the 0.6s duration */
-::view-transition-group(main-content) {
+  overflow: visible !important;
   animation-duration: 0.6s !important;
   animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
 }
 
-/* CRITICAL FIX: Sizing, mix-blend-mode: normal, and solid background color.
-   Without these, the browser treats snapshots as transparent cutouts and additively blends
-   them with plus-lighter, which looks like a plain fade rather than a solid slide or zoom! */
+/* Force solid opaque page during transitions to completely eliminate transparent ghosting/fading */
 ::view-transition-old(main-content),
 ::view-transition-new(main-content) {
   animation-duration: 0.6s !important;
   animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
   animation-fill-mode: both !important;
   mix-blend-mode: normal !important;
-  background: #F9F6EE !important;
+  background-color: #F9F6EE !important;
   backface-visibility: hidden !important;
   transform-style: preserve-3d !important;
-  overflow: hidden !important;
 }
 
-/* 1. Codrops Move to Left / From Right (Forward Slide) */
+/* 1. Codrops Move to Left / From Right (Forward Slide between standard pages) */
 :root[data-transition="slide-left"]::view-transition-old(main-content),
 :root:not([data-transition])::view-transition-old(main-content) {
   animation-name: ptMoveToLeft !important;
@@ -517,10 +511,10 @@ button:active, .btn:active {
 :root:not([data-transition])::view-transition-new(main-content) {
   animation-name: ptMoveFromRight !important;
   z-index: 2;
-  box-shadow: -15px 0 35px rgba(13, 28, 18, 0.15) !important;
+  box-shadow: -25px 0 60px rgba(13, 28, 18, 0.25) !important;
 }
 
-/* 2. Codrops Move to Right / From Left (Backwards Slide) */
+/* 2. Codrops Move to Right / From Left (Backwards Slide between standard pages) */
 :root[data-transition="slide-right"]::view-transition-old(main-content) {
   animation-name: ptMoveToRight !important;
   z-index: 1;
@@ -528,7 +522,7 @@ button:active, .btn:active {
 :root[data-transition="slide-right"]::view-transition-new(main-content) {
   animation-name: ptMoveFromLeft !important;
   z-index: 2;
-  box-shadow: 15px 0 35px rgba(13, 28, 18, 0.15) !important;
+  box-shadow: 25px 0 60px rgba(13, 28, 18, 0.25) !important;
 }
 
 /* 3. Codrops Zoom In / Scale Down (Viewing Creator Media Kit) */
@@ -539,21 +533,23 @@ button:active, .btn:active {
 :root[data-transition="zoom-in"]::view-transition-new(main-content) {
   animation-name: ptZoomIn !important;
   z-index: 2;
-  box-shadow: 0 10px 40px rgba(13, 28, 18, 0.2) !important;
+  box-shadow: 0 25px 90px rgba(13, 28, 18, 0.35) !important;
 }
 
 /* 4. Codrops Zoom Out / Scale Up (Exiting Creator Media Kit Back to Roster) */
 :root[data-transition="zoom-out"]::view-transition-old(main-content) {
   animation-name: ptZoomOut !important;
   z-index: 2;
-  box-shadow: 0 10px 40px rgba(13, 28, 18, 0.2) !important;
+  box-shadow: 0 25px 90px rgba(13, 28, 18, 0.35) !important;
 }
 :root[data-transition="zoom-out"]::view-transition-new(main-content) {
   animation-name: ptScaleUp !important;
   z-index: 1;
 }
 
-/* --- Exact Codrops PageTransitions Keyframes (Solid Motion) --- */
+/* --- Exact Codrops PageTransitions Keyframes (Solid Physical Motion) --- */
+
+/* Pure physical slide: NO opacity changes, 100% solid horizontal movement */
 @keyframes ptMoveToLeft {
   from { transform: translateX(0%); }
   to { transform: translateX(-100%); }
@@ -574,27 +570,27 @@ button:active, .btn:active {
   to { transform: translateX(0%); }
 }
 
-/* Codrops Animation 21: Scale Down */
+/* Codrops Animation 21: Scale Down (Outgoing page shrinks into background) */
 @keyframes ptScaleDown {
   from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(0.60); opacity: 0.2; }
 }
 
-/* Codrops Animation 22: Zoom In */
+/* Codrops Animation 22: Zoom In (Incoming Media Kit starts at 60% scale and zooms into camera - fully opaque!) */
 @keyframes ptZoomIn {
-  from { transform: scale(0.75); opacity: 0; }
+  from { transform: scale(0.60); opacity: 1; }
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Codrops Animation 23: Zoom Out */
+/* Codrops Animation 23: Zoom Out (Outgoing Media Kit shrinks down into distance) */
 @keyframes ptZoomOut {
   from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.75); opacity: 0; }
+  to { transform: scale(0.60); opacity: 0; }
 }
 
-/* Codrops Animation 24: Scale Up */
+/* Codrops Animation 24: Scale Up (Incoming Roster grows from 60% back to full scale) */
 @keyframes ptScaleUp {
-  from { transform: scale(0.8); opacity: 0; }
+  from { transform: scale(0.60); opacity: 0.3; }
   to { transform: scale(1); opacity: 1; }
 }
 

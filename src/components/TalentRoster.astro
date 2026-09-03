@@ -468,17 +468,4 @@ const creators = creatorsData.map((c: any, idx: number) => {
       filterCards();
     });
   });
-
-  // Wire Media Kit Modal Clicks
-  cards.forEach(card => {
-    const kitBtn = card.querySelector('.open-kit-btn');
-    if (kitBtn) {
-      kitBtn.addEventListener('click', () => {
-        const creatorData = JSON.parse(card.dataset.creator || '{}');
-        if ((window as any).openCreatorModal) {
-          (window as any).openCreatorModal(creatorData);
-        }
-      });
-    }
-  });
 </script>
