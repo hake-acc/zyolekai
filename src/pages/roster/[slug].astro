@@ -10,7 +10,8 @@ export function getStaticPaths() {
 }
 
 const { creator } = Astro.props;
-const mediaKitImg = `/media-kits/${creator.slug}.png`;
+const mediaKitImg = `/media-kits/${creator.slug}.webp`;
+const mediaKitPng = `/media-kits/${creator.slug}.png`;
 ---
 
 <Layout
@@ -46,7 +47,7 @@ const mediaKitImg = `/media-kits/${creator.slug}.png`;
 
           <div class="kit-quick-actions">
             <a
-              href={mediaKitImg}
+              href={mediaKitPng}
               download={`${creator.slug}-zyolekai-media-kit.png`}
               class="btn btn-secondary btn-pill action-btn"
             >
