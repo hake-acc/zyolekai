@@ -332,4 +332,18 @@ const activeTransition = transitionType === 'zoom' ? codropsZoom : codropsSlide;
   ::view-transition-new(root) {
     animation: none !important;
   }
+
+  /* Override OS-level reduced-motion to guarantee Codrops slide & zoom transitions play */
+  @media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(main-content) {
+      animation-duration: 0.6s !important;
+      animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
+    }
+    ::view-transition-old(main-content),
+    ::view-transition-new(main-content) {
+      animation-duration: 0.6s !important;
+      animation-timing-function: cubic-bezier(0.7, 0, 0.3, 1) !important;
+      animation-fill-mode: both !important;
+    }
+  }
 </style>
