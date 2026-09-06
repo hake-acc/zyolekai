@@ -145,7 +145,7 @@
                 </svg>Verified
               </span>
             </div>
-            <p class="modal-niche">${creatorData.niche || 'Gaming Entertainment'} • ${creatorData.videoCount || '50+ videos'}</p>
+            <p class="modal-niche">Sponsorship Rates: <strong style="color: var(--brand-green);">${creatorData.integratedPrice || '$400'}</strong> (Int.) / <strong style="color: var(--brand-green);">${creatorData.dedicatedPrice || '$800'}</strong> (Ded.)</p>
           </div>
         </div>
 
@@ -159,12 +159,12 @@
             <span class="stat-box-val">${creatorData.subscribers || 'N/A'}</span>
           </div>
           <div class="modal-stat-box">
-            <span class="stat-box-label">Average Views (Verified)</span>
-            <span class="stat-box-val">${creatorData.avgViews || '50,000+'}</span>
+            <span class="stat-box-label">Integrated Sponsorship</span>
+            <span class="stat-box-val" style="color: var(--brand-green);">${creatorData.integratedPrice || '$400'}</span>
           </div>
           <div class="modal-stat-box">
-            <span class="stat-box-label">Content Catalog</span>
-            <span class="stat-box-val">${creatorData.videoCount || '50+ uploads'}</span>
+            <span class="stat-box-label">Dedicated Sponsorship</span>
+            <span class="stat-box-val" style="color: var(--brand-green);">${creatorData.dedicatedPrice || '$800'}</span>
           </div>
         </div>
 

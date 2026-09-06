@@ -18,7 +18,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "a-h",
-    "avatar": "/avatars/a-h.webp"
+    "avatar": "/avatars/a-h.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": "",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 2,
@@ -39,7 +42,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "mrscaft",
-    "avatar": "/avatars/mrscaft.webp"
+    "avatar": "/avatars/mrscaft.webp",
+    "integratedPrice": "1.2k INR",
+    "dedicatedPrice": "2.2k INR",
+    "sponsorshipSummary": "1.2k / 2.2k INR"
   },
   {
     "index": 3,
@@ -60,7 +66,10 @@
     "engagementRate": "6.2%",
     "rpm": "6-8$",
     "slug": "kushnotrip",
-    "avatar": "/avatars/kushnotrip.webp"
+    "avatar": "/avatars/kushnotrip.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": ",000",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 4,
@@ -81,7 +90,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "momingaming",
-    "avatar": "/avatars/momingaming.webp"
+    "avatar": "/avatars/momingaming.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": "",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 5,
@@ -102,7 +114,10 @@
     "engagementRate": "7.4%",
     "rpm": "8-10$",
     "slug": "senpaispider",
-    "avatar": "/avatars/senpaispider.webp"
+    "avatar": "/avatars/senpaispider.webp",
+    "integratedPrice": ",000",
+    "dedicatedPrice": ",000",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 6,
@@ -123,7 +138,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "anil-playzzz",
-    "avatar": "/avatars/anil-playzzz.webp"
+    "avatar": "/avatars/anil-playzzz.webp",
+    "integratedPrice": "1k INR",
+    "dedicatedPrice": "5k INR",
+    "sponsorshipSummary": "1k / 5k INR"
   },
   {
     "index": 7,
@@ -144,7 +162,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "sarvion",
-    "avatar": "/avatars/sarvion.webp"
+    "avatar": "/avatars/sarvion.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": "",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 8,
@@ -165,7 +186,10 @@
     "engagementRate": "7.4%",
     "rpm": "8-10$",
     "slug": "mc-flame",
-    "avatar": "/avatars/mc-flame.webp"
+    "avatar": "/avatars/mc-flame.webp",
+    "integratedPrice": ",000",
+    "dedicatedPrice": ",000",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 9,
@@ -186,7 +210,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "endzone-xd",
-    "avatar": "/avatars/endzone-xd.webp"
+    "avatar": "/avatars/endzone-xd.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": "",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 10,
@@ -207,7 +234,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "yaggify",
-    "avatar": "/avatars/yaggify.webp"
+    "avatar": "/avatars/yaggify.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": "",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 11,
@@ -228,7 +258,10 @@
     "engagementRate": "6.2%",
     "rpm": "6-8$",
     "slug": "yagyansh-gaming",
-    "avatar": "/avatars/yagyansh-gaming.webp"
+    "avatar": "/avatars/yagyansh-gaming.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": ",200",
+    "sponsorshipSummary": " / .2k"
   },
   {
     "index": 12,
@@ -249,7 +282,10 @@
     "engagementRate": "6.8%",
     "rpm": "7-8$",
     "slug": "haider-playz",
-    "avatar": "/avatars/haider-playz.webp"
+    "avatar": "/avatars/haider-playz.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": ",400",
+    "sponsorshipSummary": " / .4k"
   },
   {
     "index": 13,
@@ -270,7 +306,10 @@
     "engagementRate": "6.2%",
     "rpm": "6-8$",
     "slug": "zapnow-playz",
-    "avatar": "/avatars/zapnow-playz.webp"
+    "avatar": "/avatars/zapnow-playz.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": "",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 14,
@@ -291,7 +330,10 @@
     "engagementRate": "5.9%",
     "rpm": "5-7$",
     "slug": "bingobhaskr",
-    "avatar": "/avatars/bingobhaskr.webp"
+    "avatar": "/avatars/bingobhaskr.webp",
+    "integratedPrice": "",
+    "dedicatedPrice": "",
+    "sponsorshipSummary": " / "
   },
   {
     "index": 15,
@@ -312,6 +354,9 @@
     "engagementRate": "6.8%",
     "rpm": "7-8$",
     "slug": "niz-gamer",
-    "avatar": "/avatars/niz-gamer.webp"
+    "avatar": "/avatars/niz-gamer.webp",
+    "integratedPrice": ",500",
+    "dedicatedPrice": ",800",
+    "sponsorshipSummary": ".5k / .8k"
   }
 ]

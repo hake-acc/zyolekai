@@ -88,7 +88,10 @@ const creators = creatorsData.map((c: any, idx: number) => {
             videoCount: c.videoCount,
             brandMatch: c.brandMatch,
             matchScore: c.matchScore,
-            pitchAngle: c.pitchAngle
+            pitchAngle: c.pitchAngle,
+            slug: c.slug || c.id,
+            integratedPrice: c.integratedPrice || '$400',
+            dedicatedPrice: c.dedicatedPrice || '$800'
           })}
         >
           <div class="card-header">
@@ -109,7 +112,7 @@ const creators = creatorsData.map((c: any, idx: number) => {
                   <path d="M9 11.8l2.2 2.2 4.3-4.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
               </div>
-              <p class="creator-sub-meta">{c.niche || 'Gaming Content Creator'}</p>
+              <p class="creator-sub-meta">Sponsorships: <span class="text-brand" style="font-weight: 700;">{c.integratedPrice || '$400'}</span> / <span class="text-brand" style="font-weight: 700;">{c.dedicatedPrice || '$800'}</span></p>
             </div>
           </div>
 
@@ -121,6 +124,17 @@ const creators = creatorsData.map((c: any, idx: number) => {
             <div class="c-metric">
               <span class="c-metric-lbl">Avg. Views</span>
               <span class="c-metric-val">{c.avgViewsFormatted}</span>
+            </div>
+          </div>
+
+          <div class="card-metrics" style="margin-top: -6px; padding-top: 0; border-top: none;">
+            <div class="c-metric">
+              <span class="c-metric-lbl">Integrated</span>
+              <span class="c-metric-val text-brand" style="font-size: 1.02rem;">{c.integratedPrice || '$400'}</span>
+            </div>
+            <div class="c-metric">
+              <span class="c-metric-lbl">Dedicated</span>
+              <span class="c-metric-val text-brand" style="font-size: 1.02rem;">{c.dedicatedPrice || '$800'}</span>
             </div>
           </div>
 

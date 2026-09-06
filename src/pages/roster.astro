@@ -89,7 +89,7 @@ const creators = creatorsData;
                     <path d="M9 11.8l2.2 2.2 4.3-4.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path>
                   </svg>
                 </div>
-                <p class="creator-sub-meta">{c.niche || 'Gaming Content Creator'}</p>
+                <p class="creator-sub-meta">Sponsorships: <span class="text-brand" style="font-weight: 700;">{c.integratedPrice}</span> / <span class="text-brand" style="font-weight: 700;">{c.dedicatedPrice}</span></p>
               </div>
             </div>
 
@@ -106,12 +106,12 @@ const creators = creatorsData;
 
             <div class="card-metrics" style="margin-top: -6px; padding-top: 0; border-top: none;">
               <div class="c-metric">
-                <span class="c-metric-lbl">Total Views</span>
-                <span class="c-metric-val" style="font-size: 1.05rem;">{c.totalViewsShort}</span>
+                <span class="c-metric-lbl">Integrated Deal</span>
+                <span class="c-metric-val text-brand" style="font-size: 1.05rem;">{c.integratedPrice}</span>
               </div>
               <div class="c-metric">
-                <span class="c-metric-lbl">Typical RPM</span>
-                <span class="c-metric-val text-brand" style="font-size: 1.05rem;">{c.rpm}</span>
+                <span class="c-metric-lbl">Dedicated Deal</span>
+                <span class="c-metric-val text-brand" style="font-size: 1.05rem;">{c.dedicatedPrice}</span>
               </div>
             </div>
 
