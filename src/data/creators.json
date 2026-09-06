@@ -19,9 +19,9 @@
     "rpm": "5-7$",
     "slug": "a-h",
     "avatar": "/avatars/a-h.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": "",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$400",
+    "dedicatedPrice": "$800",
+    "sponsorshipSummary": "$400 / $800"
   },
   {
     "index": 2,
@@ -43,9 +43,9 @@
     "rpm": "5-7$",
     "slug": "mrscaft",
     "avatar": "/avatars/mrscaft.webp",
-    "integratedPrice": "1.2k INR",
-    "dedicatedPrice": "2.2k INR",
-    "sponsorshipSummary": "1.2k / 2.2k INR"
+    "integratedPrice": "$1,200",
+    "dedicatedPrice": "$2,200",
+    "sponsorshipSummary": "$1.2K / $2.2K"
   },
   {
     "index": 3,
@@ -67,9 +67,9 @@
     "rpm": "6-8$",
     "slug": "kushnotrip",
     "avatar": "/avatars/kushnotrip.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": ",000",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$500",
+    "dedicatedPrice": "$1,000",
+    "sponsorshipSummary": "$500 / $1K"
   },
   {
     "index": 4,
@@ -91,9 +91,9 @@
     "rpm": "5-7$",
     "slug": "momingaming",
     "avatar": "/avatars/momingaming.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": "",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$400",
+    "dedicatedPrice": "$700",
+    "sponsorshipSummary": "$400 / $700"
   },
   {
     "index": 5,
@@ -115,9 +115,9 @@
     "rpm": "8-10$",
     "slug": "senpaispider",
     "avatar": "/avatars/senpaispider.webp",
-    "integratedPrice": ",000",
-    "dedicatedPrice": ",000",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$2,000",
+    "dedicatedPrice": "$3,000",
+    "sponsorshipSummary": "$2K / $3K"
   },
   {
     "index": 6,
@@ -139,9 +139,9 @@
     "rpm": "5-7$",
     "slug": "anil-playzzz",
     "avatar": "/avatars/anil-playzzz.webp",
-    "integratedPrice": "1k INR",
-    "dedicatedPrice": "5k INR",
-    "sponsorshipSummary": "1k / 5k INR"
+    "integratedPrice": "$1,000",
+    "dedicatedPrice": "$5,000",
+    "sponsorshipSummary": "$1K / $5K"
   },
   {
     "index": 7,
@@ -163,9 +163,9 @@
     "rpm": "5-7$",
     "slug": "sarvion",
     "avatar": "/avatars/sarvion.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": "",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$300",
+    "dedicatedPrice": "$400",
+    "sponsorshipSummary": "$300 / $400"
   },
   {
     "index": 8,
@@ -187,9 +187,9 @@
     "rpm": "8-10$",
     "slug": "mc-flame",
     "avatar": "/avatars/mc-flame.webp",
-    "integratedPrice": ",000",
-    "dedicatedPrice": ",000",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$1,000",
+    "dedicatedPrice": "$2,000",
+    "sponsorshipSummary": "$1K / $2K"
   },
   {
     "index": 9,
@@ -211,9 +211,9 @@
     "rpm": "5-7$",
     "slug": "endzone-xd",
     "avatar": "/avatars/endzone-xd.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": "",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$200",
+    "dedicatedPrice": "$350",
+    "sponsorshipSummary": "$200 / $350"
   },
   {
     "index": 10,
@@ -235,9 +235,9 @@
     "rpm": "5-7$",
     "slug": "yaggify",
     "avatar": "/avatars/yaggify.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": "",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$150",
+    "dedicatedPrice": "$250",
+    "sponsorshipSummary": "$150 / $250"
   },
   {
     "index": 11,
@@ -259,9 +259,9 @@
     "rpm": "6-8$",
     "slug": "yagyansh-gaming",
     "avatar": "/avatars/yagyansh-gaming.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": ",200",
-    "sponsorshipSummary": " / .2k"
+    "integratedPrice": "$600",
+    "dedicatedPrice": "$1,200",
+    "sponsorshipSummary": "$600 / $1.2K"
   },
   {
     "index": 12,
@@ -283,9 +283,9 @@
     "rpm": "7-8$",
     "slug": "haider-playz",
     "avatar": "/avatars/haider-playz.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": ",400",
-    "sponsorshipSummary": " / .4k"
+    "integratedPrice": "$700",
+    "dedicatedPrice": "$1,400",
+    "sponsorshipSummary": "$700 / $1.4K"
   },
   {
     "index": 13,
@@ -307,9 +307,9 @@
     "rpm": "6-8$",
     "slug": "zapnow-playz",
     "avatar": "/avatars/zapnow-playz.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": "",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$400",
+    "dedicatedPrice": "$750",
+    "sponsorshipSummary": "$400 / $750"
   },
   {
     "index": 14,
@@ -331,9 +331,9 @@
     "rpm": "5-7$",
     "slug": "bingobhaskr",
     "avatar": "/avatars/bingobhaskr.webp",
-    "integratedPrice": "",
-    "dedicatedPrice": "",
-    "sponsorshipSummary": " / "
+    "integratedPrice": "$500",
+    "dedicatedPrice": "$900",
+    "sponsorshipSummary": "$500 / $900"
   },
   {
     "index": 15,
@@ -355,8 +355,8 @@
     "rpm": "7-8$",
     "slug": "niz-gamer",
     "avatar": "/avatars/niz-gamer.webp",
-    "integratedPrice": ",500",
-    "dedicatedPrice": ",800",
-    "sponsorshipSummary": ".5k / .8k"
+    "integratedPrice": "$1,500",
+    "dedicatedPrice": "$2,800",
+    "sponsorshipSummary": "$1.5K / $2.8K"
   }
 ]
